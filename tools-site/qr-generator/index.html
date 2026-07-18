@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Generate QR code kustom dengan logo, warna, dan berbagai format. Gratis, cepat, dan tanpa batasan. Download PNG, SVG, atau PDF.">
+    <meta name="keywords" content="QR code generator, custom QR code, QR with logo, colored QR, free QR generator, QR maker">
+    <meta name="author" content="ReboArt Tools">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="QR Code Generator - ReboArt Tools">
+    <meta property="og:description" content="Generate QR code kustom dengan logo dan warna">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tools.reboart.net/tools/qr-generator/">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6366f1">
+    
+    <title>QR Code Generator - ReboArt Tools</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="grid-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Kembali</span>
+            </a>
+            <div class="nav-title">
+                <i class="fas fa-qrcode"></i>
+                <span>QR Code Generator</span>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header -->
+            <div class="tool-header">
+                <div class="tool-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <h1>QR Code Generator</h1>
+                <p>Generate QR code kustom dengan logo, warna, pattern, dan berbagai format output. Gratis, cepat, dan tanpa batasan!</p>
+            </div>
+            
+            <div class="generator-layout">
+                <!-- Left Panel - Controls -->
+                <div class="controls-panel">
+                    <!-- Content Input -->
+                    <div class="panel-section">
+                        <h3 class="panel-title">
+                            <i class="fas fa-link"></i>
+                            Content
+                        </h3>
+                        
+                        <div class="content-type-selector" id="contentTypeSelector">
+                            <button class="type-btn active" data-type="url">
+                                <i class="fas fa-globe"></i> URL
+                            </button>
+                            <button class="type-btn" data-type="text">
+                                <i class="fas fa-font"></i> Text
+                            </button>
+                            <button class="type-btn" data-type="email">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="type-btn" data-type="phone">
+                                <i class="fas fa-phone"></i> Phone
+                            </button>
+                            <button class="type-btn" data-type="wifi">
+                                <i class="fas fa-wifi"></i> WiFi
+                            </button>
+                            <button class="type-btn" data-type="vcard">
+                                <i class="fas fa-address-card"></i> vCard
+                            </button>
+                        </div>
+                        
+                        <!-- URL Input -->
+                        <div class="input-group" id="urlInput">
+                            <label>URL Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-link"></i>
+                                <input type="url" id="qrUrl" placeholder="https://example.com" value="https://reboart.net">
+                            </div>
+                        </div>
+                        
+                        <!-- Text Input -->
+                        <div class="input-group hidden" id="textInput">
+                            <label>Text Content</label>
+                            <textarea id="qrText" placeholder="Enter your text here..." rows="3"></textarea>
+                        </div>
+                        
+                        <!-- Email Input -->
+                        <div class="input-group hidden" id="emailInput">
+                            <label>Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="qrEmail" placeholder="email@example.com">
+                            </div>
+                            <label style="margin-top: 1rem;">Subject (optional)</label>
+                            <input type="text" id="qrEmailSubject" placeholder="Email subject...">
+                            <label style="margin-top: 1rem;">Body (optional)</label>
+                            <textarea id="qrEmailBody" placeholder="Email body..." rows="2"></textarea>
+                        </div>
+                        
+                        <!-- Phone Input -->
+                        <div class="input-group hidden" id="phoneInput">
+                            <label>Phone Number</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="qrPhone" placeholder="+62123456789">
+                            </div>
+                        </div>
+                        
+                        <!-- WiFi Input -->
+                        <div class="input-group hidden" id="wifiInput">
+                            <label>Network Name (SSID)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-wifi"></i>
+                                <input type="text" id="qrWifiSsid" placeholder="WiFi Network Name">
+                            </div>
+                            <label style="margin-top: 1rem;">Security Type</label>
+                            <select id="qrWifiSecurity">
+                                <option value="WPA">WPA/WPA2</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">No Password</option>
+                            </select>
+                            <label style="margin-top: 1rem;">Password</label>
+                            <input type="text" id="qrWifiPassword" placeholder="WiFi Password">
+                        </div>
+                        
+                        <!-- vCard Input -->
+                        <div class="input-group hidden" id="vcardInput">
+                            <label>Full Name</label>
+                            <input type="text" id="qrVcardName" placeholder="John Doe">
+                            <label style="margin-top: 1rem;">Organization</label>
+                            <input type="text" id="qrVcardOrg" placeholder="Company Name">
+                            <label style="margin-top: 1rem;">Phone</label>
+                            <input type="tel" id="qrVcardPhone" placeholder="+62123456789">
+                            <label style="margin-top: 1rem;">Email</label>
+                            <input type="email" id="qrVcardEmail" placeholder="email@example.com">
+                            <label style="margin-top: 1rem;">Website</label>
+                            <input type="url" id="qrVcardUrl" placeholder="https://example.com">
+                        </div>
+                    </div>
+                    
+                    <!-- Customization -->
+                    <div class="panel-section">
+                        <h3 class="panel-title">
+                            <i class="fas fa-paint-brush"></i>
+                            Customization
+                        </h3>
+                        
+                        <!-- Colors -->
+                        <div class="customize-grid">
+                            <div class="customize-item">
+                                <label>Foreground Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="qrFgColor" value="#000000">
+                                    <input type="text" id="qrFgHex" value="#000000" class="hex-input-small" maxlength="7">
+                                </div>
+                            </div>
+                            
+                            <div class="customize-item">
+                                <label>Background Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="qrBgColor" value="#ffffff">
+                                    <input type="text" id="qrBgHex" value="#ffffff" class="hex-input-small" maxlength="7">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Size -->
+                        <div class="customize-item">
+                            <label>QR Size: <span id="sizeValue">300</span>px</label>
+                            <input type="range" id="qrSize" min="150" max="600" value="300" step="10">
+                        </div>
+                        
+                        <!-- Error Correction -->
+                        <div class="customize-item">
+                            <label>Error Correction Level</label>
+                            <div class="ec-buttons">
+                                <button class="ec-btn" data-ec="L" title="Low (7%)">
+                                    L <span>7%</span>
+                                </button>
+                                <button class="ec-btn active" data-ec="M" title="Medium (15%)">
+                                    M <span>15%</span>
+                                </button>
+                                <button class="ec-btn" data-ec="Q" title="Quartile (25%)">
+                                    Q <span>25%</span>
+                                </button>
+                                <button class="ec-btn" data-ec="H" title="High (30%)">
+                                    H <span>30%</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Pattern Style -->
+                        <div class="customize-item">
+                            <label>Dot Style</label>
+                            <div class="style-selector" id="dotStyleSelector">
+                                <button class="style-btn active" data-style="squares">
+                                    <i class="fas fa-square"></i> Squares
+                                </button>
+                                <button class="style-btn" data-style="dots">
+                                    <i class="fas fa-circle"></i> Dots
+                                </button>
+                                <button class="style-btn" data-style="rounded">
+                                    <i class="fas fa-square-rounded"></i> Rounded
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Logo Upload -->
+                        <div class="customize-item">
+                            <label>Logo (optional)</label>
+                            <div class="logo-upload-area" id="logoUploadArea">
+                                <input type="file" id="logoInput" accept="image/*" hidden>
+                                <div class="upload-content" id="uploadContent">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload logo</p>
+                                    <span>PNG, JPG, SVG (Max 1MB)</span>
+                                </div>
+                                <div class="logo-preview hidden" id="logoPreview">
+                                    <img id="logoImage" src="" alt="Logo preview">
+                                    <button class="remove-logo-btn" id="removeLogoBtn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Generate Button -->
+                    <button class="generate-btn" id="generateBtn">
+                        <i class="fas fa-qrcode"></i>
+                        Generate QR Code
+                    </button>
+                </div>
+                
+                <!-- Right Panel - Preview -->
+                <div class="preview-panel">
+                    <!-- QR Code Display -->
+                    <div class="qr-preview-card">
+                        <div class="qr-container" id="qrContainer">
+                            <canvas id="qrCanvas"></canvas>
+                            <div class="qr-placeholder" id="qrPlaceholder">
+                                <i class="fas fa-qrcode"></i>
+                                <p>Your QR code will appear here</p>
+                            </div>
+                        </div>
+                        
+                        <!-- QR Info -->
+                        <div class="qr-info">
+                            <div class="qr-info-item">
+                                <span>Type</span>
+                                <strong id="infoType">URL</strong>
+                            </div>
+                            <div class="qr-info-item">
+                                <span>Size</span>
+                                <strong id="infoSize">300x300</strong>
+                            </div>
+                            <div class="qr-info-item">
+                                <span>Error Correction</span>
+                                <strong id="infoEc">M (15%)</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Buttons -->
+                    <div class="download-section">
+                        <h3>
+                            <i class="fas fa-download"></i>
+                            Download
+                        </h3>
+                        <div class="download-grid">
+                            <button class="download-btn" id="downloadPng">
+                                <i class="fas fa-image"></i>
+                                <span>PNG</span>
+                                <small>Best quality</small>
+                            </button>
+                            <button class="download-btn" id="downloadSvg">
+                                <i class="fas fa-vector-square"></i>
+                                <span>SVG</span>
+                                <small>Scalable</small>
+                            </button>
+                            <button class="download-btn" id="downloadJpg">
+                                <i class="fas fa-file-image"></i>
+                                <span>JPG</span>
+                                <small>Small size</small>
+                            </button>
+                            <button class="download-btn" id="downloadWebp">
+                                <i class="fas fa-file"></i>
+                                <span>WebP</span>
+                                <small>Modern</small>
+                            </button>
+                        </div>
+                        <button class="copy-qr-btn" id="copyQrBtn">
+                            <i class="fas fa-copy"></i>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                    
+                    <!-- History -->
+                    <div class="history-section" id="historySection">
+                        <div class="history-header">
+                            <h3>
+                                <i class="fas fa-history"></i>
+                                Recent QR Codes
+                            </h3>
+                            <button class="clear-history-btn" id="clearHistoryBtn">
+                                <i class="fas fa-trash"></i>
+                                Clear
+                            </button>
+                        </div>
+                        <div class="history-grid" id="historyGrid">
+                            <div class="empty-history">
+                                <i class="fas fa-clock-rotate-left"></i>
+                                <p>No history yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">QR Code generated!</span>
+    </div>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
