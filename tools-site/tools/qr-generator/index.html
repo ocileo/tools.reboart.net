@@ -12,7 +12,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- QR Code Library -->
+    <!-- QR Code Library - MUST LOAD FIRST -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <style>
@@ -29,6 +29,8 @@
             --accent: #6366f1;
             --accent-2: #8b5cf6;
             --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --success: #10b981;
+            --error: #ef4444;
             --border: rgba(148, 163, 184, 0.1);
             --border-glass: rgba(255, 255, 255, 0.08);
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -73,6 +75,7 @@
             width: 100%;
             height: 100%;
             z-index: -2;
+            pointer-events: none;
             background: 
                 radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
@@ -85,6 +88,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            pointer-events: none;
             background-image: 
                 linear-gradient(var(--border) 1px, transparent 1px),
                 linear-gradient(90deg, var(--border) 1px, transparent 1px);
@@ -105,6 +109,7 @@
             z-index: 100;
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass);
             padding: 1rem 0;
         }
@@ -188,6 +193,12 @@
             font-size: 2.5rem;
             color: white;
             box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .tool-header h1 {
@@ -204,6 +215,7 @@
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
 
         /* Generator Layout */
@@ -218,9 +230,18 @@
         .panel {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-xl);
             padding: 2rem;
+        }
+
+        .panel-section {
+            margin-bottom: 2rem;
+        }
+
+        .panel-section:last-child {
+            margin-bottom: 0;
         }
 
         .panel-title {
@@ -228,10 +249,11 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: 600;
         }
 
         .panel-title i {
@@ -239,7 +261,11 @@
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
 
         .form-group label {
@@ -252,6 +278,8 @@
 
         input[type="text"],
         input[type="url"],
+        input[type="email"],
+        input[type="tel"],
         textarea,
         select {
             width: 100%;
@@ -270,7 +298,7 @@
         textarea:focus,
         select:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
         textarea {
@@ -280,6 +308,11 @@
 
         select {
             cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
         }
 
         .color-inputs {
@@ -302,11 +335,18 @@
             cursor: pointer;
             background: transparent;
             padding: 2px;
+            transition: var(--transition);
         }
 
-        .size-range {
-            width: 100%;
-            margin-top: 0.5rem;
+        input[type="color"]:hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+        }
+
+        .hex-input {
+            flex: 1;
+            font-family: 'Courier New', monospace !important;
+            font-size: 0.9rem !important;
         }
 
         input[type="range"] {
@@ -317,15 +357,33 @@
             border-radius: 3px;
             outline: none;
             cursor: pointer;
+            margin-top: 0.5rem;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             background: var(--accent-gradient);
             border-radius: 50%;
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+            transition: var(--transition);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .size-display {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
 
         .btn {
@@ -336,10 +394,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-size: 0.95rem;
         }
 
         .btn-primary {
@@ -349,8 +408,8 @@
             color: white;
             font-size: 1.1rem;
             border-radius: var(--radius-lg);
-            margin-top: 1rem;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
@@ -358,54 +417,174 @@
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
         }
 
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-primary .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .btn-primary.loading .spinner {
+            display: block;
+        }
+
+        .btn-primary.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Logo Upload */
+        .logo-upload {
+            border: 2px dashed var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .logo-upload:hover {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .logo-upload.has-logo {
+            border-style: solid;
+            border-color: var(--success);
+        }
+
+        .upload-placeholder i {
+            font-size: 2rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-placeholder p {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .upload-placeholder span {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .logo-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .logo-preview img {
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: var(--radius-sm);
+        }
+
+        .remove-logo {
+            padding: 0.4rem 0.8rem;
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .remove-logo:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+
         /* Preview Panel */
         .preview-panel {
             position: sticky;
             top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .qr-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-xl);
             padding: 2rem;
             text-align: center;
+        }
+
+        .qr-wrapper {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            display: inline-block;
             margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .qr-wrapper:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         .qr-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 300px;
-            margin-bottom: 1rem;
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 1rem;
+            min-height: 200px;
         }
 
         .qr-container img,
         .qr-container canvas {
+            display: block;
             max-width: 100%;
             height: auto;
         }
 
         .qr-placeholder {
+            text-align: center;
             color: #94a3b8;
+            padding: 2rem;
         }
 
         .qr-placeholder i {
-            font-size: 4rem;
+            font-size: 5rem;
+            display: block;
             margin-bottom: 1rem;
-            opacity: 0.3;
+            opacity: 0.2;
+        }
+
+        .qr-placeholder p {
+            font-weight: 500;
+            font-size: 1rem;
         }
 
         .qr-info {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-glass);
         }
 
@@ -413,22 +592,25 @@
             text-align: center;
         }
 
-        .info-item span {
+        .info-item .info-label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 4px;
         }
 
-        .info-item strong {
+        .info-item .info-value {
+            font-weight: 600;
             font-size: 0.9rem;
         }
 
+        /* Download Section */
         .download-section {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-xl);
             padding: 1.5rem;
@@ -441,6 +623,7 @@
             margin-bottom: 1rem;
             font-size: 0.95rem;
             color: var(--text-secondary);
+            font-weight: 600;
         }
 
         .download-grid {
@@ -461,9 +644,15 @@
             text-align: center;
         }
 
-        .download-btn:hover {
+        .download-btn:hover:not(:disabled) {
             border-color: var(--accent);
             background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
         }
 
         .download-btn i {
@@ -474,6 +663,7 @@
         }
 
         .download-btn span {
+            display: block;
             font-weight: 600;
             font-size: 0.9rem;
         }
@@ -485,6 +675,7 @@
             margin-top: 2px;
         }
 
+        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -499,8 +690,8 @@
             align-items: center;
             gap: 8px;
             z-index: 1000;
-            box-shadow: var(--shadow);
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
         }
 
@@ -508,6 +699,16 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        .toast.error {
+            background: var(--error);
+        }
+
+        /* Loading State */
+        .generating .qr-container {
+            opacity: 0.5;
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
             .generator-layout {
                 grid-template-columns: 1fr;
@@ -525,6 +726,28 @@
             
             .color-inputs {
                 grid-template-columns: 1fr;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .qr-wrapper {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .panel {
+                padding: 1.5rem;
+            }
+            
+            .qr-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -544,7 +767,7 @@
                 <i class="fas fa-qrcode"></i>
                 <span>QR Code Generator</span>
             </div>
-            <button class="theme-toggle" id="themeToggle">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
@@ -562,101 +785,168 @@
             </div>
             
             <div class="generator-layout">
-                <!-- Left Panel -->
+                <!-- Left Panel - Controls -->
                 <div class="panel">
-                    <div class="form-group">
-                        <label>Content Type</label>
-                        <select id="contentType">
-                            <option value="url">🌐 URL / Website</option>
-                            <option value="text">📝 Text</option>
-                            <option value="email">📧 Email</option>
-                            <option value="phone">📞 Phone</option>
-                            <option value="wifi">📶 WiFi</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group" id="urlGroup">
-                        <label>URL Address</label>
-                        <input type="url" id="qrContent" placeholder="https://example.com" value="https://reboart.net">
-                    </div>
-                    
-                    <div class="form-group" id="textGroup" style="display:none;">
-                        <label>Text Content</label>
-                        <textarea id="qrText" placeholder="Enter your text..."></textarea>
-                    </div>
-                    
-                    <div class="form-group" id="emailGroup" style="display:none;">
-                        <label>Email Address</label>
-                        <input type="email" id="qrEmail" placeholder="email@example.com">
-                    </div>
-                    
-                    <div class="form-group" id="phoneGroup" style="display:none;">
-                        <label>Phone Number</label>
-                        <input type="tel" id="qrPhone" placeholder="+62123456789">
-                    </div>
-                    
-                    <div class="form-group" id="wifiGroup" style="display:none;">
-                        <label>WiFi SSID</label>
-                        <input type="text" id="qrWifiSsid" placeholder="Network Name">
-                        <label style="margin-top:1rem;">Password</label>
-                        <input type="text" id="qrWifiPassword" placeholder="WiFi Password">
-                    </div>
-                    
-                    <div class="panel-title">
-                        <i class="fas fa-paint-brush"></i>
-                        Customization
-                    </div>
-                    
-                    <div class="color-inputs">
+                    <!-- Content Type -->
+                    <div class="panel-section">
+                        <div class="panel-title">
+                            <i class="fas fa-link"></i>
+                            Content
+                        </div>
+                        
                         <div class="form-group">
-                            <label>Foreground</label>
-                            <div class="color-input-group">
-                                <input type="color" id="fgColor" value="#000000">
-                                <input type="text" id="fgHex" value="#000000" style="font-family:monospace;">
+                            <label>Content Type</label>
+                            <select id="contentType">
+                                <option value="url">🌐 URL / Website</option>
+                                <option value="text">📝 Plain Text</option>
+                                <option value="email">📧 Email Address</option>
+                                <option value="phone">📞 Phone Number</option>
+                                <option value="wifi">📶 WiFi Network</option>
+                                <option value="sms">💬 SMS</option>
+                            </select>
+                        </div>
+                        
+                        <!-- URL Input -->
+                        <div class="form-group" id="urlGroup">
+                            <label>URL Address</label>
+                            <input type="url" id="qrContent" placeholder="https://example.com" value="https://reboart.net" autofocus>
+                        </div>
+                        
+                        <!-- Text Input -->
+                        <div class="form-group" id="textGroup" style="display:none;">
+                            <label>Text Content</label>
+                            <textarea id="qrText" placeholder="Masukkan teks di sini..." rows="3"></textarea>
+                        </div>
+                        
+                        <!-- Email Input -->
+                        <div class="form-group" id="emailGroup" style="display:none;">
+                            <label>Email Address</label>
+                            <input type="email" id="qrEmail" placeholder="email@example.com">
+                            <label style="margin-top:0.8rem;">Subject (optional)</label>
+                            <input type="text" id="qrEmailSubject" placeholder="Email subject...">
+                            <label style="margin-top:0.8rem;">Body (optional)</label>
+                            <textarea id="qrEmailBody" placeholder="Email body..." rows="2"></textarea>
+                        </div>
+                        
+                        <!-- Phone Input -->
+                        <div class="form-group" id="phoneGroup" style="display:none;">
+                            <label>Phone Number</label>
+                            <input type="tel" id="qrPhone" placeholder="+628123456789">
+                        </div>
+                        
+                        <!-- WiFi Input -->
+                        <div class="form-group" id="wifiGroup" style="display:none;">
+                            <label>Network Name (SSID)</label>
+                            <input type="text" id="qrWifiSsid" placeholder="Nama WiFi">
+                            <label style="margin-top:0.8rem;">Security</label>
+                            <select id="qrWifiSecurity">
+                                <option value="WPA">WPA/WPA2</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">No Password</option>
+                            </select>
+                            <label style="margin-top:0.8rem;">Password</label>
+                            <input type="text" id="qrWifiPassword" placeholder="Password WiFi">
+                        </div>
+                        
+                        <!-- SMS Input -->
+                        <div class="form-group" id="smsGroup" style="display:none;">
+                            <label>Phone Number</label>
+                            <input type="tel" id="qrSmsPhone" placeholder="+628123456789">
+                            <label style="margin-top:0.8rem;">Message</label>
+                            <textarea id="qrSmsMessage" placeholder="Pesan SMS..." rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Customization -->
+                    <div class="panel-section">
+                        <div class="panel-title">
+                            <i class="fas fa-paint-brush"></i>
+                            Customization
+                        </div>
+                        
+                        <div class="color-inputs">
+                            <div class="form-group">
+                                <label>Foreground Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="fgColor" value="#000000">
+                                    <input type="text" id="fgHex" value="#000000" class="hex-input" maxlength="7">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Background Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="bgColor" value="#ffffff">
+                                    <input type="text" id="bgHex" value="#ffffff" class="hex-input" maxlength="7">
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label>Background</label>
-                            <div class="color-input-group">
-                                <input type="color" id="bgColor" value="#ffffff">
-                                <input type="text" id="bgHex" value="#ffffff" style="font-family:monospace;">
+                            <label>
+                                QR Size: 
+                                <span class="size-display" id="sizeDisplay">300px</span>
+                            </label>
+                            <input type="range" id="qrSize" min="150" max="500" value="300" step="10">
+                        </div>
+                    </div>
+                    
+                    <!-- Logo Upload -->
+                    <div class="panel-section">
+                        <div class="panel-title">
+                            <i class="fas fa-image"></i>
+                            Logo (Optional)
+                        </div>
+                        
+                        <div class="logo-upload" id="logoUpload">
+                            <input type="file" id="logoInput" accept="image/*" hidden>
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Klik untuk upload logo</p>
+                                <span>PNG, JPG, SVG (Max 1MB)</span>
+                            </div>
+                            <div class="logo-preview" id="logoPreviewContainer" style="display:none;">
+                                <img id="logoPreview" src="" alt="Logo">
+                                <button class="remove-logo" id="removeLogo">
+                                    <i class="fas fa-times"></i> Hapus
+                                </button>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Size: <span id="sizeLabel">300</span>px</label>
-                        <input type="range" id="qrSize" min="150" max="500" value="300" step="10" class="size-range">
-                    </div>
-                    
+                    <!-- Generate Button -->
                     <button class="btn btn-primary" id="generateBtn">
-                        <i class="fas fa-qrcode"></i>
-                        Generate QR Code
+                        <span class="spinner"></span>
+                        <span class="btn-text">
+                            <i class="fas fa-qrcode"></i>
+                            Generate QR Code
+                        </span>
                     </button>
                 </div>
                 
-                <!-- Right Panel -->
+                <!-- Right Panel - Preview -->
                 <div class="preview-panel">
                     <div class="qr-card">
-                        <div class="qr-container" id="qrContainer">
-                            <div class="qr-placeholder" id="qrPlaceholder">
-                                <i class="fas fa-qrcode"></i>
-                                <p>QR Code akan muncul di sini</p>
+                        <div class="qr-wrapper">
+                            <div class="qr-container" id="qrContainer">
+                                <div class="qr-placeholder" id="qrPlaceholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>QR Code akan muncul di sini</p>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="qr-info">
                             <div class="info-item">
-                                <span>Type</span>
-                                <strong id="infoType">URL</strong>
+                                <span class="info-label">Type</span>
+                                <span class="info-value" id="infoType">URL</span>
                             </div>
                             <div class="info-item">
-                                <span>Size</span>
-                                <strong id="infoSize">300x300</strong>
+                                <span class="info-label">Size</span>
+                                <span class="info-value" id="infoSize">-</span>
                             </div>
                             <div class="info-item">
-                                <span>Format</span>
-                                <strong>PNG</strong>
+                                <span class="info-label">Status</span>
+                                <span class="info-value" id="infoStatus">Ready</span>
                             </div>
                         </div>
                     </div>
@@ -664,22 +954,22 @@
                     <div class="download-section">
                         <h3><i class="fas fa-download"></i> Download QR Code</h3>
                         <div class="download-grid">
-                            <button class="download-btn" onclick="downloadQR('png')">
+                            <button class="download-btn" id="downloadPng" disabled>
                                 <i class="fas fa-image"></i>
                                 <span>PNG</span>
                                 <small>Best quality</small>
                             </button>
-                            <button class="download-btn" onclick="downloadQR('jpg')">
+                            <button class="download-btn" id="downloadJpg" disabled>
                                 <i class="fas fa-file-image"></i>
                                 <span>JPG</span>
                                 <small>Small size</small>
                             </button>
-                            <button class="download-btn" onclick="downloadQR('webp')">
+                            <button class="download-btn" id="downloadWebp" disabled>
                                 <i class="fas fa-file"></i>
                                 <span>WebP</span>
                                 <small>Modern</small>
                             </button>
-                            <button class="download-btn" onclick="copyQR()">
+                            <button class="download-btn" id="copyQr" disabled>
                                 <i class="fas fa-copy"></i>
                                 <span>Copy</span>
                                 <small>Clipboard</small>
@@ -691,166 +981,307 @@
         </div>
     </main>
     
+    <!-- Toast -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">QR Code generated!</span>
+        <span id="toastMessage"></span>
     </div>
     
+    <!-- OPTIMIZED JAVASCRIPT -->
     <script>
+    (function() {
+        'use strict';
+        
         // =============================================
-        // QR CODE GENERATOR - WORKING VERSION
+        // QR CODE GENERATOR - OPTIMIZED VERSION
         // =============================================
         
-        let qrCode = null;
-        let currentContent = '';
+        // State
+        let qrInstance = null;
+        let logoImage = null;
+        let isGenerating = false;
         
-        // DOM Elements
-        const contentType = document.getElementById('contentType');
-        const qrContent = document.getElementById('qrContent');
-        const qrText = document.getElementById('qrText');
-        const qrEmail = document.getElementById('qrEmail');
-        const qrPhone = document.getElementById('qrPhone');
-        const qrWifiSsid = document.getElementById('qrWifiSsid');
-        const qrWifiPassword = document.getElementById('qrWifiPassword');
-        const fgColor = document.getElementById('fgColor');
-        const bgColor = document.getElementById('bgColor');
-        const fgHex = document.getElementById('fgHex');
-        const bgHex = document.getElementById('bgHex');
-        const qrSize = document.getElementById('qrSize');
-        const generateBtn = document.getElementById('generateBtn');
-        const qrContainer = document.getElementById('qrContainer');
-        const qrPlaceholder = document.getElementById('qrPlaceholder');
+        // DOM Cache (query only once)
+        const DOM = {
+            contentType: document.getElementById('contentType'),
+            qrContent: document.getElementById('qrContent'),
+            qrText: document.getElementById('qrText'),
+            qrEmail: document.getElementById('qrEmail'),
+            qrEmailSubject: document.getElementById('qrEmailSubject'),
+            qrEmailBody: document.getElementById('qrEmailBody'),
+            qrPhone: document.getElementById('qrPhone'),
+            qrWifiSsid: document.getElementById('qrWifiSsid'),
+            qrWifiSecurity: document.getElementById('qrWifiSecurity'),
+            qrWifiPassword: document.getElementById('qrWifiPassword'),
+            qrSmsPhone: document.getElementById('qrSmsPhone'),
+            qrSmsMessage: document.getElementById('qrSmsMessage'),
+            fgColor: document.getElementById('fgColor'),
+            bgColor: document.getElementById('bgColor'),
+            fgHex: document.getElementById('fgHex'),
+            bgHex: document.getElementById('bgHex'),
+            qrSize: document.getElementById('qrSize'),
+            sizeDisplay: document.getElementById('sizeDisplay'),
+            generateBtn: document.getElementById('generateBtn'),
+            qrContainer: document.getElementById('qrContainer'),
+            qrPlaceholder: document.getElementById('qrPlaceholder'),
+            infoType: document.getElementById('infoType'),
+            infoSize: document.getElementById('infoSize'),
+            infoStatus: document.getElementById('infoStatus'),
+            logoUpload: document.getElementById('logoUpload'),
+            logoInput: document.getElementById('logoInput'),
+            uploadPlaceholder: document.getElementById('uploadPlaceholder'),
+            logoPreviewContainer: document.getElementById('logoPreviewContainer'),
+            logoPreview: document.getElementById('logoPreview'),
+            removeLogo: document.getElementById('removeLogo'),
+            downloadPng: document.getElementById('downloadPng'),
+            downloadJpg: document.getElementById('downloadJpg'),
+            downloadWebp: document.getElementById('downloadWebp'),
+            copyQr: document.getElementById('copyQr'),
+            toast: document.getElementById('toast'),
+            toastMessage: document.getElementById('toastMessage'),
+            themeToggle: document.getElementById('themeToggle')
+        };
         
-        // Content type switch
-        contentType.addEventListener('change', function() {
-            const type = this.value;
+        // =============================================
+        // UTILITY FUNCTIONS
+        // =============================================
+        
+        // Debounce - prevents rapid execution
+        function debounce(fn, delay = 300) {
+            let timeoutId;
+            return function(...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+        
+        // Toast notification
+        let toastTimeout;
+        function showToast(message, isError = false) {
+            DOM.toastMessage.textContent = message;
+            DOM.toast.classList.remove('error');
+            if (isError) DOM.toast.classList.add('error');
+            DOM.toast.classList.add('show');
             
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                DOM.toast.classList.remove('show');
+            }, 2500);
+        }
+        
+        // Update button states
+        function updateDownloadButtons(enabled) {
+            const buttons = [DOM.downloadPng, DOM.downloadJpg, DOM.downloadWebp, DOM.copyQr];
+            buttons.forEach(btn => {
+                btn.disabled = !enabled;
+            });
+        }
+        
+        // =============================================
+        // CONTENT MANAGEMENT
+        // =============================================
+        
+        function switchContentType(type) {
             // Hide all groups
-            document.getElementById('urlGroup').style.display = 'none';
-            document.getElementById('textGroup').style.display = 'none';
-            document.getElementById('emailGroup').style.display = 'none';
-            document.getElementById('phoneGroup').style.display = 'none';
-            document.getElementById('wifiGroup').style.display = 'none';
+            const groups = ['url', 'text', 'email', 'phone', 'wifi', 'sms'];
+            groups.forEach(g => {
+                const el = document.getElementById(g + 'Group');
+                if (el) el.style.display = 'none';
+            });
             
             // Show selected group
-            document.getElementById(type + 'Group').style.display = 'block';
+            const activeGroup = document.getElementById(type + 'Group');
+            if (activeGroup) activeGroup.style.display = 'block';
             
-            document.getElementById('infoType').textContent = type.toUpperCase();
-        });
+            DOM.infoType.textContent = type.toUpperCase();
+        }
         
-        // Color sync
-        fgColor.addEventListener('input', function() {
-            fgHex.value = this.value;
-        });
-        
-        bgColor.addEventListener('input', function() {
-            bgHex.value = this.value;
-        });
-        
-        fgHex.addEventListener('input', function() {
-            if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
-                fgColor.value = this.value;
-            }
-        });
-        
-        bgHex.addEventListener('input', function() {
-            if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
-                bgColor.value = this.value;
-            }
-        });
-        
-        // Size label
-        qrSize.addEventListener('input', function() {
-            document.getElementById('sizeLabel').textContent = this.value;
-        });
-        
-        // Get content based on type
         function getQRContent() {
-            const type = contentType.value;
+            const type = DOM.contentType.value;
             
             switch(type) {
                 case 'url':
-                    return qrContent.value.trim();
+                    return DOM.qrContent.value.trim() || 'https://example.com';
+                
                 case 'text':
-                    return qrText.value.trim();
+                    return DOM.qrText.value.trim() || 'Hello World';
+                
                 case 'email':
-                    return 'mailto:' + qrEmail.value.trim();
+                    const email = DOM.qrEmail.value.trim();
+                    const subject = DOM.qrEmailSubject.value.trim();
+                    const body = DOM.qrEmailBody.value.trim();
+                    if (!email) return '';
+                    let mailto = `mailto:${email}`;
+                    const params = [];
+                    if (subject) params.push(`subject=${encodeURIComponent(subject)}`);
+                    if (body) params.push(`body=${encodeURIComponent(body)}`);
+                    if (params.length) mailto += '?' + params.join('&');
+                    return mailto;
+                
                 case 'phone':
-                    return 'tel:' + qrPhone.value.trim();
+                    const phone = DOM.qrPhone.value.trim();
+                    return phone ? `tel:${phone}` : '';
+                
                 case 'wifi':
-                    const ssid = qrWifiSsid.value.trim();
-                    const pass = qrWifiPassword.value.trim();
-                    return `WIFI:T:WPA;S:${ssid};P:${pass};;`;
+                    const ssid = DOM.qrWifiSsid.value.trim();
+                    const security = DOM.qrWifiSecurity.value;
+                    const password = DOM.qrWifiPassword.value.trim();
+                    if (!ssid) return '';
+                    return `WIFI:T:${security};S:${ssid};P:${password};;`;
+                
+                case 'sms':
+                    const smsPhone = DOM.qrSmsPhone.value.trim();
+                    const message = DOM.qrSmsMessage.value.trim();
+                    if (!smsPhone) return '';
+                    return `smsto:${smsPhone}:${message}`;
+                
                 default:
-                    return qrContent.value.trim();
+                    return DOM.qrContent.value.trim() || 'https://example.com';
             }
         }
         
-        // Generate QR Code
+        // =============================================
+        // QR CODE GENERATION
+        // =============================================
+        
         function generateQR() {
+            // Prevent concurrent generation
+            if (isGenerating) return;
+            
             const content = getQRContent();
             
             if (!content) {
-                showToast('Masukkan konten terlebih dahulu!');
+                showToast('Masukkan konten terlebih dahulu', true);
                 return;
             }
             
-            currentContent = content;
+            isGenerating = true;
+            DOM.generateBtn.classList.add('loading');
+            DOM.infoStatus.textContent = 'Generating...';
             
             // Clear previous QR
-            qrContainer.innerHTML = '';
+            DOM.qrContainer.innerHTML = '';
             
             // Get settings
-            const size = parseInt(qrSize.value);
-            const fg = fgColor.value;
-            const bg = bgColor.value;
+            const size = parseInt(DOM.qrSize.value);
+            const fg = DOM.fgColor.value;
+            const bg = DOM.bgColor.value;
             
-            // Create new QR Code
-            qrCode = new QRCode(qrContainer, {
-                text: content,
-                width: size,
-                height: size,
-                colorDark: fg,
-                colorLight: bg,
-                correctLevel: QRCode.CorrectLevel.M
+            // Use requestAnimationFrame for smoother rendering
+            requestAnimationFrame(() => {
+                try {
+                    // Check if QRCode library is available
+                    if (typeof QRCode === 'undefined') {
+                        throw new Error('QR Code library not loaded');
+                    }
+                    
+                    // Generate QR
+                    qrInstance = new QRCode(DOM.qrContainer, {
+                        text: content,
+                        width: size,
+                        height: size,
+                        colorDark: fg,
+                        colorLight: bg,
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                    
+                    // Add logo if exists (with delay for rendering)
+                    if (logoImage) {
+                        setTimeout(() => {
+                            try {
+                                addLogoToQR();
+                            } catch (logoError) {
+                                console.warn('Logo overlay failed:', logoError);
+                            }
+                        }, 100);
+                    }
+                    
+                    // Update UI
+                    DOM.infoSize.textContent = `${size}×${size}px`;
+                    DOM.infoStatus.textContent = 'Ready ✓';
+                    updateDownloadButtons(true);
+                    
+                    // Hide placeholder
+                    const placeholder = DOM.qrContainer.querySelector('.qr-placeholder');
+                    if (placeholder) placeholder.style.display = 'none';
+                    
+                } catch (error) {
+                    console.error('QR Generation error:', error);
+                    DOM.qrContainer.innerHTML = `
+                        <div class="qr-placeholder">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Gagal generate QR Code</p>
+                            <small>${error.message}</small>
+                        </div>
+                    `;
+                    DOM.infoStatus.textContent = 'Error';
+                    updateDownloadButtons(false);
+                    showToast('Gagal generate QR Code: ' + error.message, true);
+                } finally {
+                    isGenerating = false;
+                    DOM.generateBtn.classList.remove('loading');
+                }
             });
-            
-            // Update info
-            document.getElementById('infoSize').textContent = size + 'x' + size;
-            
-            showToast('QR Code berhasil dibuat! ✅');
         }
         
-        // Download QR
+        function addLogoToQR() {
+            const canvas = DOM.qrContainer.querySelector('canvas');
+            if (!canvas || !logoImage) return;
+            
+            const ctx = canvas.getContext('2d');
+            const logoSize = canvas.width * 0.22;
+            const x = (canvas.width - logoSize) / 2;
+            const y = (canvas.height - logoSize) / 2;
+            
+            const img = new Image();
+            img.onload = function() {
+                // White background behind logo
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(x - 4, y - 4, logoSize + 8, logoSize + 8);
+                
+                // Draw logo
+                ctx.drawImage(img, x, y, logoSize, logoSize);
+            };
+            img.onerror = function() {
+                console.warn('Failed to load logo image');
+            };
+            img.src = logoImage;
+        }
+        
+        // Debounced version for input events
+        const debouncedGenerate = debounce(generateQR, 400);
+        
+        // =============================================
+        // DOWNLOAD FUNCTIONS
+        // =============================================
+        
         function downloadQR(format) {
-            const canvas = qrContainer.querySelector('canvas');
+            const canvas = DOM.qrContainer.querySelector('canvas');
             
             if (!canvas) {
-                showToast('Generate QR Code dulu!');
+                showToast('Generate QR Code dulu!', true);
                 return;
             }
             
-            let mimeType, extension;
+            const mimeTypes = {
+                png: 'image/png',
+                jpg: 'image/jpeg',
+                jpeg: 'image/jpeg',
+                webp: 'image/webp'
+            };
             
-            switch(format) {
-                case 'png':
-                    mimeType = 'image/png';
-                    extension = 'png';
-                    break;
-                case 'jpg':
-                    mimeType = 'image/jpeg';
-                    extension = 'jpg';
-                    break;
-                case 'webp':
-                    mimeType = 'image/webp';
-                    extension = 'webp';
-                    break;
-                default:
-                    mimeType = 'image/png';
-                    extension = 'png';
-            }
+            const extensions = {
+                png: 'png',
+                jpg: 'jpg',
+                jpeg: 'jpg',
+                webp: 'webp'
+            };
             
-            const dataUrl = canvas.toDataURL(mimeType, 0.95);
+            const mimeType = mimeTypes[format] || 'image/png';
+            const extension = extensions[format] || 'png';
+            const quality = format === 'png' ? 1 : 0.95;
+            
+            const dataUrl = canvas.toDataURL(mimeType, quality);
             const link = document.createElement('a');
             link.download = `qr-code.${extension}`;
             link.href = dataUrl;
@@ -859,18 +1290,20 @@
             showToast(`Downloaded as ${extension.toUpperCase()}! 📥`);
         }
         
-        // Copy QR to clipboard
         async function copyQR() {
-            const canvas = qrContainer.querySelector('canvas');
+            const canvas = DOM.qrContainer.querySelector('canvas');
             
             if (!canvas) {
-                showToast('Generate QR Code dulu!');
+                showToast('Generate QR Code dulu!', true);
                 return;
             }
             
             try {
-                const blob = await new Promise(resolve => {
-                    canvas.toBlob(resolve, 'image/png');
+                const blob = await new Promise((resolve, reject) => {
+                    canvas.toBlob(blob => {
+                        if (blob) resolve(blob);
+                        else reject(new Error('Failed to create blob'));
+                    }, 'image/png');
                 });
                 
                 await navigator.clipboard.write([
@@ -879,86 +1312,229 @@
                 
                 showToast('QR Code copied! 📋');
             } catch (error) {
-                // Fallback: download instead
+                console.warn('Clipboard failed, downloading instead:', error);
                 downloadQR('png');
-                showToast('Copied as download instead');
+                showToast('Downloaded instead (clipboard not supported)');
             }
         }
         
-        // Toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMessage').textContent = message;
-            toast.classList.add('show');
+        // =============================================
+        // LOGO MANAGEMENT
+        // =============================================
+        
+        function handleLogoUpload(file) {
+            if (!file) return;
             
-            clearTimeout(window.toastTimeout);
-            window.toastTimeout = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
+            if (!file.type.startsWith('image/')) {
+                showToast('File harus berupa gambar!', true);
+                return;
+            }
+            
+            if (file.size > 1024 * 1024) {
+                showToast('Ukuran logo maksimal 1MB!', true);
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                logoImage = e.target.result;
+                DOM.logoPreview.src = e.target.result;
+                DOM.uploadPlaceholder.style.display = 'none';
+                DOM.logoPreviewContainer.style.display = 'flex';
+                DOM.logoUpload.classList.add('has-logo');
+                
+                // Regenerate with logo
+                if (qrInstance) {
+                    generateQR();
+                }
+            };
+            reader.onerror = function() {
+                showToast('Gagal membaca file!', true);
+            };
+            reader.readAsDataURL(file);
         }
         
-        // Generate button
-        generateBtn.addEventListener('click', generateQR);
-        
-        // Auto generate on Enter key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey && document.activeElement.tagName === 'INPUT') {
-                e.preventDefault();
+        function removeLogoHandler(e) {
+            e.stopPropagation();
+            logoImage = null;
+            DOM.logoInput.value = '';
+            DOM.uploadPlaceholder.style.display = '';
+            DOM.logoPreviewContainer.style.display = 'none';
+            DOM.logoUpload.classList.remove('has-logo');
+            
+            if (qrInstance) {
                 generateQR();
             }
-        });
+        }
         
-        // Theme toggle
-        document.getElementById('themeToggle').addEventListener('click', function() {
+        // =============================================
+        // THEME MANAGEMENT
+        // =============================================
+        
+        function toggleTheme() {
             const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const current = html.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
             
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
             
-            this.querySelector('i').className = newTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-        });
+            DOM.themeToggle.querySelector('i').className = 
+                next === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        }
         
-        // Load theme
         function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.querySelector('#themeToggle i').className = 
-                savedTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+            DOM.themeToggle.querySelector('i').className = 
+                saved === 'light' ? 'fas fa-sun' : 'fas fa-moon';
         }
         
-        // Auto generate on load
-        window.addEventListener('DOMContentLoaded', function() {
+        // =============================================
+        // EVENT BINDING
+        // =============================================
+        
+        function bindEvents() {
+            // Content type switch
+            DOM.contentType.addEventListener('change', function() {
+                switchContentType(this.value);
+                debouncedGenerate();
+            });
+            
+            // Input events with debounce
+            const inputElements = [
+                DOM.qrContent, DOM.qrText, DOM.qrEmail, DOM.qrEmailSubject,
+                DOM.qrEmailBody, DOM.qrPhone, DOM.qrWifiSsid, DOM.qrWifiPassword,
+                DOM.qrSmsPhone, DOM.qrSmsMessage
+            ];
+            
+            inputElements.forEach(el => {
+                if (el) el.addEventListener('input', debouncedGenerate);
+            });
+            
+            // WiFi security change
+            DOM.qrWifiSecurity?.addEventListener('change', debouncedGenerate);
+            
+            // Color changes - immediate for better UX
+            DOM.fgColor.addEventListener('input', function() {
+                DOM.fgHex.value = this.value;
+                debouncedGenerate();
+            });
+            
+            DOM.bgColor.addEventListener('input', function() {
+                DOM.bgHex.value = this.value;
+                debouncedGenerate();
+            });
+            
+            DOM.fgHex.addEventListener('input', function() {
+                if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+                    DOM.fgColor.value = this.value;
+                    debouncedGenerate();
+                }
+            });
+            
+            DOM.bgHex.addEventListener('input', function() {
+                if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+                    DOM.bgColor.value = this.value;
+                    debouncedGenerate();
+                }
+            });
+            
+            // Size change
+            DOM.qrSize.addEventListener('input', function() {
+                DOM.sizeDisplay.textContent = this.value + 'px';
+                debouncedGenerate();
+            });
+            
+            // Generate button
+            DOM.generateBtn.addEventListener('click', generateQR);
+            
+            // Logo upload
+            DOM.logoUpload.addEventListener('click', function() {
+                DOM.logoInput.click();
+            });
+            
+            DOM.logoInput.addEventListener('change', function(e) {
+                handleLogoUpload(e.target.files[0]);
+            });
+            
+            DOM.removeLogo.addEventListener('click', removeLogoHandler);
+            
+            // Drag and drop for logo
+            DOM.logoUpload.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = 'var(--accent)';
+            });
+            
+            DOM.logoUpload.addEventListener('dragleave', function() {
+                this.style.borderColor = '';
+            });
+            
+            DOM.logoUpload.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '';
+                const file = e.dataTransfer.files[0];
+                if (file) handleLogoUpload(file);
+            });
+            
+            // Download buttons
+            DOM.downloadPng.addEventListener('click', () => downloadQR('png'));
+            DOM.downloadJpg.addEventListener('click', () => downloadQR('jpg'));
+            DOM.downloadWebp.addEventListener('click', () => downloadQR('webp'));
+            DOM.copyQr.addEventListener('click', copyQR);
+            
+            // Theme toggle
+            DOM.themeToggle.addEventListener('click', toggleTheme);
+            
+            // Keyboard shortcut: Enter to generate
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
+                    generateQR();
+                }
+            });
+        }
+        
+        // =============================================
+        // INITIALIZATION
+        // =============================================
+        
+        function init() {
+            // Check if QRCode library is loaded
+            if (typeof QRCode === 'undefined') {
+                console.error('QRCode library not loaded! Check script src.');
+                DOM.qrContainer.innerHTML = `
+                    <div class="qr-placeholder">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Library tidak dimuat</p>
+                        <small>Periksa koneksi internet</small>
+                    </div>
+                `;
+                return;
+            }
+            
             loadTheme();
-            // Auto generate after 500ms
-            setTimeout(generateQR, 500);
-        });
-        
-        // Auto generate when input changes
-        qrContent.addEventListener('input', debounce(generateQR, 500));
-        qrText.addEventListener('input', debounce(generateQR, 500));
-        qrEmail.addEventListener('input', debounce(generateQR, 500));
-        qrPhone.addEventListener('input', debounce(generateQR, 500));
-        qrWifiSsid.addEventListener('input', debounce(generateQR, 500));
-        qrWifiPassword.addEventListener('input', debounce(generateQR, 500));
-        
-        fgColor.addEventListener('change', generateQR);
-        bgColor.addEventListener('change', generateQR);
-        qrSize.addEventListener('change', generateQR);
-        
-        function debounce(func, wait) {
-            let timeout;
-            return function(...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
+            bindEvents();
+            
+            // Initial generation
+            setTimeout(generateQR, 300);
+            
+            console.log('%c📱 QR Code Generator %cReady! %cOptimized',
+                'font-size:1.2em;font-weight:bold;color:#6366f1;',
+                'color:#94a3b8;',
+                'color:#10b981;font-size:0.8em;');
+            console.log('%c💡 Tips:%c Ctrl+Enter untuk generate | Drag & drop logo | Auto-save tidak aktif',
+                'font-weight:bold;', 'font-weight:normal;');
         }
         
-        console.log('%c📱 QR Code Generator %cReady!', 
-            'font-size: 1.2em; font-weight: bold; color: #6366f1;',
-            'color: #94a3b8;');
-        console.log('%c💡 Ketik URL lalu tekan Enter atau klik Generate', 'color: #94a3b8;');
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+    })();
     </script>
 </body>
 </html>
