@@ -1,135 +1,349 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
-    <!-- Modern Meta Tags -->
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kumpulan tools online gratis untuk berbagai keperluan">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Kumpulan tools online gratis untuk developer, designer, dan productivity. JSON formatter, password generator, QR code, dan masih banyak lagi.">
+    <meta name="keywords" content="online tools, developer tools, JSON formatter, password generator, QR code, base64 encoder, free tools">
+    <meta name="author" content="ReboArt">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="ReboArt Tools - Kumpulan Tools Online Gratis">
+    <meta property="og:description" content="Tools online gratis untuk berbagai keperluan development, design, dan productivity.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tools.reboart.net">
+    <meta property="og:image" content="https://tools.reboart.net/assets/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ReboArt Tools">
+    <meta name="twitter:description" content="Kumpulan tools online gratis">
+    
+    <!-- Modern Meta Tags -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    
     <title>ReboArt Tools - Kumpulan Tools Online Gratis</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Animated Background -->
     <div class="animated-bg"></div>
     <div class="grid-bg"></div>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <a href="/" class="logo">
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
                     <i class="fas fa-tools"></i>
-                    ReboArt<span>Tools</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#tools">Semua Tools</a></li>
-                    <li><a href="#about">Tentang</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
                 </div>
+                <div class="logo-text">
+                    ReboArt<span>Tools</span>
+                </div>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Beranda</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#features" class="nav-link">Fitur</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark</span>
+                    </button>
+                </li>
+            </ul>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </nav>
-    </header>
-
+        </div>
+    </nav>
+    
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <h1>Kumpulan Tools Online Gratis</h1>
-            <p>Mempermudah pekerjaan Anda dengan berbagai tools yang siap digunakan kapan saja dan di mana saja.</p>
-            <div class="search-box">
-                <input type="text" id="searchTool" placeholder="Cari tools...">
-                <button type="button"><i class="fas fa-search"></i></button>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>🚀 20+ Tools Gratis Tersedia</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Tools Online
+                    <span class="gradient-text">Super Cepat</span>
+                    Untuk Semua Kebutuhan
+                </h1>
+                
+                <p class="hero-description">
+                    Akses berbagai tools online gratis untuk development, design, 
+                    dan productivity. Tanpa install, tanpa login, langsung pakai!
+                </p>
+                
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="searchTool" 
+                        class="search-box" 
+                        placeholder="Cari tools... (contoh: JSON, Password, QR)"
+                        autocomplete="off"
+                    >
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="25">0+</div>
+                        <div class="stat-label">Tools</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="100">0%</div>
+                        <div class="stat-label">Gratis</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="99">0%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
             </div>
         </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
-
+    
     <!-- Tools Section -->
     <section id="tools" class="tools-section">
         <div class="container">
             <div class="section-header">
+                <span class="section-badge">🛠️ Collection</span>
                 <h2 class="section-title">
                     <span class="gradient-text">Tools</span> Tersedia
                 </h2>
-                <p class="section-subtitle">Pilih dari berbagai tools yang kami sediakan</p>
+                <p class="section-subtitle">
+                    Pilih dari berbagai kategori tools yang kami sediakan
+                </p>
             </div>
             
             <div class="filter-wrapper" id="filterContainer">
-                <!-- Filter pills akan dirender oleh JavaScript -->
+                <!-- Rendered by JavaScript -->
             </div>
             
             <div class="tools-grid" id="toolsGrid">
-                <!-- Tools cards akan dirender oleh JavaScript -->
+                <!-- Rendered by JavaScript -->
             </div>
         </div>
     </section>
-
+    
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">✨ Mengapa Kami</span>
+                <h2 class="section-title">
+                    Kenapa Pilih <span class="gradient-text">ReboArt Tools?</span>
+                </h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Super Cepat</h3>
+                    <p>Dioptimasi dengan CDN global untuk loading kurang dari 1 detik</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3>Privasi Terjamin</h3>
+                    <p>Semua proses dilakukan di browser Anda, tidak ada data yang dikirim ke server</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>100% Gratis</h3>
+                    <p>Semua tools gratis tanpa batasan, tanpa iklan mengganggu</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h3>Responsive</h3>
+                    <p>Akses dari device apapun dengan tampilan yang optimal</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Open Source</h3>
+                    <p>Kode tersedia di GitHub, kontribusi selalu diterima</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3>Selalu Update</h3>
+                    <p>Tools baru ditambahkan secara berkala</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">Tentang ReboArt Tools</h2>
-            <div class="about-content">
-                <p>ReboArt Tools menyediakan berbagai tools online gratis yang dapat membantu Anda dalam pekerjaan sehari-hari. Mulai dari tools pengembangan web, konversi file, generator kode, dan masih banyak lagi.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <i class="fas fa-tools"></i>
-                        <h3>20+</h3>
-                        <p>Tools Tersedia</p>
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-badge">💡 Tentang Kami</span>
+                    <h2>Membantu Developer & Kreator</h2>
+                    <p>
+                        ReboArt Tools hadir untuk memudahkan pekerjaan developer, 
+                        designer, dan content creator dengan menyediakan tools 
+                        online yang cepat, aman, dan gratis.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tanpa registrasi</span>
+                        </div>
+                        <div class="about-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tanpa batasan penggunaan</span>
+                        </div>
+                        <div class="about-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Privacy-first approach</span>
+                        </div>
+                        <div class="about-feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Support multi-browser</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <i class="fas fa-users"></i>
-                        <h3>1000+</h3>
-                        <p>Pengguna</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>100%</h3>
-                        <p>Gratis</p>
+                </div>
+                <div class="about-image">
+                    <div class="about-card">
+                        <div class="about-card-content">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Mulai Sekarang</h3>
+                            <p>Jelajahi semua tools kami</p>
+                            <a href="#tools" class="btn-primary">
+                                Lihat Tools <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Footer -->
-    <footer id="contact" class="footer">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ReboArt Tools</h3>
-                    <p>Platform tools online gratis untuk membantu produktivitas Anda.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="logo-text">
+                            ReboArt<span>Tools</span>
+                        </div>
+                    </div>
+                    <p>Platform tools online gratis untuk membantu produktivitas Anda. Dibuat dengan ❤️ untuk komunitas.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Tools Populer</h3>
+                
+                <div class="footer-links">
+                    <h4>Tools Populer</h4>
                     <ul>
                         <li><a href="#">JSON Formatter</a></li>
+                        <li><a href="#">Password Generator</a></li>
+                        <li><a href="#">QR Code Generator</a></li>
                         <li><a href="#">Base64 Encoder</a></li>
-                        <li><a href="#">URL Encoder</a></li>
-                        <li><a href="#">Color Converter</a></li>
+                        <li><a href="#">Color Palette</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Kontak</h3>
+                
+                <div class="footer-links">
+                    <h4>Links</h4>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@reboart.net</li>
-                        <li><i class="fas fa-globe"></i> www.reboart.net</li>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="https://reboart.net" target="_blank">ReboArt</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li>
+                            <a href="mailto:info@reboart.net">
+                                <i class="fas fa-envelope"></i> info@reboart.net
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/reboart" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/reboart" target="_blank">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 ReboArt Tools. All rights reserved.</p>
+                <p>&copy; 2024 ReboArt Tools. Made with ❤️ | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
             </div>
         </div>
     </footer>
-
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>
