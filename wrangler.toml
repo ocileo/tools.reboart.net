@@ -1,5 +1,103 @@
-name = "tools-reboart"
-compatibility_date = "2024-01-01"
+# =============================================
+# Cloudflare Pages Configuration
+# ReboArt Tools - tools.reboart.net
+# =============================================
 
+# Project name
+name = "tools-site"
+
+# Compatibility date
+compatibility_date = "2024-12-01"
+
+# =============================================
+# PAGES CONFIGURATION
+# =============================================
 [site]
-bucket = "tools-site"
+# Root directory for static assets
+bucket = "./"
+
+# =============================================
+# BUILD CONFIGURATION
+# =============================================
+[build]
+# No build command needed (static site)
+command = ""
+
+# Output directory
+output_dir = "/"
+
+# =============================================
+# ENVIRONMENT VARIABLES
+# =============================================
+[vars]
+SITE_NAME = "ReboArt Tools"
+SITE_URL = "https://tools.reboart.net"
+
+# =============================================
+# HEADERS - Security & Caching
+# =============================================
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Cache static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/tools/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# HTML - shorter cache
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# =============================================
+# REDIRECTS
+# =============================================
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# =============================================
+# ROUTES (optional - for custom domain)
+# =============================================
+# [[routes]]
+#   pattern = "tools.reboart.net/*"
+#   zone_name = "reboart.net"
+
+# =============================================
+# DEPLOYMENT
+# =============================================
+[deployment]
+  # Auto-deploy on push to main
+  auto_deploy = true
+
+# =============================================
+# OBSERVABILITY (optional)
+# =============================================
+# [observability]
+#   enabled = true
+#   head_sampling_rate = 1
