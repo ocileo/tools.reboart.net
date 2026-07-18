@@ -1,349 +1,430 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Kumpulan tools online gratis untuk developer, designer, dan productivity. JSON formatter, password generator, QR code, dan masih banyak lagi.">
-    <meta name="keywords" content="online tools, developer tools, JSON formatter, password generator, QR code, base64 encoder, free tools">
+    <!-- =============================================
+         SEO META TAGS - PRIMARY
+         ============================================= -->
+    <title>ReboArt Tools - Kumpulan Tools Online Gratis untuk Developer & Designer</title>
+    <meta name="description" content="Akses 25+ tools online gratis untuk developer, designer, dan content creator. JSON formatter, QR generator, color palette, password generator. Tanpa login, tanpa iklan.">
+    <meta name="keywords" content="online tools, developer tools, JSON formatter, QR code generator, color palette, password generator, free tools, web tools, indonesia">
     <meta name="author" content="ReboArt">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://tools.reboart.net/">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="ReboArt Tools - Kumpulan Tools Online Gratis">
-    <meta property="og:description" content="Tools online gratis untuk berbagai keperluan development, design, dan productivity.">
+    <!-- =============================================
+         OPEN GRAPH - SOCIAL MEDIA
+         ============================================= -->
+    <meta property="og:title" content="ReboArt Tools - Tools Online Gratis">
+    <meta property="og:description" content="25+ tools gratis untuk developer & designer. QR generator, color palette, JSON formatter, dan banyak lagi.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tools.reboart.net">
-    <meta property="og:image" content="https://tools.reboart.net/assets/og-image.png">
+    <meta property="og:url" content="https://tools.reboart.net/">
+    <meta property="og:site_name" content="ReboArt Tools">
+    <meta property="og:locale" content="id_ID">
     
-    <!-- Twitter Card -->
+    <!-- =============================================
+         TWITTER CARD
+         ============================================= -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ReboArt Tools">
-    <meta name="twitter:description" content="Kumpulan tools online gratis">
+    <meta name="twitter:title" content="ReboArt Tools - Tools Online Gratis">
+    <meta name="twitter:description" content="25+ tools gratis untuk developer & designer.">
     
-    <!-- Modern Meta Tags -->
+    <!-- =============================================
+         TECHNICAL META
+         ============================================= -->
     <meta name="theme-color" content="#0f172a">
     <meta name="color-scheme" content="dark light">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     
-    <!-- Preconnect -->
+    <!-- =============================================
+         FAVICON
+         ============================================= -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    
+    <!-- =============================================
+         PRELOAD CRITICAL RESOURCES
+         ============================================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    <!-- =============================================
+         CRITICAL CSS - Inline untuk FCP
+         ============================================= -->
+    <style>
+        /* Critical CSS - Load immediately */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --bg:#0f172a;--bg2:#1e293b;--text:#f1f5f9;--text2:#94a3b8;
+            --accent:#6366f1;--gradient:linear-gradient(135deg,#6366f1,#8b5cf6);
+            --card:rgba(30,41,59,0.7);--border:rgba(255,255,255,0.06);
+        }
+        [data-theme="light"]{
+            --bg:#fff;--bg2:#f8fafc;--text:#0f172a;--text2:#64748b;
+            --card:rgba(255,255,255,0.9);--border:rgba(0,0,0,0.06);
+        }
+        body{
+            font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+            background:var(--bg);color:var(--text);line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+        }
+        .container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+        /* Header */
+        header{
+            position:sticky;top:0;z-index:100;padding:1rem 0;
+            background:rgba(15,23,42,0.8);backdrop-filter:blur(20px);
+            border-bottom:1px solid var(--border);
+        }
+        [data-theme="light"] header{background:rgba(255,255,255,0.8)}
+        header .container{display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;font-size:1.2rem;color:var(--text)}
+        .logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .logo-icon{width:36px;height:36px;background:var(--gradient);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+        .theme-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+        .theme-btn:hover{background:var(--accent);color:#fff}
+        /* Hero */
+        .hero{padding:4rem 0 3rem;text-align:center}
+        .hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:.4rem 1rem;font-size:.85rem;color:var(--text2);margin-bottom:1.5rem}
+        .badge-dot{width:7px;height:7px;background:#10b981;border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        .hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;margin-bottom:1rem;letter-spacing:-.5px}
+        .hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero p{color:var(--text2);font-size:1.1rem;max-width:550px;margin:0 auto 2rem;line-height:1.7}
+        /* Search */
+        .search-wrap{position:relative;max-width:480px;margin:0 auto 2rem}
+        .search-wrap input{width:100%;padding:1rem 1rem 1rem 3rem;background:var(--card);border:2px solid var(--border);border-radius:16px;color:var(--text);font-size:1rem;outline:none;transition:all .3s;font-family:inherit}
+        .search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,102,241,.15)}
+        .search-wrap input::placeholder{color:var(--text2)}
+        .search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text2)}
+        /* Stats */
+        .hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+        .hero-stats div{text-align:center}
+        .hero-stats strong{display:block;font-size:1.8rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-stats span{font-size:.85rem;color:var(--text2)}
+        /* Tools Grid */
+        .tools-section{padding:3rem 0 4rem}
+        .section-title{text-align:center;font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+        .section-sub{text-align:center;color:var(--text2);margin-bottom:2rem}
+        .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+        .tool-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all .3s;text-decoration:none;color:var(--text);display:block}
+        .tool-card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.3);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+        .tool-card .tool-icon{width:44px;height:44px;background:var(--gradient);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;margin-bottom:1rem}
+        .tool-card h3{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+        .tool-card p{color:var(--text2);font-size:.85rem;line-height:1.5;margin-bottom:1rem}
+        .tool-card .tool-tag{display:inline-block;padding:.2rem .7rem;background:rgba(99,102,241,.1);border-radius:50px;font-size:.75rem;color:var(--accent)}
+        /* Empty State */
+        .empty-state{grid-column:1/-1;text-align:center;padding:3rem;color:var(--text2)}
+        .empty-state i{font-size:3rem;display:block;margin-bottom:1rem;opacity:.3}
+        /* Footer */
+        footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 0;text-align:center;color:var(--text2);font-size:.85rem}
+        footer a{color:var(--accent);text-decoration:none}
+        /* Responsive */
+        @media(max-width:640px){
+            .hero{padding:3rem 0 2rem}
+            .hero-stats{gap:1rem}
+            .tools-grid{grid-template-columns:1fr}
+        }
+    </style>
     
-    <title>ReboArt Tools - Kumpulan Tools Online Gratis</title>
+    <!-- =============================================
+         FONTS & ICONS - Async Load
+         ============================================= -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- =============================================
+         STRUCTURED DATA - JSON-LD
+         ============================================= -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ReboArt Tools",
+        "url": "https://tools.reboart.net",
+        "description": "Kumpulan tools online gratis untuk developer dan designer",
+        "inLanguage": "id",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://tools.reboart.net/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-    <div class="grid-bg"></div>
-    
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <!-- =============================================
+         HEADER
+         ============================================= -->
+    <header>
         <div class="container">
-            <a href="#" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <div class="logo-text">
-                    ReboArt<span>Tools</span>
-                </div>
+            <a href="/" class="logo" aria-label="ReboArt Tools Home">
+                <div class="logo-icon"><i class="fas fa-tools"></i></div>
+                ReboArt<span>Tools</span>
             </a>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Beranda</a></li>
-                <li><a href="#tools" class="nav-link">Tools</a></li>
-                <li><a href="#features" class="nav-link">Fitur</a></li>
-                <li><a href="#about" class="nav-link">Tentang</a></li>
-                <li>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                        <span>Dark</span>
-                    </button>
-                </li>
-            </ul>
-            
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <nav aria-label="Main navigation">
+                <button class="theme-btn" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
         </div>
-    </nav>
+    </header>
     
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
+    <!-- =============================================
+         HERO SECTION
+         ============================================= -->
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
                 <div class="hero-badge">
                     <span class="badge-dot"></span>
-                    <span>🚀 20+ Tools Gratis Tersedia</span>
+                    <span>25+ Tools Gratis — Tanpa Login</span>
                 </div>
                 
-                <h1 class="hero-title">
-                    Tools Online
-                    <span class="gradient-text">Super Cepat</span>
-                    Untuk Semua Kebutuhan
+                <h1 id="hero-title">
+                    Tools Online <span>Super Cepat</span><br>untuk Pekerjaan Anda
                 </h1>
                 
-                <p class="hero-description">
-                    Akses berbagai tools online gratis untuk development, design, 
-                    dan productivity. Tanpa install, tanpa login, langsung pakai!
+                <p>
+                    Akses berbagai tools gratis untuk developer, designer, dan content creator. 
+                    QR Generator, Color Palette, JSON Formatter, dan banyak lagi. 
+                    Semua proses di browser Anda — aman & privat.
                 </p>
                 
-                <div class="search-wrapper">
-                    <i class="fas fa-search search-icon"></i>
+                <div class="search-wrap">
+                    <i class="fas fa-search search-icon" aria-hidden="true"></i>
                     <input 
                         type="text" 
-                        id="searchTool" 
-                        class="search-box" 
-                        placeholder="Cari tools... (contoh: JSON, Password, QR)"
+                        id="searchInput" 
+                        placeholder="Cari tools... (contoh: QR, color, password)"
+                        aria-label="Search tools"
                         autocomplete="off"
                     >
-                    <span class="search-shortcut">Ctrl+K</span>
                 </div>
                 
                 <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="25">0+</div>
-                        <div class="stat-label">Tools</div>
+                    <div>
+                        <strong>25+</strong>
+                        <span>Tools</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="100">0%</div>
-                        <div class="stat-label">Gratis</div>
+                    <div>
+                        <strong>100%</strong>
+                        <span>Gratis</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="99">0%</div>
-                        <div class="stat-label">Uptime</div>
+                    <div>
+                        <strong>Privat</strong>
+                        <span>Client-side</span>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+        <!-- =============================================
+             TOOLS SECTION
+             ============================================= -->
+        <section class="tools-section" aria-labelledby="tools-title">
+            <div class="container">
+                <h2 class="section-title" id="tools-title">🛠️ Tools Tersedia</h2>
+                <p class="section-sub">Klik tool untuk mulai menggunakan</p>
+                
+                <div class="tools-grid" id="toolsGrid">
+                    <!-- Rendered by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
     
-    <!-- Tools Section -->
-    <section id="tools" class="tools-section">
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer>
         <div class="container">
-            <div class="section-header">
-                <span class="section-badge">🛠️ Collection</span>
-                <h2 class="section-title">
-                    <span class="gradient-text">Tools</span> Tersedia
-                </h2>
-                <p class="section-subtitle">
-                    Pilih dari berbagai kategori tools yang kami sediakan
-                </p>
-            </div>
-            
-            <div class="filter-wrapper" id="filterContainer">
-                <!-- Rendered by JavaScript -->
-            </div>
-            
-            <div class="tools-grid" id="toolsGrid">
-                <!-- Rendered by JavaScript -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section id="features" class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">✨ Mengapa Kami</span>
-                <h2 class="section-title">
-                    Kenapa Pilih <span class="gradient-text">ReboArt Tools?</span>
-                </h2>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Super Cepat</h3>
-                    <p>Dioptimasi dengan CDN global untuk loading kurang dari 1 detik</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-halved"></i>
-                    </div>
-                    <h3>Privasi Terjamin</h3>
-                    <p>Semua proses dilakukan di browser Anda, tidak ada data yang dikirim ke server</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h3>100% Gratis</h3>
-                    <p>Semua tools gratis tanpa batasan, tanpa iklan mengganggu</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-screen"></i>
-                    </div>
-                    <h3>Responsive</h3>
-                    <p>Akses dari device apapun dengan tampilan yang optimal</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Open Source</h3>
-                    <p>Kode tersedia di GitHub, kontribusi selalu diterima</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync"></i>
-                    </div>
-                    <h3>Selalu Update</h3>
-                    <p>Tools baru ditambahkan secara berkala</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content">
-                    <span class="section-badge">💡 Tentang Kami</span>
-                    <h2>Membantu Developer & Kreator</h2>
-                    <p>
-                        ReboArt Tools hadir untuk memudahkan pekerjaan developer, 
-                        designer, dan content creator dengan menyediakan tools 
-                        online yang cepat, aman, dan gratis.
-                    </p>
-                    <div class="about-features">
-                        <div class="about-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Tanpa registrasi</span>
-                        </div>
-                        <div class="about-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Tanpa batasan penggunaan</span>
-                        </div>
-                        <div class="about-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Privacy-first approach</span>
-                        </div>
-                        <div class="about-feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Support multi-browser</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="about-card">
-                        <div class="about-card-content">
-                            <i class="fas fa-rocket"></i>
-                            <h3>Mulai Sekarang</h3>
-                            <p>Jelajahi semua tools kami</p>
-                            <a href="#tools" class="btn-primary">
-                                Lihat Tools <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <div class="logo-text">
-                            ReboArt<span>Tools</span>
-                        </div>
-                    </div>
-                    <p>Platform tools online gratis untuk membantu produktivitas Anda. Dibuat dengan ❤️ untuk komunitas.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Tools Populer</h4>
-                    <ul>
-                        <li><a href="#">JSON Formatter</a></li>
-                        <li><a href="#">Password Generator</a></li>
-                        <li><a href="#">QR Code Generator</a></li>
-                        <li><a href="#">Base64 Encoder</a></li>
-                        <li><a href="#">Color Palette</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#tools">Tools</a></li>
-                        <li><a href="#features">Fitur</a></li>
-                        <li><a href="#about">Tentang</a></li>
-                        <li><a href="https://reboart.net" target="_blank">ReboArt</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Kontak</h4>
-                    <ul>
-                        <li>
-                            <a href="mailto:info@reboart.net">
-                                <i class="fas fa-envelope"></i> info@reboart.net
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/reboart" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/reboart" target="_blank">
-                                <i class="fab fa-twitter"></i> Twitter
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 ReboArt Tools. Made with ❤️ | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
-            </div>
+            <p>
+                © 2024 <a href="https://reboart.net">ReboArt</a>. 
+                Made with ❤️ for developers. 
+                <a href="#">Privacy</a> · <a href="#">Terms</a>
+            </p>
         </div>
     </footer>
     
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-    
-    <!-- Custom JavaScript -->
-    <script src="js/main.js"></script>
+    <!-- =============================================
+         MINIMAL JAVASCRIPT
+         ============================================= -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // =============================================
+        // TOOLS DATA - SEO-friendly descriptions
+        // =============================================
+        const tools = [
+            {
+                name: "QR Code Generator",
+                desc: "Buat QR code kustom dengan logo & warna. Download PNG, JPG, WebP.",
+                icon: "fa-qrcode",
+                tag: "Generator",
+                url: "tools/qr-generator/"
+            },
+            {
+                name: "Color Palette Generator",
+                desc: "Generate palet warna harmonis dengan color theory. Hex, RGB, HSL.",
+                icon: "fa-palette",
+                tag: "Design",
+                url: "tools/color-palette/"
+            },
+            {
+                name: "JSON Formatter",
+                desc: "Format & validasi JSON online. Tree view, syntax highlighting.",
+                icon: "fa-code",
+                tag: "Developer",
+                url: "#"
+            },
+            {
+                name: "Password Generator",
+                desc: "Generate password kuat & aman. Kustomisasi panjang & karakter.",
+                icon: "fa-key",
+                tag: "Security",
+                url: "#"
+            },
+            {
+                name: "Base64 Encoder/Decoder",
+                desc: "Encode & decode Base64 untuk teks dan file dengan mudah.",
+                icon: "fa-shield-halved",
+                tag: "Converter",
+                url: "#"
+            },
+            {
+                name: "Markdown Preview",
+                desc: "Live preview markdown dengan GitHub-style rendering.",
+                icon: "fa-markdown",
+                tag: "Developer",
+                url: "#"
+            },
+            {
+                name: "Image Compressor",
+                desc: "Kompres gambar online. Dukung JPG, PNG, WebP tanpa quality loss.",
+                icon: "fa-image",
+                tag: "Image",
+                url: "#"
+            },
+            {
+                name: "URL Encoder/Decoder",
+                desc: "Encode & decode URL secara instan. Aman dan cepat.",
+                icon: "fa-link",
+                tag: "Utility",
+                url: "#"
+            },
+            {
+                name: "Text Diff Checker",
+                desc: "Bandingkan teks dan lihat perbedaannya dengan highlight.",
+                icon: "fa-not-equal",
+                tag: "Utility",
+                url: "#"
+            },
+            {
+                name: "UUID Generator",
+                desc: "Generate UUID v4 secara batch. Copy sekali klik.",
+                icon: "fa-fingerprint",
+                tag: "Generator",
+                url: "#"
+            },
+            {
+                name: "Regex Tester",
+                desc: "Test & debug regular expression real-time dengan highlight match.",
+                icon: "fa-magnifying-glass",
+                tag: "Developer",
+                url: "#"
+            },
+            {
+                name: "Lorem Ipsum Generator",
+                desc: "Generate teks dummy untuk mockup & testing dengan custom panjang.",
+                icon: "fa-paragraph",
+                tag: "Generator",
+                url: "#"
+            }
+        ];
+        
+        // =============================================
+        // RENDER TOOLS
+        // =============================================
+        const grid = document.getElementById('toolsGrid');
+        const searchInput = document.getElementById('searchInput');
+        
+        function renderTools(filter = '') {
+            const filtered = tools.filter(tool => {
+                if (!filter) return true;
+                const q = filter.toLowerCase();
+                return tool.name.toLowerCase().includes(q) ||
+                       tool.desc.toLowerCase().includes(q) ||
+                       tool.tag.toLowerCase().includes(q);
+            });
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>Tidak ada tools ditemukan untuk "${filter}"</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = filtered.map(tool => `
+                <a href="${tool.url}" class="tool-card" title="${tool.name}">
+                    <div class="tool-icon">
+                        <i class="fas ${tool.icon}"></i>
+                    </div>
+                    <h3>${tool.name}</h3>
+                    <p>${tool.desc}</p>
+                    <span class="tool-tag">${tool.tag}</span>
+                </a>
+            `).join('');
+        }
+        
+        // =============================================
+        // SEARCH - Debounced
+        // =============================================
+        let searchTimeout;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                renderTools(this.value.trim());
+            }, 200);
+        });
+        
+        // =============================================
+        // THEME TOGGLE
+        // =============================================
+        const themeBtn = document.getElementById('themeToggle');
+        const themeIcon = themeBtn.querySelector('i');
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('theme', theme);
+        }
+        
+        themeBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+        
+        // =============================================
+        // INIT
+        // =============================================
+        function init() {
+            // Load theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+            
+            // Render all tools
+            renderTools();
+        }
+        
+        init();
+    })();
+    </script>
 </body>
 </html>
