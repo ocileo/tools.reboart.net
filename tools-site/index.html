@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- Modern Meta Tags -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kumpulan tools online gratis untuk berbagai keperluan">
@@ -10,6 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="animated-bg"></div>
+    <div class="grid-bg"></div>
     <!-- Header -->
     <header class="header">
         <nav class="navbar">
@@ -48,9 +55,19 @@
     <!-- Tools Section -->
     <section id="tools" class="tools-section">
         <div class="container">
-            <h2 class="section-title">Tools Tersedia</h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">Tools</span> Tersedia
+                </h2>
+                <p class="section-subtitle">Pilih dari berbagai tools yang kami sediakan</p>
+            </div>
+            
+            <div class="filter-wrapper" id="filterContainer">
+                <!-- Filter pills akan dirender oleh JavaScript -->
+            </div>
+            
             <div class="tools-grid" id="toolsGrid">
-                <!-- Tools cards akan dimuat di sini -->
+                <!-- Tools cards akan dirender oleh JavaScript -->
             </div>
         </div>
     </section>
