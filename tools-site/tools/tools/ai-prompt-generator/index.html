@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Generator prompt AI gratis. Buat prompt efektif untuk ChatGPT, Claude, Gemini, dan AI lainnya. Template siap pakai untuk berbagai kebutuhan.">
+    <meta name="keywords" content="AI prompt generator, prompt engineer, ChatGPT prompt, AI prompt template, prompt maker">
+    <meta name="theme-color" content="#6366f1">
+    
+    <title>AI Prompt Generator - ReboArt Tools</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --bg2: #1e293b;
+            --bg3: #334155;
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --accent: #6366f1;
+            --accent2: #8b5cf6;
+            --gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+            --card: rgba(30,41,59,0.7);
+            --border: rgba(255,255,255,0.06);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --transition: 0.2s ease;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --bg2: #f8fafc;
+            --bg3: #e2e8f0;
+            --text: #0f172a;
+            --text2: #475569;
+            --text3: #94a3b8;
+            --card: rgba(255,255,255,0.9);
+            --border: rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated BG */
+        .bg-animated {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(168,85,247,0.05) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text2);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        .nav-back:hover {
+            color: var(--accent);
+            background: rgba(99,102,241,0.1);
+        }
+        .nav-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .nav-title i { color: var(--accent); font-size: 1.2rem; }
+        .theme-btn {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .theme-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        /* Header */
+        .tool-header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        .tool-icon {
+            width: 80px; height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(99,102,241,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .tool-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tool-header p {
+            color: var(--text2);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            padding-bottom: 3rem;
+        }
+
+        /* Panel */
+        .panel {
+            background: var(--card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+        .panel-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text2);
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel-title i { color: var(--accent); }
+
+        /* Template Cards */
+        .template-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .template-card {
+            padding: 0.8rem 1rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+        .template-card:hover {
+            border-color: var(--accent);
+            background: rgba(99,102,241,0.08);
+            transform: translateY(-2px);
+        }
+        .template-card.active {
+            border-color: var(--accent);
+            background: rgba(99,102,241,0.15);
+            box-shadow: 0 0 15px rgba(99,102,241,0.15);
+        }
+        .template-card .card-icon {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .template-card .card-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .template-card .card-desc {
+            font-size: 0.72rem;
+            color: var(--text2);
+            margin-top: 2px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text2);
+        }
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            line-height: 1.6;
+        }
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        /* Tags */
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.3rem;
+        }
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text2);
+            user-select: none;
+        }
+        .tag:hover { border-color: var(--accent); color: var(--text); }
+        .tag.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            width: 100%;
+            background: var(--gradient);
+            color: #fff;
+            padding: 0.9rem;
+            font-size: 1rem;
+            border-radius: var(--radius);
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(99,102,241,0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(99,102,241,0.08);
+        }
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* Result */
+        .result-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            min-height: 200px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative;
+        }
+        .result-box:empty::before {
+            content: 'Prompt akan muncul di sini...';
+            color: var(--text3);
+            font-style: italic;
+        }
+        .result-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* History */
+        .history-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .history-item {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+        .history-item:hover {
+            border-color: var(--accent);
+            background: rgba(99,102,241,0.05);
+        }
+        .history-item .history-prompt {
+            color: var(--text2);
+            font-size: 0.8rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .history-item .history-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4px;
+            font-size: 0.7rem;
+            color: var(--text3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text3);
+        }
+        .empty-state i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.8rem;
+            opacity: 0.3;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gradient);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            z-index: 999;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .template-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .tool-header h1 { font-size: 1.8rem; }
+            .template-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .panel { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-animated"></div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="container">
+        <a href="../../" class="nav-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+        <div class="nav-title">
+            <i class="fas fa-robot"></i> AI Prompt Generator
+        </div>
+        <button class="theme-btn" id="btnTheme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- Header -->
+    <div class="tool-header">
+        <div class="tool-icon">
+            <i class="fas fa-wand-magic-sparkles"></i>
+        </div>
+        <h1>AI Prompt Generator</h1>
+        <p>Buat prompt AI yang efektif dalam hitungan detik. Pilih template, isi detail, dan dapatkan prompt siap pakai untuk ChatGPT, Claude, Gemini, dan AI lainnya.</p>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Left Panel -->
+        <div>
+            <!-- Template Selection -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-layer-group"></i> Pilih Template
+                </div>
+                <div class="template-grid" id="templateGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Customization -->
+            <div class="panel" style="margin-top: 1rem;">
+                <div class="panel-title">
+                    <i class="fas fa-sliders"></i> Kustomisasi
+                </div>
+                
+                <div class="form-group">
+                    <label>Topik / Subjek</label>
+                    <input type="text" id="topic" placeholder="Contoh: digital marketing, coding, bisnis...">
+                </div>
+
+                <div class="form-group">
+                    <label>AI Model Target</label>
+                    <select id="aiModel">
+                        <option value="chatgpt">ChatGPT (OpenAI)</option>
+                        <option value="claude">Claude (Anthropic)</option>
+                        <option value="gemini">Gemini (Google)</option>
+                        <option value="general">General / Universal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Gaya / Tone</label>
+                    <div class="tag-group" id="toneTags">
+                        <span class="tag" data-tone="professional">Profesional</span>
+                        <span class="tag active" data-tone="casual">Kasual</span>
+                        <span class="tag" data-tone="creative">Kreatif</span>
+                        <span class="tag" data-tone="academic">Akademik</span>
+                        <span class="tag" data-tone="humorous">Humoris</span>
+                        <span class="tag" data-tone="technical">Teknis</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Detail Tambahan (opsional)</label>
+                    <textarea id="extraDetails" placeholder="Tambahkan konteks, batasan, format output yang diinginkan..." rows="3"></textarea>
+                </div>
+
+                <button class="btn btn-primary" id="btnGenerate">
+                    <i class="fas fa-wand-magic-sparkles"></i> Generate Prompt
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div>
+            <!-- Result -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-file-code"></i> Hasil Prompt
+                </div>
+                <div class="result-box" id="resultBox"></div>
+                <div class="result-actions">
+                    <button class="btn btn-outline btn-sm" id="btnCopy">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-outline btn-sm" id="btnRetry">
+                        <i class="fas fa-rotate"></i> Regenerate
+                    </button>
+                    <button class="btn btn-outline btn-sm" id="btnSave">
+                        <i class="fas fa-bookmark"></i> Save
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="panel" style="margin-top: 1rem;">
+                <div class="panel-title">
+                    <i class="fas fa-history"></i> Riwayat Prompt
+                    <button class="btn btn-outline btn-sm" id="btnClearHistory" style="margin-left: auto;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="empty-state">
+                        <i class="fas fa-clock-rotate-left"></i>
+                        <p>Belum ada riwayat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg"></span>
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    // =============================================
+    // TEMPLATES DATA
+    // =============================================
+    const templates = [
+        {
+            id: 'content',
+            icon: '📝',
+            name: 'Content Creator',
+            desc: 'Artikel, blog, social media',
+            structure: `Kamu adalah seorang content creator profesional.
+Tulis sebuah {content_type} tentang "{topic}" dengan ketentuan:
+- Target audiens: {audience}
+- Panjang: {length}
+- Gaya bahasa: {tone}
+- Sertakan: judul menarik, subheading, poin-poin penting
+- Format output: {format}
+{extra}`
+        },
+        {
+            id: 'code',
+            icon: '💻',
+            name: 'Code Helper',
+            desc: 'Programming & debugging',
+            structure: `Kamu adalah seorang senior software engineer.
+{tasks}
+Buat/tulis kode untuk: {topic}
+Bahasa pemrograman: {language}
+Ketentuan:
+- Kode harus clean dan well-documented
+- Sertakan penjelasan singkat
+- Gunakan best practices
+- Tambahkan error handling
+{extra}`
+        },
+        {
+            id: 'business',
+            icon: '💼',
+            name: 'Business',
+            desc: 'Strategy, plan, analysis',
+            structure: `Kamu adalah seorang business consultant berpengalaman.
+Berikan analisis dan rekomendasi untuk: {topic}
+Konteks bisnis: {context}
+Fokus pada:
+- Analisis situasi terkini
+- Strategi yang actionable
+- Metrics untuk mengukur keberhasilan
+- Potential risks dan mitigasi
+Format: {format}
+{extra}`
+        },
+        {
+            id: 'creative',
+            icon: '🎨',
+            name: 'Creative',
+            desc: 'Story, script, poetry',
+            structure: `Kamu adalah seorang penulis kreatif.
+Buat sebuah {creative_type} dengan tema: "{topic}"
+Ketentuan:
+- Genre: {genre}
+- Gaya: {tone}
+- Target pembaca: {audience}
+- Panjang: {length}
+- Tone emosional: {mood}
+{extra}`
+        },
+        {
+            id: 'tutor',
+            icon: '📚',
+            name: 'Tutor / Teacher',
+            desc: 'Learning & explanation',
+            structure: `Kamu adalah seorang tutor yang sabar dan ahli dalam menjelaskan konsep kompleks dengan sederhana.
+Jelaskan tentang: {topic}
+Tingkat pemahaman audiens: {level}
+Sertakan:
+- Penjelasan dasar dengan analogi sederhana
+- Contoh konkret dan relatable
+- Poin-poin kunci untuk diingat
+- Pertanyaan untuk mengecek pemahaman
+- Resources untuk belajar lebih lanjut
+{extra}`
+        },
+        {
+            id: 'analyst',
+            icon: '📊',
+            name: 'Data Analyst',
+            desc: 'Data, research, insights',
+            structure: `Kamu adalah seorang data analyst senior.
+Analisis data berikut: {topic}
+Metodologi yang digunakan: {methodology}
+Harap sertakan:
+- Ringkasan temuan utama (key findings)
+- Insight yang actionable
+- Visualisasi yang disarankan
+- Kesimpulan dan rekomendasi
+- Limitasi analisis
+{extra}`
+        },
+        {
+            id: 'translator',
+            icon: '🌐',
+            name: 'Translator',
+            desc: 'Multi-language translation',
+            structure: `Kamu adalah seorang translator profesional.
+Terjemahkan teks berikut dari {source_lang} ke {target_lang}:
+---
+{text_to_translate}
+---
+Ketentuan:
+- Jaga konteks dan nuansa asli
+- Gunakan bahasa yang natural
+- Perhatikan formalitas: {formality}
+- Jika ada idiom, berikan padanan yang sesuai
+{extra}`
+        },
+        {
+            id: 'custom',
+            icon: '⚡',
+            name: 'Custom',
+            desc: 'Buat template sendiri',
+            structure: `{custom_prompt}`
+        }
+    ];
+
+    // =============================================
+    // STATE
+    // =============================================
+    let currentTemplate = 'content';
+    let currentTone = 'casual';
+    let history = JSON.parse(localStorage.getItem('prompt-history') || '[]');
+
+    // =============================================
+    // DOM ELEMENTS
+    // =============================================
+    const templateGrid = document.getElementById('templateGrid');
+    const resultBox = document.getElementById('resultBox');
+    const historyList = document.getElementById('historyList');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    const btnTheme = document.getElementById('btnTheme');
+
+    // =============================================
+    // RENDER TEMPLATES
+    // =============================================
+    function renderTemplates() {
+        templateGrid.innerHTML = templates.map(t => `
+            <button class="template-card ${t.id === currentTemplate ? 'active' : ''}" 
+                    data-id="${t.id}">
+                <span class="card-icon">${t.icon}</span>
+                <span class="card-name">${t.name}</span>
+                <span class="card-desc">${t.desc}</span>
+            </button>
+        `).join('');
+
+        // Bind click events
+        templateGrid.querySelectorAll('.template-card').forEach(card => {
+            card.addEventListener('click', function() {
+                currentTemplate = this.dataset.id;
+                renderTemplates();
+            });
+        });
+    }
+
+    // =============================================
+    // TONE TAGS
+    // =============================================
+    function initToneTags() {
+        document.querySelectorAll('#toneTags .tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.querySelectorAll('#toneTags .tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                currentTone = this.dataset.tone;
+            });
+        });
+    }
+
+    // =============================================
+    // GENERATE PROMPT
+    // =============================================
+    function generatePrompt() {
+        const template = templates.find(t => t.id === currentTemplate);
+        if (!template) return;
+
+        const topic = document.getElementById('topic').value || '[topik]';
+        const aiModel = document.getElementById('aiModel').value;
+        const extra = document.getElementById('extraDetails').value;
+
+        // AI model specific instructions
+        const modelInstructions = {
+            chatgpt: '\n\n[Dioptimasi untuk ChatGPT - Gunakan format markdown untuk output yang lebih terstruktur]',
+            claude: '\n\n[Dioptimasi untuk Claude - Berikan reasoning step-by-step]',
+            gemini: '\n\n[Dioptimasi untuk Gemini - Sertakan sumber referensi jika relevan]',
+            general: ''
+        };
+
+        // Build prompt
+        let prompt = template.structure
+            .replace('{topic}', topic)
+            .replace('{tone}', currentTone)
+            .replace('{extra}', extra ? '\nTambahan:\n' + extra : '')
+            .replace('{content_type}', 'artikel')
+            .replace('{audience}', 'umum')
+            .replace('{length}', '500-1000 kata')
+            .replace('{format}', 'markdown dengan heading')
+            .replace('{tasks}', '')
+            .replace('{language}', 'JavaScript/Python')
+            .replace('{context}', 'startup teknologi')
+            .replace('{creative_type}', 'cerita pendek')
+            .replace('{genre}', 'fiksi')
+            .replace('{mood}', 'inspiratif')
+            .replace('{level}', 'pemula')
+            .replace('{methodology}', 'analisis deskriptif')
+            .replace('{source_lang}', 'Indonesia')
+            .replace('{target_lang}', 'Inggris')
+            .replace('{text_to_translate}', '[teks]')
+            .replace('{formality}', 'formal')
+            .replace('{custom_prompt}', topic + '\n' + extra);
+
+        prompt += modelInstructions[aiModel] || '';
+
+        // Clean up empty placeholders
+        prompt = prompt.replace(/\{[^}]+\}/g, '');
+        prompt = prompt.replace(/\n{3,}/g, '\n\n');
+        prompt = prompt.trim();
+
+        resultBox.textContent = prompt;
+    }
+
+    // =============================================
+    // HISTORY MANAGEMENT
+    // =============================================
+    function saveToHistory(prompt) {
+        if (!prompt || prompt === resultBox.textContent) return;
+        
+        history.unshift({
+            id: Date.now(),
+            prompt: prompt,
+            template: currentTemplate,
+            tone: currentTone,
+            date: new Date().toLocaleString('id-ID')
+        });
+
+        // Keep last 20
+        if (history.length > 20) history = history.slice(0, 20);
+        
+        localStorage.setItem('prompt-history', JSON.stringify(history));
+        renderHistory();
+    }
+
+    function renderHistory() {
+        if (history.length === 0) {
+            historyList.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-clock-rotate-left"></i>
+                    <p>Belum ada riwayat</p>
+                </div>
+            `;
+            return;
+        }
+
+        historyList.innerHTML = history.map((item, index) => `
+            <div class="history-item" data-index="${index}">
+                <div class="history-prompt">${item.prompt.substring(0, 100)}...</div>
+                <div class="history-meta">
+                    <span>${templates.find(t => t.id === item.template)?.name || 'Custom'}</span>
+                    <span>${item.date}</span>
+                </div>
+            </div>
+        `).join('');
+
+        // Bind click
+        historyList.querySelectorAll('.history-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                resultBox.textContent = history[index].prompt;
+                showToast('Prompt dimuat!');
+            });
+        });
+    }
+
+    function clearHistory() {
+        if (confirm('Hapus semua riwayat?')) {
+            history = [];
+            localStorage.removeItem('prompt-history');
+            renderHistory();
+            showToast('Riwayat dihapus');
+        }
+    }
+
+    // =============================================
+    // TOAST
+    // =============================================
+    let toastTimer;
+    function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // =============================================
+    // THEME
+    // =============================================
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        btnTheme.querySelector('i').className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        localStorage.setItem('theme', theme);
+    }
+
+    // =============================================
+    // EVENT BINDING
+    // =============================================
+    function bindEvents() {
+        // Generate
+        document.getElementById('btnGenerate').addEventListener('click', () => {
+            generatePrompt();
+            showToast('Prompt generated! ✨');
+        });
+
+        // Copy
+        document.getElementById('btnCopy').addEventListener('click', () => {
+            const text = resultBox.textContent;
+            if (!text) {
+                showToast('Generate prompt dulu!');
+                return;
+            }
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Prompt copied! 📋');
+            });
+        });
+
+        // Retry
+        document.getElementById('btnRetry').addEventListener('click', () => {
+            generatePrompt();
+            showToast('Prompt regenerated! 🔄');
+        });
+
+        // Save
+        document.getElementById('btnSave').addEventListener('click', () => {
+            const prompt = resultBox.textContent;
+            if (!prompt) {
+                showToast('Generate prompt dulu!');
+                return;
+            }
+            saveToHistory(prompt);
+            showToast('Prompt saved! 💾');
+        });
+
+        // Clear history
+        document.getElementById('btnClearHistory').addEventListener('click', clearHistory);
+
+        // Theme
+        btnTheme.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // Keyboard shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                generatePrompt();
+                showToast('Prompt generated! ✨');
+            }
+        });
+    }
+
+    // =============================================
+    // INIT
+    // =============================================
+    function init() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
+        renderTemplates();
+        initToneTags();
+        renderHistory();
+        bindEvents();
+
+        // Auto generate with default
+        setTimeout(generatePrompt, 300);
+
+        console.log('%c🤖 AI Prompt Generator %cReady!',
+            'font-size:1.2em;font-weight:bold;color:#6366f1;',
+            'color:#94a3b8;');
+        console.log('%c💡 Tip: Ctrl+Enter untuk generate cepat', 'color:#94a3b8;');
+    }
+
+    init();
+
+})();
+</script>
+</body>
+</html>
