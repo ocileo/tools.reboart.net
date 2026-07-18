@@ -33,7 +33,7 @@ const toolsData = [
         description: "Generate palet warna harmonis dengan AI-powered color theory untuk design",
         icon: "fa-solid fa-palette",
         category: "Design",
-        url: "#",
+        url: "tools/color-palette/",
         featured: true,
         tags: ["color", "palette", "design", "generator"]
     },
