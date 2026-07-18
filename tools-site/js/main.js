@@ -63,7 +63,7 @@ const toolsData = [
         description: "Generate QR code kustom dengan logo, warna, dan berbagai format output",
         icon: "fa-solid fa-qrcode",
         category: "Generator",
-        url: "#",
+        url: "tools/qr-generator/",
         featured: false,
         tags: ["qr", "code", "generator", "barcode"]
     },
