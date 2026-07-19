@@ -14,7 +14,7 @@ compatibility_date = "2024-12-01"
 # =============================================
 [site]
 # Root directory for static assets
-bucket = "./"
+bucket = "./tools-site"
 
 # =============================================
 # BUILD CONFIGURATION
