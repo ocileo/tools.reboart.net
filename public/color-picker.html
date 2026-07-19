@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Color Picker · Alat Pemilih Warna Online dengan HEX, RGB, HSL, CMYK</title>
+  <meta name="description" content="Pilih dan kelola warna online dengan mudah di Color Picker ToolBox. Dapatkan kode HEX, RGB, HSL, dan CMYK. Fitur harmoni warna dan palet tersimpan.">
+  <meta name="keywords" content="color picker, pemilih warna, color generator, color palette, HEX to RGB, color converter, color harmony, color wheel, alat warna online, tools.reboart.net">
+  <meta name="author" content="REBOART | ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/color-picker.html">
+
+  <!-- ===== OPEN GRAPH (Facebook, LinkedIn, dll) ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Color Picker · Alat Pemilih Warna Online">
+  <meta property="og:description" content="Pilih dan kelola warna online dengan mudah. Dapatkan kode HEX, RGB, HSL, dan CMYK. Fitur harmoni warna dan palet tersimpan.">
+  <meta property="og:url" content="https://tools.reboart.net/color-picker.html">
+  <meta property="og:site_name" content="REBOART | ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-color-picker.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Color Picker · Alat Pemilih Warna Online REBOART | ToolBox">
+  <meta name="twitter:description" content="Pilih dan kelola warna online dengan mudah di ToolBox.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-color-picker.jpg">
+
+  <!-- ===== SCHEMA.ORG / STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Color Picker by REBOART | ToolBox",
+    "description": "Pilih dan kelola warna online dengan mudah. Dapatkan kode HEX, RGB, HSL, dan CMYK. Fitur harmoni warna, palet tersimpan, dan multi bahasa.",
+    "url": "https://tools.reboart.net/color-picker.html",
+    "applicationCategory": "Design",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "REBOART | ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+
+  <!-- ===== PRELOAD & PERFORMANCE ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== LANGUAGE SELECTOR ===== */
+    .lang-selector {
+      display: flex;
+      gap: 6px;
+      background: white;
+      padding: 4px;
+      border-radius: 40px;
+      border: 2px solid #e2e8f2;
+    }
+
+    .lang-btn {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      background: transparent;
+      color: #4a5b7a;
+    }
+
+    .lang-btn:hover {
+      background: #f0f4fe;
+    }
+
+    .lang-btn.active {
+      background: #1a4cff;
+      color: white;
+      box-shadow: 0 4px 12px rgba(26, 76, 255, 0.25);
+    }
+
+    .lang-btn .flag {
+      margin-right: 4px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ===== PREVIEW PANEL ===== */
+    .preview-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .panel-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .panel-title i {
+      color: #1a4cff;
+    }
+
+    .panel-subtitle {
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Color Display */
+    .color-display {
+      width: 100%;
+      height: 200px;
+      border-radius: 16px;
+      border: 2px solid #edf2f9;
+      transition: background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-display .color-hex-overlay {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Color Info Grid */
+    .color-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-info-item {
+      background: #f8faff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #edf2f9;
+    }
+
+    .color-info-item .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #8a9bb8;
+      letter-spacing: 0.5px;
+    }
+
+    .color-info-item .value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-top: 2px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .color-info-item .value input {
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      width: 100%;
+      font-family: 'Courier New', monospace;
+      padding: 2px 0;
+    }
+
+    .color-info-item .value input:focus {
+      outline: none;
+      border-bottom: 2px solid #1a4cff;
+    }
+
+    /* ===== FORM PANEL ===== */
+    .form-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #1f2a44;
+      margin-bottom: 6px;
+      font-size: 0.88rem;
+    }
+
+    /* Color Picker Input */
+    .color-picker-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .color-picker-wrapper input[type="color"] {
+      width: 60px;
+      height: 60px;
+      padding: 3px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      cursor: pointer;
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .color-picker-wrapper input[type="color"]:focus {
+      outline: none;
+      border-color: #1a4cff;
+    }
+
+    .color-hex-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Courier New', monospace;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+    }
+
+    .color-hex-input:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    /* RGB Sliders */
+    .slider-group {
+      margin-bottom: 12px;
+    }
+
+    .slider-group .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f2a44;
+      margin-bottom: 4px;
+    }
+
+    .slider-group .slider-value {
+      color: #5a6b8a;
+      font-weight: 400;
+    }
+
+    .slider-group input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .slider-group input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      border: 3px solid #1a4cff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: 0.2s;
+    }
+
+    .slider-group input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+
+    .slider-group input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      border: 3px solid #1a4cff;
+    }
+
+    .slider-red {
+      background: linear-gradient(to right, #ff0000, #ff6666, #ffcccc);
+    }
+
+    .slider-green {
+      background: linear-gradient(to right, #00ff00, #66ff66, #ccffcc);
+    }
+
+    .slider-blue {
+      background: linear-gradient(to right, #0000ff, #6666ff, #ccccff);
+    }
+
+    /* ===== PALETTE ===== */
+    .palette-section {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .palette-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5a6b8a;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      gap: 8px;
+    }
+
+    .palette-color {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      border: 2px solid #edf2f9;
+      cursor: pointer;
+      transition: 0.2s;
+      position: relative;
+    }
+
+    .palette-color:hover {
+      transform: scale(1.08);
+      border-color: #1a4cff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .palette-color .check-mark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.2rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .btn-action {
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-copy {
+      background: #1f2a44;
+      color: white;
+    }
+
+    .btn-copy:hover {
+      background: #0b1b3a;
+      transform: translateY(-2px);
+    }
+
+    .btn-copy.copied {
+      background: #27ae60;
+    }
+
+    .btn-random {
+      background: linear-gradient(135deg, #e74c6f, #e67e22);
+      color: white;
+    }
+
+    .btn-random:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(231, 76, 111, 0.3);
+    }
+
+    .btn-save {
+      background: #6c5ce7;
+      color: white;
+    }
+
+    .btn-save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+    }
+
+    /* ===== QUICK COLORS ===== */
+    .quick-colors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      gap: 8px;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .color-info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .lang-selector {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .preview-panel,
+      .form-panel {
+        padding: 1.2rem;
+      }
+
+      .color-display {
+        height: 150px;
+      }
+
+      .color-info-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .color-picker-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .color-picker-wrapper input[type="color"] {
+        width: 100%;
+        height: 50px;
+      }
+
+      .panel-title {
+        font-size: 1.2rem;
+      }
+
+      .btn-actions {
+        flex-direction: column;
+      }
+
+      .btn-action {
+        width: 100%;
+      }
+
+      .palette-grid {
+        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net" style="text-decoration: none; display: flex; align-items: center; gap: 14px;">
+          <div class="logo-icon"><i class="fas fa-palette"></i></div>
+          <div class="logo-text">
+            <h1>Color <span>Picker</span></h1>
+            <div class="subtitle">{{ translations.subtitle }}</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="lang-selector">
+          <button class="lang-btn" :class="{ active: currentLang === 'id' }" @click="setLanguage('id')">
+            <span class="flag">🇮🇩</span> ID
+          </button>
+          <button class="lang-btn" :class="{ active: currentLang === 'en' }" @click="setLanguage('en')">
+            <span class="flag">🇬🇧</span> EN
+          </button>
+          <button class="lang-btn" :class="{ active: currentLang === 'ja' }" @click="setLanguage('ja')">
+            <span class="flag">🇯🇵</span> JP
+          </button>
+        </div>
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> {{ translations.back }}
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Color Picker - Alat Pemilih Warna Online</h1>
+      
+      <div class="main-grid">
+        <!-- PREVIEW PANEL -->
+        <section class="preview-panel" aria-label="Preview Warna">
+          <div class="panel-title">
+            <i class="fas fa-eye"></i> {{ translations.previewTitle }}
+          </div>
+          <p class="panel-subtitle">{{ translations.previewSubtitle }}</p>
+
+          <!-- Color Display -->
+          <div class="color-display" :style="{ background: currentColor }">
+            <div class="color-hex-overlay">{{ currentColor }}</div>
+          </div>
+
+          <!-- Color Info -->
+          <div class="color-info-grid">
+            <div class="color-info-item">
+              <div class="label">HEX</div>
+              <div class="value">
+                <input type="text" v-model="hexValue" @input="updateFromHex" spellcheck="false" aria-label="Kode warna HEX">
+              </div>
+            </div>
+            <div class="color-info-item">
+              <div class="label">RGB</div>
+              <div class="value">
+                <input type="text" v-model="rgbValue" @input="updateFromRgb" spellcheck="false" aria-label="Kode warna RGB">
+              </div>
+            </div>
+            <div class="color-info-item">
+              <div class="label">HSL</div>
+              <div class="value">
+                <input type="text" v-model="hslValue" readonly spellcheck="false" aria-label="Kode warna HSL">
+              </div>
+            </div>
+            <div class="color-info-item">
+              <div class="label">CMYK</div>
+              <div class="value">
+                <input type="text" v-model="cmykValue" readonly spellcheck="false" aria-label="Kode warna CMYK">
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="btn-actions">
+            <button class="btn-action btn-copy" @click="copyColor" :class="{ copied: copied }" aria-label="Salin kode warna">
+              <i class="fas fa-copy"></i> {{ copied ? translations.copied : translations.copyBtn }}
+            </button>
+            <button class="btn-action btn-random" @click="randomColor" aria-label="Acak warna">
+              <i class="fas fa-dice"></i> {{ translations.randomBtn }}
+            </button>
+            <button class="btn-action btn-save" @click="saveColor" aria-label="Simpan warna">
+              <i class="fas fa-plus"></i> {{ translations.saveBtn }}
+            </button>
+          </div>
+
+          <!-- Saved Colors -->
+          <div class="palette-section" v-if="savedColors.length">
+            <div class="palette-label">
+              <i class="fas fa-palette"></i> {{ translations.savedColors }} ({{ savedColors.length }})
+            </div>
+            <div class="palette-grid">
+              <div class="palette-color" v-for="(color, index) in savedColors" :key="index"
+                   :style="{ background: color }"
+                   @click="selectColor(color)"
+                   @dblclick="removeColor(index)"
+                   :title="translations.doubleClickHint">
+                <span class="check-mark" v-if="currentColor === color">✓</span>
+              </div>
+            </div>
+            <div style="margin-top: 8px; font-size: 0.75rem; color: #8a9bb8;">
+              <i class="fas fa-info-circle"></i> {{ translations.doubleClickHint }}
+            </div>
+          </div>
+        </section>
+
+        <!-- FORM PANEL -->
+        <section class="form-panel" aria-label="Kontrol Warna">
+          <div class="panel-title">
+            <i class="fas fa-sliders-h"></i> {{ translations.controlsTitle }}
+          </div>
+          <p class="panel-subtitle">{{ translations.controlsSubtitle }}</p>
+
+          <!-- Color Picker -->
+          <div class="form-group">
+            <label for="colorPicker">{{ translations.colorPickerLabel }}</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="colorPicker" v-model="currentColor" @input="updateFromColorPicker">
+              <input type="text" class="color-hex-input" v-model="hexValue" @input="updateFromHex" spellcheck="false" placeholder="#1a4cff">
+            </div>
+          </div>
+
+          <!-- RGB Sliders -->
+          <div class="form-group">
+            <label>{{ translations.rgbSliders }}</label>
+            
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>R <span style="color: #e74c3c;">●</span></span>
+                <span class="slider-value">{{ rgb.r }}</span>
+              </div>
+              <input type="range" class="slider-red" v-model="rgb.r" min="0" max="255" @input="updateFromRgbSliders" aria-label="Nilai Red">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>G <span style="color: #27ae60;">●</span></span>
+                <span class="slider-value">{{ rgb.g }}</span>
+              </div>
+              <input type="range" class="slider-green" v-model="rgb.g" min="0" max="255" @input="updateFromRgbSliders" aria-label="Nilai Green">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>B <span style="color: #2980b9;">●</span></span>
+                <span class="slider-value">{{ rgb.b }}</span>
+              </div>
+              <input type="range" class="slider-blue" v-model="rgb.b" min="0" max="255" @input="updateFromRgbSliders" aria-label="Nilai Blue">
+            </div>
+          </div>
+
+          <!-- Quick Colors -->
+          <div class="form-group">
+            <label>{{ translations.quickColors }}</label>
+            <div class="quick-colors-grid">
+              <div class="palette-color" v-for="color in quickColors" :key="color"
+                   :style="{ background: color }"
+                   @click="selectColor(color)"
+                   :title="color">
+                <span class="check-mark" v-if="currentColor === color" style="font-size: 0.8rem;">✓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color Harmonies -->
+          <div class="form-group">
+            <label>{{ translations.harmonies }}</label>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn-action" style="flex:1; background: #f0f4fb; color: #1f2a44; font-size: 0.8rem; padding: 8px 12px;" 
+                      @click="generateHarmony('complementary')" aria-label="Buat harmoni komplementer">
+                <i class="fas fa-arrows-left-right"></i> Complementary
+              </button>
+              <button class="btn-action" style="flex:1; background: #f0f4fb; color: #1f2a44; font-size: 0.8rem; padding: 8px 12px;" 
+                      @click="generateHarmony('analogous')" aria-label="Buat harmoni analog">
+                <i class="fas fa-arrow-right-arrow-left"></i> Analogous
+              </button>
+              <button class="btn-action" style="flex:1; background: #f0f4fb; color: #1f2a44; font-size: 0.8rem; padding: 8px 12px;" 
+                      @click="generateHarmony('triadic')" aria-label="Buat harmoni triadic">
+                <i class="fas fa-triangle"></i> Triadic
+              </button>
+            </div>
+            <div v-if="harmonyColors.length" class="palette-grid" style="margin-top: 10px; grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));">
+              <div class="palette-color" v-for="color in harmonyColors" :key="color"
+                   :style="{ background: color }"
+                   @click="selectColor(color)">
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/prompt.html">Prompt Generator</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess }" role="alert" aria-live="polite">
+    <i :class="toastSuccess ? 'fas fa-check-circle' : 'fas fa-info-circle'"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== MULTI LANGUAGE TRANSLATIONS =====
+      const translations = {
+        id: {
+          subtitle: 'Pilih dan kelola warna dengan mudah',
+          back: 'Kembali',
+          previewTitle: 'Preview Warna',
+          previewSubtitle: 'Lihat warna yang Anda pilih',
+          copyBtn: 'Salin HEX',
+          copied: 'Tersalin!',
+          randomBtn: 'Acak Warna',
+          saveBtn: 'Simpan',
+          savedColors: 'Warna Tersimpan',
+          doubleClickHint: 'Double-klik untuk hapus warna',
+          controlsTitle: 'Kontrol Warna',
+          controlsSubtitle: 'Sesuaikan warna menggunakan berbagai metode',
+          colorPickerLabel: 'Pilih Warna',
+          rgbSliders: 'Sliders RGB',
+          quickColors: 'Warna Cepat',
+          harmonies: 'Harmoni Warna',
+          toastCopied: 'Warna berhasil disalin!',
+          toastSaved: 'Warna berhasil disimpan!',
+          toastRemoved: 'Warna berhasil dihapus!',
+          toastHarmony: 'Harmoni warna dibuat!'
+        },
+        en: {
+          subtitle: 'Pick and manage colors easily',
+          back: 'Back',
+          previewTitle: 'Color Preview',
+          previewSubtitle: 'See your selected color',
+          copyBtn: 'Copy HEX',
+          copied: 'Copied!',
+          randomBtn: 'Random Color',
+          saveBtn: 'Save',
+          savedColors: 'Saved Colors',
+          doubleClickHint: 'Double-click to remove color',
+          controlsTitle: 'Color Controls',
+          controlsSubtitle: 'Adjust color using various methods',
+          colorPickerLabel: 'Pick Color',
+          rgbSliders: 'RGB Sliders',
+          quickColors: 'Quick Colors',
+          harmonies: 'Color Harmonies',
+          toastCopied: 'Color copied successfully!',
+          toastSaved: 'Color saved successfully!',
+          toastRemoved: 'Color removed successfully!',
+          toastHarmony: 'Color harmony created!'
+        },
+        ja: {
+          subtitle: '簡単に色を選択・管理',
+          back: '戻る',
+          previewTitle: 'カラープレビュー',
+          previewSubtitle: '選択した色を表示',
+          copyBtn: 'HEXをコピー',
+          copied: 'コピー完了！',
+          randomBtn: 'ランダムカラー',
+          saveBtn: '保存',
+          savedColors: '保存した色',
+          doubleClickHint: 'ダブルクリックで色を削除',
+          controlsTitle: 'カラーコントロール',
+          controlsSubtitle: '様々な方法で色を調整',
+          colorPickerLabel: '色を選択',
+          rgbSliders: 'RGBスライダー',
+          quickColors: 'クイックカラー',
+          harmonies: 'カラーハーモニー',
+          toastCopied: '色がコピーされました！',
+          toastSaved: '色が保存されました！',
+          toastRemoved: '色が削除されました！',
+          toastHarmony: 'カラーハーモニーが作成されました！'
+        }
+      };
+
+      // ===== QUICK COLORS =====
+      const quickColors = [
+        '#FF0000', '#FF6B6B', '#FFA500', '#FFD93D',
+        '#27AE60', '#1ABC9C', '#3498DB', '#2980B9',
+        '#6C5CE7', '#A29BFE', '#FD79A8', '#E17055',
+        '#2D3436', '#636E72', '#B2BEC3', '#DFE6E9',
+        '#FFFFFF', '#F5F6FA'
+      ];
+
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          currentLang: 'id',
+          translations: translations.id,
+          currentColor: '#1a4cff',
+          hexValue: '#1a4cff',
+          rgbValue: 'rgb(26, 76, 255)',
+          hslValue: 'hsl(226, 100%, 55%)',
+          cmykValue: 'cmyk(90%, 70%, 0%, 0%)',
+          rgb: { r: 26, g: 76, b: 255 },
+          savedColors: [],
+          copied: false,
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastTimer: null,
+          quickColors: quickColors,
+          harmonyColors: [],
+          _updating: false
+        },
+        methods: {
+          setLanguage(lang) {
+            this.currentLang = lang;
+            this.translations = translations[lang];
+          },
+
+          // ===== UPDATE FROM HEX =====
+          updateFromHex() {
+            if (this._updating) return;
+            let hex = this.hexValue.trim();
+            
+            if (!hex.startsWith('#') && hex.length === 6) {
+              hex = '#' + hex;
+            }
+            
+            if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+              this._updating = true;
+              this.currentColor = hex;
+              this.updateColorInfo(hex);
+              this._updating = false;
+            }
+          },
+
+          // ===== UPDATE FROM RGB STRING =====
+          updateFromRgb() {
+            if (this._updating) return;
+            const match = this.rgbValue.match(/\d+/g);
+            if (match && match.length === 3) {
+              const r = Math.min(255, Math.max(0, parseInt(match[0])));
+              const g = Math.min(255, Math.max(0, parseInt(match[1])));
+              const b = Math.min(255, Math.max(0, parseInt(match[2])));
+              this._updating = true;
+              this.rgb = { r, g, b };
+              const hex = this.rgbToHex(r, g, b);
+              this.currentColor = hex;
+              this.updateColorInfo(hex);
+              this._updating = false;
+            }
+          },
+
+          // ===== UPDATE FROM COLOR PICKER =====
+          updateFromColorPicker() {
+            if (this._updating) return;
+            this._updating = true;
+            this.updateColorInfo(this.currentColor);
+            this._updating = false;
+          },
+
+          // ===== UPDATE FROM RGB SLIDERS =====
+          updateFromRgbSliders() {
+            if (this._updating) return;
+            this._updating = true;
+            const hex = this.rgbToHex(this.rgb.r, this.rgb.g, this.rgb.b);
+            this.currentColor = hex;
+            this.updateColorInfo(hex);
+            this._updating = false;
+          },
+
+          // ===== UPDATE COLOR INFO =====
+          updateColorInfo(hex) {
+            const rgb = this.hexToRgb(hex);
+            if (!rgb) return;
+            
+            this.rgb = rgb;
+            this.hexValue = hex.toUpperCase();
+            this.rgbValue = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+            
+            const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+            this.hslValue = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
+            
+            const cmyk = this.rgbToCmyk(rgb.r, rgb.g, rgb.b);
+            this.cmykValue = `cmyk(${Math.round(cmyk.c)}%, ${Math.round(cmyk.m)}%, ${Math.round(cmyk.y)}%, ${Math.round(cmyk.k)}%)`;
+          },
+
+          // ===== CONVERTERS =====
+          hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+              r: parseInt(result[1], 16),
+              g: parseInt(result[2], 16),
+              b: parseInt(result[3], 16)
+            } : null;
+          },
+
+          rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(c => {
+              const hex = c.toString(16);
+              return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+          },
+
+          rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+              h = s = 0;
+            } else {
+              const d = max - min;
+              s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+              switch (max) {
+                case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                case g: h = ((b - r) / d + 2) / 6; break;
+                case b: h = ((r - g) / d + 4) / 6; break;
+              }
+            }
+            return { h: h * 360, s, l };
+          },
+
+          rgbToCmyk(r, g, b) {
+            const c = 1 - (r / 255);
+            const m = 1 - (g / 255);
+            const y = 1 - (b / 255);
+            const k = Math.min(c, m, y);
+            return {
+              c: k === 1 ? 0 : (c - k) / (1 - k) * 100,
+              m: k === 1 ? 0 : (m - k) / (1 - k) * 100,
+              y: k === 1 ? 0 : (y - k) / (1 - k) * 100,
+              k: k * 100
+            };
+          },
+
+          hslToRgb(h, s, l) {
+            h /= 360; s /= 100; l /= 100;
+            let r, g, b;
+            if (s === 0) {
+              r = g = b = l;
+            } else {
+              const hue2rgb = (p, q, t) => {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1/6) return p + (q - p) * 6 * t;
+                if (t < 1/2) return q;
+                if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+              };
+              const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+              const p = 2 * l - q;
+              r = hue2rgb(p, q, h + 1/3);
+              g = hue2rgb(p, q, h);
+              b = hue2rgb(p, q, h - 1/3);
+            }
+            return {
+              r: Math.round(r * 255),
+              g: Math.round(g * 255),
+              b: Math.round(b * 255)
+            };
+          },
+
+          // ===== SELECT COLOR =====
+          selectColor(color) {
+            this._updating = true;
+            this.currentColor = color;
+            this.updateColorInfo(color);
+            this._updating = false;
+          },
+
+          // ===== RANDOM COLOR =====
+          randomColor() {
+            const hex = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+            this.selectColor(hex);
+          },
+
+          // ===== COPY COLOR =====
+          copyColor() {
+            const color = this.hexValue;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(color).then(() => {
+                this.copied = true;
+                this.showToast(this.translations.toastCopied, true);
+                setTimeout(() => { this.copied = false; }, 2500);
+              }).catch(() => {
+                this.fallbackCopy(color);
+              });
+            } else {
+              this.fallbackCopy(color);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.copied = true;
+              this.showToast(this.translations.toastCopied, true);
+              setTimeout(() => { this.copied = false; }, 2500);
+            } catch (e) {
+              this.showToast('Gagal menyalin', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== SAVE COLOR =====
+          saveColor() {
+            if (!this.savedColors.includes(this.currentColor)) {
+              this.savedColors.push(this.currentColor);
+              this.showToast(this.translations.toastSaved, true);
+            } else {
+              this.showToast('Warna sudah tersimpan', false);
+            }
+          },
+
+          // ===== REMOVE COLOR =====
+          removeColor(index) {
+            this.savedColors.splice(index, 1);
+            this.showToast(this.translations.toastRemoved, true);
+          },
+
+          // ===== HARMONIES =====
+          generateHarmony(type) {
+            const rgb = this.hexToRgb(this.currentColor);
+            if (!rgb) return;
+            
+            const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+            let colors = [];
+            const base = { h: hsl.h, s: hsl.s, l: hsl.l };
+
+            if (type === 'complementary') {
+              colors = [
+                this.currentColor,
+                this.hslToHex({ h: (base.h + 180) % 360, s: base.s, l: base.l })
+              ];
+            } else if (type === 'analogous') {
+              colors = [
+                this.hslToHex({ h: (base.h - 30 + 360) % 360, s: base.s, l: base.l }),
+                this.currentColor,
+                this.hslToHex({ h: (base.h + 30) % 360, s: base.s, l: base.l })
+              ];
+            } else if (type === 'triadic') {
+              colors = [
+                this.currentColor,
+                this.hslToHex({ h: (base.h + 120) % 360, s: base.s, l: base.l }),
+                this.hslToHex({ h: (base.h + 240) % 360, s: base.s, l: base.l })
+              ];
+            }
+
+            this.harmonyColors = colors;
+            this.showToast(this.translations.toastHarmony, true);
+          },
+
+          hslToHex(hsl) {
+            const rgb = this.hslToRgb(hsl.h, hsl.s * 100, hsl.l * 100);
+            return this.rgbToHex(rgb.r, rgb.g, rgb.b);
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          }
+        },
+        mounted() {
+          this.updateColorInfo(this.currentColor);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

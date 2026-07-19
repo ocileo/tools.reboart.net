@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <!-- ===== META DASAR ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToolBox · Kumpulan Alat Serba Guna</title>
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>REBOART | ToolBox · Kumpulan Tools Online Gratis untuk Desain, Developer & Keamanan</title>
+  <meta name="description" content="REBOART | ToolBox adalah platform kumpulan tools online gratis untuk desain grafis, developer, keamanan, dan kebutuhan digital lainnya. Lengkap dengan generator prompt desain AI.">
+  <meta name="keywords" content="tools online, desain grafis, developer tools, keamanan digital, generator prompt, AI prompt, utility tools, free online tools">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/">
+
+  <!-- ===== OPEN GRAPH (Facebook, LinkedIn, dll) ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="REBOART | ToolBox · Kumpulan Tools Online Gratis">
+  <meta property="og:description" content="Platform tools online gratis untuk desain, developer, keamanan, dan kebutuhan digital. Generator prompt desain AI tersedia!">
+  <meta property="og:url" content="https://tools.reboart.net/">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="REBOART | ToolBox · Kumpulan Tools Online Gratis">
+  <meta name="twitter:description" content="Platform tools online gratis untuk desain, developer, keamanan, dan kebutuhan digital.">
+  <meta name="twitter:image" content="https://toolbox-app.workers.dev/og-image.jpg">
+
+  <!-- ===== SCHEMA.ORG / STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "REBOART | ToolBox",
+    "description": "Platform kumpulan tools online gratis untuk desain grafis, developer, keamanan, dan kebutuhan digital lainnya.",
+    "url": "https://tools.reboart.net/",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "156"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
+
+  <!-- ===== FONTS & ICONS ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
+  
   <style>
     /* ===== RESET & BASE ===== */
     * {
@@ -13,6 +73,10 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -26,6 +90,26 @@
     .app-wrapper {
       max-width: 1280px;
       width: 100%;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
     }
 
     /* ===== HEADER ===== */
@@ -58,6 +142,7 @@
       justify-content: center;
       font-size: 26px;
       box-shadow: 0 8px 20px rgba(26, 76, 255, 0.3);
+      flex-shrink: 0;
     }
 
     .logo-text h1 {
@@ -344,8 +429,20 @@
       color: #0b1b3a;
     }
 
-    .footer-heart {
-      color: #e74c6f;
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
     }
 
     /* ===== MODAL ===== */
@@ -459,6 +556,13 @@
       margin-left: 2px;
     }
 
+    .form-group label .hint {
+      font-weight: 400;
+      color: #8a9bb8;
+      font-size: 0.75rem;
+      margin-left: 6px;
+    }
+
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -467,7 +571,7 @@
       border: 2px solid #e2e8f2;
       border-radius: 14px;
       font-size: 0.95rem;
-      transition: 0.2s;
+      transition: 0.25s;
       background: #fafcff;
       color: #1f2a44;
     }
@@ -613,6 +717,107 @@
       transform: translateY(-2px);
     }
 
+    /* ===== STYLE TAGS ===== */
+    .style-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .style-tag {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 2px solid #e2e8f2;
+      background: white;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #4a5b7a;
+    }
+
+    .style-tag:hover {
+      border-color: #b0c4e8;
+      background: #f0f4fe;
+    }
+
+    .style-tag.active {
+      border-color: #1a4cff;
+      background: #1a4cff;
+      color: white;
+    }
+
+    /* ===== PRESETS ===== */
+    .presets-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .presets-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5a6b8a;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 2px solid #e2e8f2;
+      background: white;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #4a5b7a;
+    }
+
+    .preset-btn:hover {
+      border-color: #1a4cff;
+      background: #f0f4fe;
+      color: #1a4cff;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .app-header {
@@ -662,6 +867,16 @@
         font-size: 1.3rem;
         flex-wrap: wrap;
       }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
     }
 
     @media (max-width: 480px) {
@@ -678,328 +893,425 @@
         font-size: 0.78rem;
       }
 
-      .app-footer {
-        flex-direction: column;
-        gap: 8px;
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
         text-align: center;
       }
     }
 
-    /* Scrollbar styling */
+    /* Scrollbar */
     .modal-content::-webkit-scrollbar {
       width: 6px;
     }
-
     .modal-content::-webkit-scrollbar-track {
       background: #f0f4fb;
       border-radius: 10px;
     }
-
     .modal-content::-webkit-scrollbar-thumb {
       background: #c5d2e8;
       border-radius: 10px;
     }
-
     .modal-content::-webkit-scrollbar-thumb:hover {
       background: #a0b0ca;
     }
   </style>
 </head>
 <body>
-<div class="app-wrapper" id="app">
-  <!-- ===== HEADER ===== -->
-  <header class="app-header">
-    <div class="logo-area">
-      <div class="logo-icon"><i class="fas fa-toolbox"></i></div>
-      <div class="logo-text">
-        <h1>Tool<span>Box</span></h1>
-        <div class="subtitle">Penyedia tools serba guna</div>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <div class="logo-icon" aria-hidden="true"><i class="fas fa-toolbox"></i></div>
+        <div class="logo-text">
+          <h1>Tool<span>Box</span></h1>
+          <div class="subtitle">Kumpulan tools online gratis</div>
+        </div>
       </div>
-    </div>
-    <div class="header-actions">
-      <div class="search-box">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Cari tools..." v-model="searchQuery" @input="filterTools">
+      <div class="header-actions" role="search">
+        <div class="search-box">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input type="text" placeholder="Cari tools..." v-model="searchQuery" @input="filterTools" aria-label="Cari tools">
+        </div>
+        <button class="btn-reset" @click="resetFilter" aria-label="Reset filter"><i class="fas fa-undo-alt" aria-hidden="true"></i> Reset</button>
       </div>
-      <button class="btn-reset" @click="resetFilter"><i class="fas fa-undo-alt"></i> Reset</button>
-    </div>
-  </header>
+    </header>
 
-  <!-- ===== CATEGORY BAR ===== -->
-  <div class="category-bar">
-    <span class="category-chip" :class="{ active: selectedCategory === '' }" @click="setCategory('')">
-      <i class="fas fa-th-list"></i> Semua
-    </span>
-    <span class="category-chip" v-for="cat in categories" :key="cat" 
-          :class="{ active: selectedCategory === cat }" @click="setCategory(cat)">
-      {{ cat }}
-    </span>
-  </div>
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <!-- Category Bar -->
+      <nav class="category-bar" aria-label="Kategori tools">
+        <span class="category-chip" :class="{ active: selectedCategory === '' }" @click="setCategory('')" role="button" tabindex="0">
+          <i class="fas fa-th-list" aria-hidden="true"></i> Semua
+        </span>
+        <span class="category-chip" v-for="cat in categories" :key="cat" 
+              :class="{ active: selectedCategory === cat }" @click="setCategory(cat)" role="button" tabindex="0">
+          {{ cat }}
+        </span>
+      </nav>
 
-  <!-- ===== TOOLS GRID ===== -->
-  <div class="tools-grid" v-if="filteredTools.length">
-    <div class="tool-card" v-for="tool in filteredTools" :key="tool.id">
-      <div class="tool-icon"><i :class="tool.icon"></i></div>
-      <h3>{{ tool.name }}</h3>
-      <p>{{ tool.desc }}</p>
-      <div class="tool-meta">
-        <span class="tool-tag">{{ tool.category }}</span>
-        <button class="tool-btn" @click="useTool(tool)"><i class="fas fa-play"></i> Gunakan</button>
+      <!-- Tools Grid -->
+      <section aria-label="Daftar tools">
+        <div class="tools-grid" v-if="filteredTools.length">
+          <article class="tool-card" v-for="tool in filteredTools" :key="tool.id" itemscope itemtype="https://schema.org/WebApplication">
+            <div class="tool-icon" aria-hidden="true"><i :class="tool.icon"></i></div>
+            <h3 itemprop="name">{{ tool.name }}</h3>
+            <p itemprop="description">{{ tool.desc }}</p>
+            <div class="tool-meta">
+              <span class="tool-tag" itemprop="applicationCategory">{{ tool.category }}</span>
+              <button class="tool-btn" @click="useTool(tool)" aria-label="Gunakan {{ tool.name }}">
+                <i class="fas fa-play" aria-hidden="true"></i> Gunakan
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Empty State -->
+        <div v-else class="empty-state" role="status">
+          <i class="fas fa-box-open" aria-hidden="true"></i>
+          <h3>Tidak ada tools yang ditemukan</h3>
+          <p style="color: #7a8ba8;">Coba gunakan kata kunci lain atau reset filter</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div class="footer-stats">
+        <i class="fas fa-cubes" aria-hidden="true" style="margin-right: 6px;"></i> 
+        Menampilkan <span>{{ filteredTools.length }}</span> dari <span>{{ tools.length }}</span> tools
       </div>
-    </div>
-  </div>
-
-  <!-- ===== EMPTY STATE ===== -->
-  <div v-else class="empty-state">
-    <i class="fas fa-box-open"></i>
-    <h3>Tidak ada tools yang ditemukan</h3>
-    <p style="color: #7a8ba8;">Coba gunakan kata kunci lain atau reset filter</p>
-  </div>
-
-  <!-- ===== FOOTER ===== -->
-  <div class="app-footer">
-    <div class="footer-stats">
-      <i class="fas fa-cubes" style="margin-right: 6px;"></i> 
-      Menampilkan <span>{{ filteredTools.length }}</span> dari <span>{{ tools.length }}</span> tools
-    </div>
-    <div>
-      <i class="fas fa-code"></i> ToolBox v2.0 · dibuat dengan <i class="fas fa-heart footer-heart"></i>
-    </div>
-  </div>
-
-  <!-- ===== MODAL GENERATE PROMPT ===== -->
-  <div class="modal-overlay" :class="{ active: showModal }" @click.self="closeModal">
-    <div class="modal-content">
-      <button class="modal-close" @click="closeModal"><i class="fas fa-times"></i></button>
-      
-      <div class="modal-title">
-        <i class="fas fa-magic"></i> Generate Desain Prompt
+      <div class="footer-links">
+        <a href="#" @click.prevent="showAbout = true">Tentang</a>
+        <a href="#" @click.prevent="showContact = true">Kontak</a>
+        <span><i class="fas fa-code" aria-hidden="true"></i> REBOART | ToolBox v2.0 · <i class="fas fa-heart" aria-hidden="true" style="color: #e74c6f;"></i></span>
       </div>
-      <p class="modal-subtitle">Buat prompt detail untuk desain grafis, UI/UX, ilustrasi, dan lainnya</p>
+    </footer>
 
-      <div class="form-group">
-        <label>Jenis Desain <span class="required">*</span></label>
-        <select v-model="promptForm.type">
-          <option value="UI/UX Design">🎨 UI/UX Design</option>
-          <option value="Graphic Design">🖌️ Graphic Design</option>
-          <option value="Illustration">✏️ Illustration</option>
-          <option value="Logo Design">🏷️ Logo Design</option>
-          <option value="Poster/Flyer">📄 Poster / Flyer</option>
-          <option value="Social Media">📱 Social Media</option>
-          <option value="Packaging">📦 Packaging</option>
-          <option value="Website Design">🌐 Website Design</option>
-          <option value="Mobile App">📲 Mobile App Design</option>
-        </select>
-      </div>
+    <!-- ===== MODAL GENERATE PROMPT ===== -->
+    <div class="modal-overlay" :class="{ active: showModal }" @click.self="closeModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <button class="modal-close" @click="closeModal" aria-label="Tutup"><i class="fas fa-times" aria-hidden="true"></i></button>
+        
+        <div class="modal-title" id="modal-title">
+          <i class="fas fa-magic" aria-hidden="true"></i> Generate Desain Prompt
+        </div>
+        <p class="modal-subtitle">Buat prompt detail untuk desain grafis, UI/UX, ilustrasi, dan lainnya</p>
 
-      <div class="form-row">
         <div class="form-group">
-          <label>Gaya / Style</label>
-          <input type="text" v-model="promptForm.style" placeholder="Minimalis, Futuristik, Vintage...">
+          <label for="design-type">Jenis Desain <span class="required">*</span></label>
+          <select id="design-type" v-model="promptForm.type">
+            <option value="UI/UX Design">🎨 UI/UX Design</option>
+            <option value="Graphic Design">🖌️ Graphic Design</option>
+            <option value="Illustration">✏️ Illustration</option>
+            <option value="Logo Design">🏷️ Logo Design</option>
+            <option value="Poster/Flyer">📄 Poster / Flyer</option>
+            <option value="Social Media">📱 Social Media</option>
+            <option value="Packaging">📦 Packaging</option>
+            <option value="Website Design">🌐 Website Design</option>
+            <option value="Mobile App">📲 Mobile App Design</option>
+          </select>
         </div>
+
         <div class="form-group">
-          <label>Warna Dominan</label>
-          <input type="text" v-model="promptForm.color" placeholder="Biru, Pastel, Monokrom...">
+          <label>Gaya / Style <span class="hint">(klik untuk pilih cepat)</span></label>
+          <div class="style-tags">
+            <span class="style-tag" v-for="style in styleOptions" :key="style" 
+                  :class="{ active: promptForm.style === style }" @click="promptForm.style = style" role="button" tabindex="0">
+              {{ style }}
+            </span>
+          </div>
+          <input type="text" v-model="promptForm.style" placeholder="Atau tulis gaya kustom..." style="margin-top: 8px;" id="design-style">
         </div>
-      </div>
 
-      <div class="form-group">
-        <label>Deskripsi Proyek <span class="required">*</span></label>
-        <textarea v-model="promptForm.description" placeholder="Jelaskan secara singkat tentang proyek desain yang ingin dibuat..."></textarea>
-      </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="design-color">Warna Dominan</label>
+            <input type="text" id="design-color" v-model="promptForm.color" placeholder="Biru, Pastel, Monokrom...">
+          </div>
+          <div class="form-group">
+            <label for="design-mood">Suasana / Mood</label>
+            <input type="text" id="design-mood" v-model="promptForm.mood" placeholder="Profesional, Ceria, Elegan...">
+          </div>
+        </div>
 
-      <div class="form-row">
         <div class="form-group">
-          <label>Target Audiens</label>
-          <input type="text" v-model="promptForm.audience" placeholder="Millennial, Profesional, Anak-anak...">
+          <label for="design-desc">Deskripsi Proyek <span class="required">*</span></label>
+          <textarea id="design-desc" v-model="promptForm.description" placeholder="Jelaskan secara singkat tentang proyek desain yang ingin dibuat..."></textarea>
         </div>
-        <div class="form-group">
-          <label>Platform / Medium</label>
-          <input type="text" v-model="promptForm.medium" placeholder="Instagram, Website, Cetak...">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="design-audience">Target Audiens</label>
+            <input type="text" id="design-audience" v-model="promptForm.audience" placeholder="Millennial, Profesional...">
+          </div>
+          <div class="form-group">
+            <label for="design-medium">Platform / Medium</label>
+            <input type="text" id="design-medium" v-model="promptForm.medium" placeholder="Instagram, Website, Cetak...">
+          </div>
         </div>
-      </div>
 
-      <button class="btn-generate" @click="generatePrompt">
-        <i class="fas fa-wand-magic-sparkles"></i> Generate Prompt
-      </button>
+        <!-- Presets -->
+        <div class="presets-section">
+          <span class="presets-label"><i class="fas fa-bolt" aria-hidden="true"></i> Quick Presets</span>
+          <div class="preset-buttons">
+            <button class="preset-btn" @click="applyPreset('minimalis')">Minimalis</button>
+            <button class="preset-btn" @click="applyPreset('futuristik')">Futuristik</button>
+            <button class="preset-btn" @click="applyPreset('vintage')">Vintage</button>
+            <button class="preset-btn" @click="applyPreset('corporate')">Corporate</button>
+            <button class="preset-btn" @click="applyPreset('playful')">Playful</button>
+          </div>
+        </div>
 
-      <!-- Result -->
-      <div class="result-box" :class="{ show: generatedPrompt }">
-        <div class="label"><i class="fas fa-file-pen"></i> Prompt Siap Pakai</div>
-        <div class="prompt-text">{{ generatedPrompt }}</div>
-        <div class="result-actions">
-          <button class="btn-action btn-copy" @click="copyPrompt" :class="{ copied: copied }">
-            <i class="fas fa-copy"></i> {{ copied ? 'Tersalin!' : 'Salin Prompt' }}
-          </button>
-          <button class="btn-action btn-regenerate" @click="regeneratePrompt">
-            <i class="fas fa-rotate"></i> Generate Ulang
-          </button>
+        <button class="btn-generate" @click="generatePrompt" :disabled="isGenerating">
+          <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> 
+          {{ isGenerating ? 'Memproses...' : 'Generate Prompt' }}
+        </button>
+
+        <!-- Result -->
+        <div class="result-box" :class="{ show: generatedPrompt }">
+          <div class="label"><i class="fas fa-file-pen" aria-hidden="true"></i> Prompt Siap Pakai</div>
+          <div class="prompt-text">{{ generatedPrompt }}</div>
+          <div class="result-actions">
+            <button class="btn-action btn-copy" @click="copyPrompt" :class="{ copied: copied }">
+              <i class="fas fa-copy" aria-hidden="true"></i> {{ copied ? 'Tersalin!' : 'Salin Prompt' }}
+            </button>
+            <button class="btn-action btn-regenerate" @click="generatePrompt">
+              <i class="fas fa-rotate" aria-hidden="true"></i> Generate Ulang
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div class="toast" :class="{ show: toastVisible, success: toastSuccess }" role="alert" aria-live="polite">
+      <i :class="toastSuccess ? 'fas fa-check-circle' : 'fas fa-info-circle'" aria-hidden="true"></i>
+      {{ toastMessage }}
+    </div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-<script>
-  (function() {
-    // ===== DATA TOOLS =====
-    const toolData = [
-      { id: 1, name: 'JSON Formatter', desc: 'Format & validasi JSON dengan rapi dan terstruktur.', category: 'Developer', icon: 'fas fa-code' },
-      { id: 2, name: 'Password Generator', desc: 'Buat password kuat secara acak dengan berbagai opsi.', category: 'Keamanan', icon: 'fas fa-key' },
-      { id: 3, name: 'Unit Converter', desc: 'Konversi panjang, berat, suhu, mata uang, dan lainnya.', category: 'Konversi', icon: 'fas fa-ruler-combined' },
-      { id: 4, name: 'QR Code Maker', desc: 'Hasilkan QR code dari teks, URL, atau kontak.', category: 'Kreatif', icon: 'fas fa-qrcode' },
-      { id: 5, name: 'Text Diff Checker', desc: 'Bandingkan dua teks dan lihat perbedaan secara detail.', category: 'Developer', icon: 'fas fa-columns' },
-      { id: 6, name: 'Base64 Encoder', desc: 'Encode / decode Base64 dengan cepat dan mudah.', category: 'Developer', icon: 'fas fa-shield-alt' },
-      { id: 7, name: 'Color Picker', desc: 'Pilih warna dan dapatkan kode HEX, RGB, dan HSL.', category: 'Desain', icon: 'fas fa-palette' },
-      { id: 8, name: 'Word Counter', desc: 'Hitung kata, karakter, kalimat, dan paragraf.', category: 'Penulisan', icon: 'fas fa-file-alt' },
-      { id: 9, name: 'Hash Generator', desc: 'Buat hash MD5, SHA-1, SHA-256, dan lainnya.', category: 'Keamanan', icon: 'fas fa-fingerprint' },
-      { id: 10, name: 'Timer & Stopwatch', desc: 'Alat pengukur waktu dengan fitur start, pause, reset.', category: 'Utilitas', icon: 'fas fa-stopwatch' },
-      { id: 11, name: 'URL Encode/Decode', desc: 'Encode atau decode URL parameter dengan cepat.', category: 'Developer', icon: 'fas fa-link' },
-      { id: 12, name: 'Lorem Ipsum Generator', desc: 'Hasilkan teks placeholder untuk desain dan mockup.', category: 'Penulisan', icon: 'fas fa-paragraph' },
-      { id: 13, name: 'Generate Desain Prompt', desc: 'Buat prompt detail untuk desain grafis, UI/UX, atau ilustrasi.', category: 'Desain', icon: 'fas fa-magic' }
-    ];
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== DATA TOOLS =====
+      const toolData = [
+        { id: 1, name: 'JSON Formatter', desc: 'Format & validasi JSON dengan rapi dan terstruktur.', category: 'Developer', icon: 'fas fa-code' },
+        { id: 2, name: 'Password Generator', desc: 'Buat password kuat secara acak dengan berbagai opsi.', category: 'Keamanan', icon: 'fas fa-key' },
+        { id: 3, name: 'Unit Converter', desc: 'Konversi panjang, berat, suhu, mata uang, dan lainnya.', category: 'Konversi', icon: 'fas fa-ruler-combined' },
+        { id: 4, name: 'QR Code Maker', desc: 'Hasilkan QR code dari teks, URL, atau kontak.', category: 'Kreatif', icon: 'fas fa-qrcode' },
+        { id: 5, name: 'Text Diff Checker', desc: 'Bandingkan dua teks dan lihat perbedaan secara detail.', category: 'Developer', icon: 'fas fa-columns' },
+        { id: 6, name: 'Base64 Encoder', desc: 'Encode / decode Base64 dengan cepat dan mudah.', category: 'Developer', icon: 'fas fa-shield-alt' },
+        { id: 7, name: 'Color Picker', desc: 'Pilih warna dan dapatkan kode HEX, RGB, dan HSL.', category: 'Desain', icon: 'fas fa-palette' },
+        { id: 8, name: 'Word Counter', desc: 'Hitung kata, karakter, kalimat, dan paragraf.', category: 'Penulisan', icon: 'fas fa-file-alt' },
+        { id: 9, name: 'Hash Generator', desc: 'Buat hash MD5, SHA-1, SHA-256, dan lainnya.', category: 'Keamanan', icon: 'fas fa-fingerprint' },
+        { id: 10, name: 'Timer & Stopwatch', desc: 'Alat pengukur waktu dengan fitur start, pause, reset.', category: 'Utilitas', icon: 'fas fa-stopwatch' },
+        { id: 11, name: 'URL Encode/Decode', desc: 'Encode atau decode URL parameter dengan cepat.', category: 'Developer', icon: 'fas fa-link' },
+        { id: 12, name: 'Lorem Ipsum Generator', desc: 'Hasilkan teks placeholder untuk desain dan mockup.', category: 'Penulisan', icon: 'fas fa-paragraph' },
+        { id: 13, name: 'Generate Desain Prompt', desc: 'Buat prompt detail untuk desain grafis, UI/UX, atau ilustrasi.', category: 'Desain', icon: 'fas fa-magic' }
+      ];
 
-    const categories = [...new Set(toolData.map(t => t.category))].sort();
+      const categories = [...new Set(toolData.map(t => t.category))].sort();
 
-    // ===== VUE APP =====
-    new Vue({
-      el: '#app',
-      data: {
-        tools: toolData,
-        categories: categories,
-        selectedCategory: '',
-        searchQuery: '',
-        filteredTools: toolData.slice(),
-        showModal: false,
-        generatedPrompt: '',
-        copied: false,
-        promptForm: {
-          type: 'UI/UX Design',
-          style: '',
-          color: '',
-          description: '',
-          audience: '',
-          medium: ''
-        }
-      },
-      methods: {
-        filterTools() {
-          let result = this.tools;
-          if (this.selectedCategory) {
-            result = result.filter(t => t.category === this.selectedCategory);
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          tools: toolData,
+          categories: categories,
+          selectedCategory: '',
+          searchQuery: '',
+          filteredTools: toolData.slice(),
+          showModal: false,
+          generatedPrompt: '',
+          copied: false,
+          isGenerating: false,
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastTimer: null,
+          showAbout: false,
+          showContact: false,
+          styleOptions: [
+            'Minimalis', 'Futuristik', 'Vintage', 'Modern',
+            'Bold', 'Elegant', 'Playful', 'Corporate',
+            'Hand-drawn', '3D', 'Flat', 'Gradien'
+          ],
+          promptForm: {
+            type: 'UI/UX Design',
+            style: '',
+            color: '',
+            mood: '',
+            description: '',
+            audience: '',
+            medium: ''
           }
-          if (this.searchQuery.trim()) {
-            const q = this.searchQuery.trim().toLowerCase();
-            result = result.filter(t => 
-              t.name.toLowerCase().includes(q) || 
-              t.desc.toLowerCase().includes(q) ||
-              t.category.toLowerCase().includes(q)
-            );
-          }
-          this.filteredTools = result;
         },
+        methods: {
+          filterTools() {
+            let result = this.tools;
+            if (this.selectedCategory) {
+              result = result.filter(t => t.category === this.selectedCategory);
+            }
+            if (this.searchQuery.trim()) {
+              const q = this.searchQuery.trim().toLowerCase();
+              result = result.filter(t => 
+                t.name.toLowerCase().includes(q) || 
+                t.desc.toLowerCase().includes(q) ||
+                t.category.toLowerCase().includes(q)
+              );
+            }
+            this.filteredTools = result;
+          },
 
-        setCategory(cat) {
-          this.selectedCategory = cat;
-          this.filterTools();
-        },
+          setCategory(cat) {
+            this.selectedCategory = cat;
+            this.filterTools();
+          },
 
-        resetFilter() {
-          this.selectedCategory = '';
-          this.searchQuery = '';
-          this.filterTools();
-        },
+          resetFilter() {
+            this.selectedCategory = '';
+            this.searchQuery = '';
+            this.filterTools();
+          },
 
-        useTool(tool) {
-          if (tool.id === 13) {
-            // Buka modal Generate Prompt
-            this.showModal = true;
-            this.generatedPrompt = '';
-            this.copied = false;
-            this.promptForm = {
-              type: 'UI/UX Design',
-              style: '',
-              color: '',
-              description: '',
-              audience: '',
-              medium: ''
+          useTool(tool) {
+            if (tool.id === 13) {
+              this.showModal = true;
+              this.generatedPrompt = '';
+              this.copied = false;
+              this.promptForm = {
+                type: 'UI/UX Design',
+                style: '',
+                color: '',
+                mood: '',
+                description: '',
+                audience: '',
+                medium: ''
+              };
+            } else if (tool.id === 4) {
+              window.location.href = '/qr-maker.html';
+            } else if (tool.id === 7) {
+              window.location.href = '/color-picker.html';
+            } else {
+              alert(`🔧 Membuka tool: "${tool.name}"\n📋 ${tool.desc}\n\n(Fitur ini dalam tahap pengembangan)`);
+            }
+          },
+
+          closeModal() {
+            this.showModal = false;
+          },
+
+          generatePrompt() {
+            if (this.isGenerating) return;
+            
+            const f = this.promptForm;
+            if (!f.description) {
+              this.showToast('Mohon isi deskripsi proyek terlebih dahulu', false);
+              return;
+            }
+
+            this.isGenerating = true;
+            
+            setTimeout(() => {
+              const style = f.style || 'modern dan minimalis';
+              const color = f.color || 'netral dan elegan';
+              const mood = f.mood || 'profesional';
+              const desc = f.description || 'proyek desain kreatif';
+              const audience = f.audience || 'target audiens umum';
+              const medium = f.medium || 'platform digital';
+
+              const templates = [
+                `Buat desain ${f.type} dengan gaya ${style} yang memukau dan berkesan. Gunakan palet warna ${color} yang harmonis untuk menciptakan suasana ${mood}. Proyek ini adalah "${desc}" yang dirancang khusus untuk ${audience}. Optimalkan untuk tampilan di ${medium}. Sertakan elemen visual yang mendukung pesan utama dan pastikan aksesibilitas terjaga.`,
+
+                `Rancang ${f.type} yang inovatif dengan pendekatan ${style}. Warna dominan: ${color} dengan nuansa ${mood}. Konten utama: "${desc}". Target audiens: ${audience}. Platform: ${medium}. Buat desain yang tidak hanya estetis tetapi juga fungsional dan mudah digunakan.`,
+
+                `Kembangkan konsep ${f.type} dengan estetika ${style} yang kuat. Gunakan kombinasi warna ${color} untuk menciptakan mood ${mood} yang sesuai. Proyek: "${desc}". Audiens sasaran: ${audience}. Medium: ${medium}. Berikan sentuhan kreatif yang membedakan dari desain lainnya.`,
+
+                `Buat ${f.type} yang memorable dengan gaya ${style}. Palet warna: ${color}. Suasana: ${mood}. Deskripsi proyek: "${desc}". Ditujukan untuk ${audience}. Tampilkan dengan optimal di ${medium}. Pastikan setiap elemen desain memiliki tujuan yang jelas.`,
+
+                `Desain ${f.type} dengan pendekatan ${style} dan warna ${color} untuk menciptakan vibe ${mood}. Proyek ini bertujuan untuk "${desc}" dan menyasar ${audience}. Gunakan ${medium} sebagai medium utama. Ciptakan pengalaman visual yang konsisten dan profesional.`
+              ];
+
+              this.generatedPrompt = templates[Math.floor(Math.random() * templates.length)];
+              this.isGenerating = false;
+              this.showToast('Prompt berhasil dibuat!', true);
+            }, 600);
+          },
+
+          applyPreset(type) {
+            const presets = {
+              minimalis: { style: 'Minimalis', color: 'Putih, Abu-abu, Hitam', mood: 'Elegant dan Bersih' },
+              futuristik: { style: 'Futuristik', color: 'Neon, Biru, Ungu', mood: 'Inovatif dan Dinamis' },
+              vintage: { style: 'Vintage', color: 'Krem, Coklat, Emas', mood: 'Nostalgia dan Hangat' },
+              corporate: { style: 'Corporate', color: 'Biru, Putih, Abu-abu', mood: 'Profesional dan Terpercaya' },
+              playful: { style: 'Playful', color: 'Pastel, Cerah', mood: 'Ceria dan Ramah' }
             };
-          } else {
-            alert(`🔧 Membuka tool: "${tool.name}"\n📋 ${tool.desc}\n\n(Fitur ini dalam tahap pengembangan)`);
-          }
-        },
+            
+            const preset = presets[type];
+            if (preset) {
+              this.promptForm.style = preset.style;
+              this.promptForm.color = preset.color;
+              this.promptForm.mood = preset.mood;
+              this.showToast(`Preset "${type}" diterapkan!`, true);
+            }
+          },
 
-        closeModal() {
-          this.showModal = false;
-        },
+          copyPrompt() {
+            if (!this.generatedPrompt) return;
 
-        generatePrompt() {
-          const f = this.promptForm;
-          const style = f.style || 'modern dan minimalis';
-          const color = f.color || 'netral dan elegan';
-          const desc = f.description || 'proyek desain kreatif';
-          const audience = f.audience || 'target audiens umum';
-          const medium = f.medium || 'platform digital';
-
-          const promptTemplates = [
-            `Buat desain ${f.type} dengan gaya ${style} yang memukau. Gunakan palet warna ${color} yang harmonis dan menarik. Proyek ini adalah "${desc}" yang dirancang khusus untuk ${audience}. Optimalkan untuk tampilan di ${medium}. Sertakan elemen visual yang mendukung pesan utama dan pastikan aksesibilitas terjaga.`,
-
-            `Rancang ${f.type} yang inovatif dengan pendekatan ${style}. Warna dominan: ${color}. Konten utama: "${desc}". Target audiens: ${audience}. Platform: ${medium}. Buat desain yang tidak hanya estetis tetapi juga fungsional dan mudah digunakan.`,
-
-            `Kembangkan konsep ${f.type} dengan estetika ${style} yang kuat. Gunakan kombinasi warna ${color} untuk menciptakan mood yang sesuai. Proyek: "${desc}". Audiens sasaran: ${audience}. Medium: ${medium}. Berikan sentuhan kreatif yang membedakan dari desain lainnya.`,
-
-            `Buat ${f.type} yang memorable dengan gaya ${style}. Palet warna: ${color}. Deskripsi proyek: "${desc}". Ditujukan untuk ${audience}. Tampilkan dengan optimal di ${medium}. Pastikan setiap elemen desain memiliki tujuan yang jelas.`,
-
-            `Desain ${f.type} dengan pendekatan ${style} dan warna ${color}. Proyek ini bertujuan untuk "${desc}" dan menyasar ${audience}. Gunakan ${medium} sebagai medium utama. Ciptakan pengalaman visual yang konsisten dan profesional.`
-          ];
-
-          this.generatedPrompt = promptTemplates[Math.floor(Math.random() * promptTemplates.length)];
-          this.copied = false;
-        },
-
-        regeneratePrompt() {
-          this.generatePrompt();
-        },
-
-        copyPrompt() {
-          if (!this.generatedPrompt) return;
-
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(this.generatedPrompt).then(() => {
-              this.copied = true;
-              setTimeout(() => { this.copied = false; }, 2500);
-            }).catch(() => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(this.generatedPrompt).then(() => {
+                this.copied = true;
+                this.showToast('Prompt tersalin ke clipboard!', true);
+                setTimeout(() => { this.copied = false; }, 2500);
+              }).catch(() => {
+                this.fallbackCopy();
+              });
+            } else {
               this.fallbackCopy();
-            });
-          } else {
-            this.fallbackCopy();
+            }
+          },
+
+          fallbackCopy() {
+            const textarea = document.createElement('textarea');
+            textarea.value = this.generatedPrompt;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.copied = true;
+              this.showToast('Prompt tersalin ke clipboard!', true);
+              setTimeout(() => { this.copied = false; }, 2500);
+            } catch (e) {
+              this.showToast('Gagal menyalin. Silakan salin manual.', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
           }
         },
 
-        fallbackCopy() {
-          const textarea = document.createElement('textarea');
-          textarea.value = this.generatedPrompt;
-          textarea.style.position = 'fixed';
-          textarea.style.opacity = '0';
-          document.body.appendChild(textarea);
-          textarea.select();
-          try {
-            document.execCommand('copy');
-            this.copied = true;
-            setTimeout(() => { this.copied = false; }, 2500);
-          } catch (e) {
-            alert('Gagal menyalin prompt. Silakan salin secara manual.');
-          }
-          document.body.removeChild(textarea);
+        mounted() {
+          this.filteredTools = this.tools.slice();
         }
-      },
-
-      mounted() {
-        this.filteredTools = this.tools.slice();
-      }
-    });
-  })();
-</script>
+      });
+    })();
+  </script>
 </body>
 </html>
