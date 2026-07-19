@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Desain Prompt · ToolBox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ===== FORM PANEL ===== */
+    .form-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .panel-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .panel-title i {
+      color: #1a4cff;
+    }
+
+    .panel-subtitle {
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #1f2a44;
+      margin-bottom: 5px;
+      font-size: 0.88rem;
+    }
+
+    .form-group label .required {
+      color: #e74c6f;
+      margin-left: 2px;
+    }
+
+    .form-group label .hint {
+      font-weight: 400;
+      color: #8a9bb8;
+      font-size: 0.75rem;
+      margin-left: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 16px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #1a4cff;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5b7a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    /* ===== STYLE TAGS ===== */
+    .style-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .style-tag {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 2px solid #e2e8f2;
+      background: white;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #4a5b7a;
+    }
+
+    .style-tag:hover {
+      border-color: #b0c4e8;
+      background: #f0f4fe;
+    }
+
+    .style-tag.active {
+      border-color: #1a4cff;
+      background: #1a4cff;
+      color: white;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-generate {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(26, 76, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26, 76, 255, 0.4);
+    }
+
+    .btn-generate:active {
+      transform: scale(0.97);
+    }
+
+    .btn-generate:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== RESULT PANEL ===== */
+    .result-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-panel .panel-title i {
+      color: #27ae60;
+    }
+
+    .result-placeholder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #8a9bb8;
+      padding: 2rem 0;
+    }
+
+    .result-placeholder i {
+      font-size: 4rem;
+      color: #dce3ef;
+      margin-bottom: 1rem;
+    }
+
+    .result-placeholder h3 {
+      color: #4a5b7a;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-placeholder p {
+      font-size: 0.9rem;
+      max-width: 300px;
+    }
+
+    .result-content {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .result-content.show {
+      display: flex;
+      animation: fadeSlide 0.4s ease;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #edf2f9;
+    }
+
+    .result-meta-item {
+      background: #f0f4fb;
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #1f2a44;
+    }
+
+    .result-meta-item i {
+      margin-right: 6px;
+      color: #1a4cff;
+    }
+
+    .result-prompt-box {
+      background: #f8faff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 2px solid #edf2f9;
+      flex: 1;
+      min-height: 200px;
+    }
+
+    .result-prompt-box .prompt-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #1f2a44;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-copy {
+      background: #1f2a44;
+      color: white;
+    }
+
+    .btn-copy:hover {
+      background: #0b1b3a;
+      transform: translateY(-2px);
+    }
+
+    .btn-copy.copied {
+      background: #27ae60;
+    }
+
+    .btn-regenerate {
+      background: #f0f4fb;
+      color: #1f2a44;
+      border: 2px solid #e2e8f2;
+    }
+
+    .btn-regenerate:hover {
+      background: #e2e8f2;
+      transform: translateY(-2px);
+    }
+
+    .btn-download {
+      background: #6c5ce7;
+      color: white;
+    }
+
+    .btn-download:hover {
+      background: #5a4bd1;
+      transform: translateY(-2px);
+    }
+
+    /* ===== TOAST NOTIFICATION ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    /* ===== QUICK PRESETS ===== */
+    .presets-section {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .presets-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5a6b8a;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 2px solid #e2e8f2;
+      background: white;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #4a5b7a;
+    }
+
+    .preset-btn:hover {
+      border-color: #1a4cff;
+      background: #f0f4fe;
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+        padding: 1rem;
+      }
+
+      .btn-back {
+        justify-content: center;
+      }
+
+      .form-panel,
+      .result-panel {
+        padding: 1.2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .result-actions {
+        flex-direction: column;
+      }
+
+      .btn-action {
+        flex: none;
+        width: 100%;
+      }
+
+      .panel-title {
+        font-size: 1.2rem;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .style-tags {
+        gap: 5px;
+      }
+      .style-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+<div class="app-wrapper">
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <div class="logo-area">
+      <div class="logo-icon"><i class="fas fa-magic"></i></div>
+      <div class="logo-text">
+        <h1>Prompt<span>Forge</span></h1>
+        <div class="subtitle">Generate Desain Prompt · ToolBox</div>
+      </div>
+    </div>
+    <a href="#" class="btn-back" onclick="history.back(); return false;">
+      <i class="fas fa-arrow-left"></i> Kembali ke ToolBox
+    </a>
+  </header>
+
+  <!-- ===== MAIN GRID ===== -->
+  <div class="main-grid" id="app">
+    <!-- FORM PANEL -->
+    <div class="form-panel">
+      <div class="panel-title">
+        <i class="fas fa-sliders-h"></i> Konfigurasi Prompt
+      </div>
+      <p class="panel-subtitle">Isi detail di bawah untuk menghasilkan prompt desain yang optimal</p>
+
+      <div class="form-group">
+        <label>Jenis Desain <span class="required">*</span></label>
+        <select v-model="form.type">
+          <option value="UI/UX Design">🎨 UI/UX Design</option>
+          <option value="Graphic Design">🖌️ Graphic Design</option>
+          <option value="Illustration">✏️ Illustration</option>
+          <option value="Logo Design">🏷️ Logo Design</option>
+          <option value="Poster/Flyer">📄 Poster / Flyer</option>
+          <option value="Social Media">📱 Social Media</option>
+          <option value="Packaging">📦 Packaging</option>
+          <option value="Website Design">🌐 Website Design</option>
+          <option value="Mobile App">📲 Mobile App Design</option>
+          <option value="Brand Identity">🏢 Brand Identity</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Gaya / Style <span class="hint">(klik untuk pilih cepat)</span></label>
+        <div class="style-tags">
+          <span class="style-tag" v-for="style in styleOptions" :key="style" 
+                :class="{ active: form.style === style }" @click="form.style = style">
+            {{ style }}
+          </span>
+        </div>
+        <input type="text" v-model="form.style" placeholder="Atau tulis gaya kustom..." style="margin-top: 8px;">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Warna Dominan</label>
+          <input type="text" v-model="form.color" placeholder="Biru, Pastel, Monokrom...">
+        </div>
+        <div class="form-group">
+          <label>Suasana / Mood</label>
+          <input type="text" v-model="form.mood" placeholder="Profesional, Ceria, Elegan...">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Deskripsi Proyek <span class="required">*</span></label>
+        <textarea v-model="form.description" placeholder="Jelaskan secara singkat tentang proyek desain yang ingin dibuat..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Target Audiens</label>
+          <input type="text" v-model="form.audience" placeholder="Millennial, Profesional...">
+        </div>
+        <div class="form-group">
+          <label>Platform / Medium</label>
+          <input type="text" v-model="form.medium" placeholder="Instagram, Website, Cetak...">
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div class="presets-section">
+        <span class="presets-label"><i class="fas fa-bolt"></i> Quick Presets</span>
+        <div class="preset-buttons">
+          <button class="preset-btn" @click="applyPreset('minimalis')">Minimalis</button>
+          <button class="preset-btn" @click="applyPreset('futuristik')">Futuristik</button>
+          <button class="preset-btn" @click="applyPreset('vintage')">Vintage</button>
+          <button class="preset-btn" @click="applyPreset('corporate')">Corporate</button>
+          <button class="preset-btn" @click="applyPreset('playful')">Playful</button>
+        </div>
+      </div>
+
+      <button class="btn-generate" @click="generatePrompt" :disabled="isGenerating">
+        <i class="fas fa-wand-magic-sparkles"></i> 
+        {{ isGenerating ? 'Memproses...' : 'Generate Prompt' }}
+      </button>
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div class="result-panel">
+      <div class="panel-title">
+        <i class="fas fa-file-pen"></i> Hasil Prompt
+      </div>
+
+      <!-- Placeholder -->
+      <div class="result-placeholder" v-if="!generatedPrompt">
+        <i class="fas fa-pen-fancy"></i>
+        <h3>Belum ada prompt</h3>
+        <p>Isi formulir di sebelah kiri dan klik "Generate Prompt" untuk membuat prompt desain yang siap pakai.</p>
+      </div>
+
+      <!-- Result -->
+      <div class="result-content" :class="{ show: generatedPrompt }">
+        <div class="result-meta">
+          <span class="result-meta-item"><i class="fas fa-tag"></i> {{ form.type || 'Belum dipilih' }}</span>
+          <span class="result-meta-item" v-if="form.style"><i class="fas fa-paint-brush"></i> {{ form.style }}</span>
+          <span class="result-meta-item" v-if="form.color"><i class="fas fa-palette"></i> {{ form.color }}</span>
+          <span class="result-meta-item" v-if="form.mood"><i class="fas fa-smile"></i> {{ form.mood }}</span>
+        </div>
+
+        <div class="result-prompt-box">
+          <div class="prompt-text">{{ generatedPrompt }}</div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn-action btn-copy" @click="copyPrompt" :class="{ copied: copied }">
+            <i class="fas fa-copy"></i> {{ copied ? 'Tersalin!' : 'Salin Prompt' }}
+          </button>
+          <button class="btn-action btn-regenerate" @click="generatePrompt">
+            <i class="fas fa-rotate"></i> Generate Ulang
+          </button>
+          <button class="btn-action btn-download" @click="downloadPrompt">
+            <i class="fas fa-download"></i> Download
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess }">
+    <i :class="toastSuccess ? 'fas fa-check-circle' : 'fas fa-info-circle'"></i>
+    {{ toastMessage }}
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+  (function() {
+    new Vue({
+      el: '#app',
+      data: {
+        form: {
+          type: 'UI/UX Design',
+          style: '',
+          color: '',
+          mood: '',
+          description: '',
+          audience: '',
+          medium: ''
+        },
+        styleOptions: [
+          'Minimalis', 'Futuristik', 'Vintage', 'Modern',
+          'Bold', 'Elegant', 'Playful', 'Corporate',
+          'Hand-drawn', '3D', 'Flat', 'Gradien'
+        ],
+        generatedPrompt: '',
+        isGenerating: false,
+        copied: false,
+        toastVisible: false,
+        toastMessage: '',
+        toastSuccess: false,
+        toastTimer: null
+      },
+      methods: {
+        generatePrompt() {
+          if (this.isGenerating) return;
+          
+          const f = this.form;
+          if (!f.description) {
+            this.showToast('Mohon isi deskripsi proyek terlebih dahulu', false);
+            return;
+          }
+
+          this.isGenerating = true;
+          
+          // Simulasi proses
+          setTimeout(() => {
+            const style = f.style || 'modern dan minimalis';
+            const color = f.color || 'netral dan elegan';
+            const mood = f.mood || 'profesional';
+            const desc = f.description || 'proyek desain kreatif';
+            const audience = f.audience || 'target audiens umum';
+            const medium = f.medium || 'platform digital';
+
+            const templates = [
+              `Buat desain ${f.type} dengan gaya ${style} yang memukau dan berkesan. Gunakan palet warna ${color} yang harmonis untuk menciptakan suasana ${mood}. Proyek ini adalah "${desc}" yang dirancang khusus untuk ${audience}. Optimalkan untuk tampilan di ${medium}. Sertakan elemen visual yang mendukung pesan utama dan pastikan aksesibilitas terjaga.`,
+
+              `Rancang ${f.type} yang inovatif dengan pendekatan ${style}. Warna dominan: ${color} dengan nuansa ${mood}. Konten utama: "${desc}". Target audiens: ${audience}. Platform: ${medium}. Buat desain yang tidak hanya estetis tetapi juga fungsional dan mudah digunakan.`,
+
+              `Kembangkan konsep ${f.type} dengan estetika ${style} yang kuat. Gunakan kombinasi warna ${color} untuk menciptakan mood ${mood} yang sesuai. Proyek: "${desc}". Audiens sasaran: ${audience}. Medium: ${medium}. Berikan sentuhan kreatif yang membedakan dari desain lainnya.`,
+
+              `Buat ${f.type} yang memorable dengan gaya ${style}. Palet warna: ${color}. Suasana: ${mood}. Deskripsi proyek: "${desc}". Ditujukan untuk ${audience}. Tampilkan dengan optimal di ${medium}. Pastikan setiap elemen desain memiliki tujuan yang jelas.`,
+
+              `Desain ${f.type} dengan pendekatan ${style} dan warna ${color} untuk menciptakan vibe ${mood}. Proyek ini bertujuan untuk "${desc}" dan menyasar ${audience}. Gunakan ${medium} sebagai medium utama. Ciptakan pengalaman visual yang konsisten dan profesional.`,
+
+              `Buat ${f.type} yang menginspirasi dengan gaya ${style}. Warna: ${color}. Mood: ${mood}. Proyek: "${desc}". Target: ${audience}. Medium: ${medium}. Fokus pada storytelling visual dan user experience yang seamless.`
+            ];
+
+            this.generatedPrompt = templates[Math.floor(Math.random() * templates.length)];
+            this.isGenerating = false;
+            this.showToast('Prompt berhasil dibuat!', true);
+          }, 600);
+        },
+
+        applyPreset(type) {
+          const presets = {
+            minimalis: { style: 'Minimalis', color: 'Putih, Abu-abu, Hitam', mood: 'Elegant dan Bersih' },
+            futuristik: { style: 'Futuristik', color: 'Neon, Biru, Ungu', mood: 'Inovatif dan Dinamis' },
+            vintage: { style: 'Vintage', color: 'Krem, Coklat, Emas', mood: 'Nostalgia dan Hangat' },
+            corporate: { style: 'Corporate', color: 'Biru, Putih, Abu-abu', mood: 'Profesional dan Terpercaya' },
+            playful: { style: 'Playful', color: 'Pastel, Cerah', mood: 'Ceria dan Ramah' }
+          };
+          
+          const preset = presets[type];
+          if (preset) {
+            this.form.style = preset.style;
+            this.form.color = preset.color;
+            this.form.mood = preset.mood;
+            this.showToast(`Preset "${type}" diterapkan!`, true);
+          }
+        },
+
+        copyPrompt() {
+          if (!this.generatedPrompt) return;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(this.generatedPrompt).then(() => {
+              this.copied = true;
+              this.showToast('Prompt tersalin ke clipboard!', true);
+              setTimeout(() => { this.copied = false; }, 2500);
+            }).catch(() => {
+              this.fallbackCopy();
+            });
+          } else {
+            this.fallbackCopy();
+          }
+        },
+
+        fallbackCopy() {
+          const textarea = document.createElement('textarea');
+          textarea.value = this.generatedPrompt;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            this.copied = true;
+            this.showToast('Prompt tersalin ke clipboard!', true);
+            setTimeout(() => { this.copied = false; }, 2500);
+          } catch (e) {
+            this.showToast('Gagal menyalin. Silakan salin manual.', false);
+          }
+          document.body.removeChild(textarea);
+        },
+
+        downloadPrompt() {
+          if (!this.generatedPrompt) return;
+          
+          const content = `=== PROMPT DESAIN ===\n\nJenis: ${this.form.type}\nGaya: ${this.form.style || 'Tidak diisi'}\nWarna: ${this.form.color || 'Tidak diisi'}\nMood: ${this.form.mood || 'Tidak diisi'}\nAudiens: ${this.form.audience || 'Tidak diisi'}\nMedium: ${this.form.medium || 'Tidak diisi'}\n\n--- PROMPT ---\n\n${this.generatedPrompt}\n\n---\nDibuat dengan PromptForge · ToolBox`;
+          
+          const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `prompt-desain-${Date.now()}.txt`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          
+          this.showToast('Prompt berhasil di-download!', true);
+        },
+
+        showToast(message, success = true) {
+          this.toastMessage = message;
+          this.toastSuccess = success;
+          this.toastVisible = true;
+          
+          clearTimeout(this.toastTimer);
+          this.toastTimer = setTimeout(() => {
+            this.toastVisible = false;
+          }, 3000);
+        }
+      }
+    });
+  })();
+</script>
+</body>
+</html>
