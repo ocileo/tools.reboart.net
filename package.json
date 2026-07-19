@@ -1,0 +1,14 @@
+{
+    "name": "toolbox-app",
+    "version": "1.0.0",
+    "description": "ToolBox - Kumpulan alat serba guna",
+    "main": "src/index.js",
+    "scripts": {
+      "dev": "wrangler dev",
+      "deploy": "wrangler deploy",
+      "deploy:prod": "wrangler deploy --env production"
+    },
+    "devDependencies": {
+      "wrangler": "^3.0.0"
+    }
+  }
