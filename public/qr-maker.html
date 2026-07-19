@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Maker · REBOART | ToolBox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== LANGUAGE SELECTOR ===== */
+    .lang-selector {
+      display: flex;
+      gap: 6px;
+      background: white;
+      padding: 4px;
+      border-radius: 40px;
+      border: 2px solid #e2e8f2;
+    }
+
+    .lang-btn {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      background: transparent;
+      color: #4a5b7a;
+    }
+
+    .lang-btn:hover {
+      background: #f0f4fe;
+    }
+
+    .lang-btn.active {
+      background: #1a4cff;
+      color: white;
+      box-shadow: 0 4px 12px rgba(26, 76, 255, 0.25);
+    }
+
+    .lang-btn .flag {
+      margin-right: 4px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ===== FORM PANEL ===== */
+    .form-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .panel-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .panel-title i {
+      color: #1a4cff;
+    }
+
+    .panel-subtitle {
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #1f2a44;
+      margin-bottom: 5px;
+      font-size: 0.88rem;
+    }
+
+    .form-group label .required {
+      color: #e74c6f;
+      margin-left: 2px;
+    }
+
+    .form-group label .hint {
+      font-weight: 400;
+      color: #8a9bb8;
+      font-size: 0.75rem;
+      margin-left: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 16px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #1a4cff;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5b7a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    /* ===== USE CASE SELECTOR ===== */
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .use-case-btn {
+      padding: 10px 12px;
+      border: 2px solid #e2e8f2;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+      transition: 0.25s;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4a5b7a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .use-case-btn i {
+      font-size: 1.2rem;
+      color: #8a9bb8;
+      transition: 0.25s;
+    }
+
+    .use-case-btn:hover {
+      border-color: #b0c4e8;
+      background: #f0f4fe;
+      transform: translateY(-2px);
+    }
+
+    .use-case-btn.active {
+      border-color: #1a4cff;
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .use-case-btn.active i {
+      color: #1a4cff;
+    }
+
+    .use-case-btn .badge {
+      font-size: 0.6rem;
+      background: #eef4ff;
+      color: #1a4cff;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-top: 2px;
+    }
+
+    .use-case-btn.active .badge {
+      background: #1a4cff;
+      color: white;
+    }
+
+    /* ===== COLOR PICKER CUSTOM ===== */
+    .color-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .color-input-wrapper input[type="color"] {
+      width: 48px;
+      height: 48px;
+      padding: 2px;
+      border: 2px solid #e2e8f2;
+      border-radius: 12px;
+      cursor: pointer;
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .color-input-wrapper input[type="text"] {
+      flex: 1;
+    }
+
+    /* ===== QR SIZE SLIDER ===== */
+    .size-slider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .size-slider input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f2;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .size-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1a4cff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(26, 76, 255, 0.3);
+    }
+
+    .size-slider input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1a4cff;
+      cursor: pointer;
+      border: none;
+    }
+
+    .size-value {
+      font-weight: 700;
+      color: #0b1b3a;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-generate {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(26, 76, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26, 76, 255, 0.4);
+    }
+
+    .btn-generate:active {
+      transform: scale(0.97);
+    }
+
+    .btn-generate:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-download {
+      background: #1f2a44;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-download:hover {
+      background: #0b1b3a;
+      transform: translateY(-2px);
+    }
+
+    /* ===== RESULT PANEL ===== */
+    .result-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .result-panel .panel-title {
+      width: 100%;
+    }
+
+    .qr-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 1.5rem 0;
+    }
+
+    #qrcode {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      border: 2px solid #edf2f9;
+      transition: 0.3s;
+      min-height: 250px;
+      min-width: 250px;
+    }
+
+    #qrcode img,
+    #qrcode canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .qr-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #bcc9e0;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .qr-placeholder i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .qr-placeholder h3 {
+      color: #4a5b7a;
+      font-size: 1.1rem;
+    }
+
+    .qr-placeholder p {
+      color: #8a9bb8;
+      font-size: 0.9rem;
+      max-width: 250px;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 1.2rem;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    /* ===== USE CASE INFO ===== */
+    .use-case-info {
+      margin-top: 0.5rem;
+      padding: 0.8rem 1rem;
+      background: #f0f7ff;
+      border-radius: 12px;
+      border-left: 4px solid #1a4cff;
+      font-size: 0.85rem;
+      color: #1f2a44;
+      display: none;
+    }
+
+    .use-case-info.show {
+      display: block;
+      animation: fadeSlide 0.3s ease;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .use-case-info i {
+      color: #1a4cff;
+      margin-right: 8px;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .lang-selector {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .form-panel,
+      .result-panel {
+        padding: 1.2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .use-case-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .panel-title {
+        font-size: 1.2rem;
+      }
+
+      .result-actions {
+        flex-direction: column;
+      }
+
+      .btn-download {
+        width: 100%;
+      }
+
+      #qrcode {
+        min-height: 200px;
+        min-width: 200px;
+        padding: 15px;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+<div class="app-wrapper" id="app">
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <div class="logo-area">
+      <div class="logo-icon"><i class="fas fa-qrcode"></i></div>
+      <div class="logo-text">
+        <h1>QR <span>Maker</span></h1>
+        <div class="subtitle">{{ translations.subtitle }}</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="lang-selector">
+        <button class="lang-btn" :class="{ active: currentLang === 'id' }" @click="setLanguage('id')">
+          <span class="flag">🇮🇩</span> ID
+        </button>
+        <button class="lang-btn" :class="{ active: currentLang === 'en' }" @click="setLanguage('en')">
+          <span class="flag">🇬🇧</span> EN
+        </button>
+        <button class="lang-btn" :class="{ active: currentLang === 'ja' }" @click="setLanguage('ja')">
+          <span class="flag">🇯🇵</span> JP
+        </button>
+      </div>
+      <a href="#" class="btn-back" onclick="history.back(); return false;">
+        <i class="fas fa-arrow-left"></i> {{ translations.back }}
+      </a>
+    </div>
+  </header>
+
+  <!-- ===== MAIN GRID ===== -->
+  <div class="main-grid">
+    <!-- FORM PANEL -->
+    <div class="form-panel">
+      <div class="panel-title">
+        <i class="fas fa-sliders-h"></i> {{ translations.formTitle }}
+      </div>
+      <p class="panel-subtitle">{{ translations.formSubtitle }}</p>
+
+      <!-- ===== USE CASE SELECTOR ===== -->
+      <div class="form-group">
+        <label>{{ translations.useCaseLabel }}</label>
+        <div class="use-case-grid">
+          <button class="use-case-btn" v-for="uc in useCases" :key="uc.id"
+                  :class="{ active: selectedUseCase === uc.id }"
+                  @click="selectUseCase(uc.id)">
+            <i :class="uc.icon"></i>
+            {{ uc.name }}
+            <span class="badge">{{ uc.badge }}</span>
+          </button>
+        </div>
+        <div class="use-case-info" :class="{ show: selectedUseCaseInfo }">
+          <i class="fas fa-info-circle"></i>
+          {{ selectedUseCaseInfo }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>{{ translations.contentLabel }} <span class="required">*</span></label>
+        <textarea v-model="form.content" :placeholder="translations.contentPlaceholder" @input="onContentChange"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>{{ translations.sizeLabel }}</label>
+          <div class="size-slider">
+            <input type="range" v-model="form.size" min="100" max="400" step="10">
+            <span class="size-value">{{ form.size }}px</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{ translations.errorLabel }}</label>
+          <select v-model="form.errorCorrection">
+            <option value="L">L - {{ translations.errorLow }}</option>
+            <option value="M">M - {{ translations.errorMedium }}</option>
+            <option value="Q">Q - {{ translations.errorQuartile }}</option>
+            <option value="H">H - {{ translations.errorHigh }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>{{ translations.colorLabel }}</label>
+          <div class="color-input-wrapper">
+            <input type="color" v-model="form.color">
+            <input type="text" v-model="form.color" placeholder="#1a4cff">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{ translations.bgLabel }}</label>
+          <div class="color-input-wrapper">
+            <input type="color" v-model="form.bgColor">
+            <input type="text" v-model="form.bgColor" placeholder="#ffffff">
+          </div>
+        </div>
+      </div>
+
+      <!-- Logo Upload -->
+      <div class="form-group" v-if="selectedUseCase === 'logo'">
+        <label>{{ translations.logoLabel }}</label>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <input type="file" @change="handleLogoUpload" accept="image/*" style="flex:1; padding: 8px;">
+          <button class="btn-download" style="flex:0; padding: 8px 16px; background: #e74c6f;" @click="clearLogo" v-if="logoData">
+            <i class="fas fa-times"></i> Hapus
+          </button>
+        </div>
+        <div v-if="logoData" style="margin-top: 8px; padding: 8px; background: #f0f4fb; border-radius: 8px; font-size: 0.8rem; color: #4a5b7a;">
+          <i class="fas fa-check-circle" style="color: #27ae60;"></i> Logo terupload
+        </div>
+      </div>
+
+      <button class="btn-generate" @click="generateQR" :disabled="isGenerating">
+        <i class="fas fa-wand-magic-sparkles"></i> 
+        {{ isGenerating ? translations.generating : translations.generateBtn }}
+      </button>
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div class="result-panel">
+      <div class="panel-title">
+        <i class="fas fa-qrcode"></i> {{ translations.resultTitle }}
+      </div>
+
+      <div class="qr-container">
+        <div id="qrcode">
+          <div class="qr-placeholder" v-if="!qrGenerated">
+            <i class="fas fa-qrcode"></i>
+            <h3>{{ translations.placeholderTitle }}</h3>
+            <p>{{ translations.placeholderText }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn-download" @click="downloadQR" :disabled="!qrGenerated">
+          <i class="fas fa-download"></i> {{ translations.downloadBtn }}
+        </button>
+        <button class="btn-download" style="background: #e67e22;" @click="downloadSVG" :disabled="!qrGenerated">
+          <i class="fas fa-file-code"></i> SVG
+        </button>
+        <button class="btn-download" style="background: #27ae60;" @click="printQR" :disabled="!qrGenerated">
+          <i class="fas fa-print"></i> Print
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess }">
+    <i :class="toastSuccess ? 'fas fa-check-circle' : 'fas fa-info-circle'"></i>
+    {{ toastMessage }}
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+  (function() {
+    // ===== MULTI LANGUAGE TRANSLATIONS =====
+    const translations = {
+      id: {
+        subtitle: 'Buat QR Code dengan mudah',
+        back: 'Kembali',
+        formTitle: 'Konfigurasi QR Code',
+        formSubtitle: 'Pilih jenis penggunaan dan isi data di bawah',
+        useCaseLabel: 'Jenis Penggunaan',
+        contentLabel: 'Konten / Data',
+        contentPlaceholder: 'Masukkan teks, URL, atau data lainnya...',
+        sizeLabel: 'Ukuran QR',
+        errorLabel: 'Tingkat Koreksi Error',
+        errorLow: 'Rendah (7%)',
+        errorMedium: 'Sedang (15%)',
+        errorQuartile: 'Kuartil (25%)',
+        errorHigh: 'Tinggi (30%)',
+        colorLabel: 'Warna QR',
+        bgLabel: 'Warna Latar',
+        logoLabel: 'Upload Logo (opsional)',
+        generateBtn: 'Generate QR Code',
+        generating: 'Memproses...',
+        resultTitle: 'Hasil QR Code',
+        placeholderTitle: 'Belum ada QR Code',
+        placeholderText: 'Isi formulir di sebelah kiri dan klik "Generate QR Code"',
+        downloadBtn: 'Download PNG',
+        downloadSVG: 'Download SVG',
+        toastSuccess: 'QR Code berhasil dibuat!',
+        toastError: 'Mohon isi konten terlebih dahulu',
+        toastDownload: 'QR Code berhasil di-download!',
+        toastSVG: 'QR Code SVG berhasil di-download!',
+        toastPrint: 'QR Code siap dicetak!',
+        toastLogo: 'Logo berhasil diupload!'
+      },
+      en: {
+        subtitle: 'Create QR Code easily',
+        back: 'Back',
+        formTitle: 'QR Code Configuration',
+        formSubtitle: 'Select use case and fill in the data below',
+        useCaseLabel: 'Use Case',
+        contentLabel: 'Content / Data',
+        contentPlaceholder: 'Enter text, URL, or other data...',
+        sizeLabel: 'QR Size',
+        errorLabel: 'Error Correction Level',
+        errorLow: 'Low (7%)',
+        errorMedium: 'Medium (15%)',
+        errorQuartile: 'Quartile (25%)',
+        errorHigh: 'High (30%)',
+        colorLabel: 'QR Color',
+        bgLabel: 'Background Color',
+        logoLabel: 'Upload Logo (optional)',
+        generateBtn: 'Generate QR Code',
+        generating: 'Processing...',
+        resultTitle: 'QR Code Result',
+        placeholderTitle: 'No QR Code yet',
+        placeholderText: 'Fill in the form on the left and click "Generate QR Code"',
+        downloadBtn: 'Download PNG',
+        downloadSVG: 'Download SVG',
+        toastSuccess: 'QR Code generated successfully!',
+        toastError: 'Please fill in the content first',
+        toastDownload: 'QR Code downloaded successfully!',
+        toastSVG: 'QR Code SVG downloaded successfully!',
+        toastPrint: 'QR Code ready to print!',
+        toastLogo: 'Logo uploaded successfully!'
+      },
+      ja: {
+        subtitle: '簡単にQRコードを作成',
+        back: '戻る',
+        formTitle: 'QRコード設定',
+        formSubtitle: 'ユースケースを選択してデータを入力',
+        useCaseLabel: 'ユースケース',
+        contentLabel: 'コンテンツ / データ',
+        contentPlaceholder: 'テキスト、URL、その他のデータを入力...',
+        sizeLabel: 'QRサイズ',
+        errorLabel: 'エラー訂正レベル',
+        errorLow: '低 (7%)',
+        errorMedium: '中 (15%)',
+        errorQuartile: '四分位 (25%)',
+        errorHigh: '高 (30%)',
+        colorLabel: 'QRカラー',
+        bgLabel: '背景色',
+        logoLabel: 'ロゴをアップロード（オプション）',
+        generateBtn: 'QRコードを生成',
+        generating: '処理中...',
+        resultTitle: 'QRコード結果',
+        placeholderTitle: 'まだQRコードがありません',
+        placeholderText: '左のフォームに入力して「QRコードを生成」をクリック',
+        downloadBtn: 'PNGをダウンロード',
+        downloadSVG: 'SVGをダウンロード',
+        toastSuccess: 'QRコードが正常に生成されました！',
+        toastError: 'まずコンテンツを入力してください',
+        toastDownload: 'QRコードが正常にダウンロードされました！',
+        toastSVG: 'QRコードSVGが正常にダウンロードされました！',
+        toastPrint: 'QRコードの印刷準備ができました！',
+        toastLogo: 'ロゴが正常にアップロードされました！'
+      }
+    };
+
+    // ===== USE CASES =====
+    const useCases = [
+      { id: 'url', name: 'URL', icon: 'fas fa-link', badge: 'Website', 
+        info: 'Buat QR Code untuk link website, landing page, atau profil.' },
+      { id: 'text', name: 'Teks', icon: 'fas fa-font', badge: 'Pesan',
+        info: 'Buat QR Code untuk pesan teks, informasi, atau catatan.' },
+      { id: 'email', name: 'Email', icon: 'fas fa-envelope', badge: 'Kontak',
+        info: 'Buat QR Code untuk alamat email dengan subject otomatis.' },
+      { id: 'phone', name: 'Telepon', icon: 'fas fa-phone', badge: 'Kontak',
+        info: 'Buat QR Code untuk nomor telepon yang bisa langsung dihubungi.' },
+      { id: 'sms', name: 'SMS', icon: 'fas fa-sms', badge: 'Pesan',
+        info: 'Buat QR Code untuk mengirim SMS dengan pesan otomatis.' },
+      { id: 'wifi', name: 'WiFi', icon: 'fas fa-wifi', badge: 'Network',
+        info: 'Buat QR Code untuk koneksi WiFi - scan dan langsung terhubung!' },
+      { id: 'vcard', name: 'Kontak', icon: 'fas fa-address-card', badge: 'vCard',
+        info: 'Buat QR Code untuk menyimpan kontak (vCard) ke smartphone.' },
+      { id: 'event', name: 'Event', icon: 'fas fa-calendar-plus', badge: 'Kalender',
+        info: 'Buat QR Code untuk event/calendar dengan detail lengkap.' },
+      { id: 'location', name: 'Lokasi', icon: 'fas fa-map-marker-alt', badge: 'Map',
+        info: 'Buat QR Code untuk lokasi/alamat yang bisa dibuka di Google Maps.' },
+      { id: 'logo', name: 'Dengan Logo', icon: 'fas fa-image', badge: 'Branding',
+        info: 'Buat QR Code dengan logo di tengah untuk keperluan branding.' }
+    ];
+
+    // ===== VUE APP =====
+    new Vue({
+      el: '#app',
+      data: {
+        currentLang: 'id',
+        translations: translations.id,
+        useCases: useCases,
+        selectedUseCase: 'url',
+        selectedUseCaseInfo: '',
+        form: {
+          content: 'https://toolbox-app.workers.dev',
+          size: 250,
+          errorCorrection: 'M',
+          color: '#1a4cff',
+          bgColor: '#ffffff'
+        },
+        logoData: null,
+        qrGenerated: false,
+        isGenerating: false,
+        toastVisible: false,
+        toastMessage: '',
+        toastSuccess: false,
+        toastTimer: null,
+        qrInstance: null,
+        _debounceTimer: null
+      },
+      computed: {
+        useCasePlaceholder() {
+          const placeholders = {
+            url: 'https://example.com',
+            text: 'Masukkan pesan atau informasi...',
+            email: 'email@example.com',
+            phone: '+6281234567890',
+            sms: '+6281234567890',
+            wifi: 'WIFI:T:WPA;S:NetworkName;P:Password;;',
+            vcard: 'BEGIN:VCARD\nFN:John Doe\nTEL:081234567890\nEND:VCARD',
+            event: 'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Meeting\nDTSTART:20240720T100000\nEND:VEVENT\nEND:VCALENDAR',
+            location: 'Jakarta, Indonesia',
+            logo: 'https://example.com'
+          };
+          return placeholders[this.selectedUseCase] || 'Masukkan data...';
+        }
+      },
+      methods: {
+        setLanguage(lang) {
+          this.currentLang = lang;
+          this.translations = translations[lang];
+        },
+
+        selectUseCase(id) {
+          this.selectedUseCase = id;
+          const uc = this.useCases.find(u => u.id === id);
+          this.selectedUseCaseInfo = uc ? uc.info : '';
+          
+          // Set placeholder based on use case
+          if (this.selectedUseCase === 'url') {
+            this.form.content = 'https://';
+          } else if (this.selectedUseCase === 'text') {
+            this.form.content = '';
+          } else if (this.selectedUseCase === 'email') {
+            this.form.content = 'email@example.com';
+          } else if (this.selectedUseCase === 'phone') {
+            this.form.content = '+6281234567890';
+          } else if (this.selectedUseCase === 'sms') {
+            this.form.content = '+6281234567890';
+          } else if (this.selectedUseCase === 'wifi') {
+            this.form.content = 'WIFI:T:WPA;S:MyWiFi;P:password123;;';
+          } else if (this.selectedUseCase === 'vcard') {
+            this.form.content = 'BEGIN:VCARD\nFN:John Doe\nTEL:081234567890\nEMAIL:john@example.com\nEND:VCARD';
+          } else if (this.selectedUseCase === 'event') {
+            this.form.content = 'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Meeting\nDTSTART:20240720T100000\nEND:VEVENT\nEND:VCALENDAR';
+          } else if (this.selectedUseCase === 'location') {
+            this.form.content = 'Jakarta, Indonesia';
+          } else if (this.selectedUseCase === 'logo') {
+            this.form.content = 'https://example.com';
+          }
+          
+          // Auto-generate
+          setTimeout(() => {
+            if (this.form.content.trim()) {
+              this.generateQR();
+            }
+          }, 300);
+        },
+
+        onContentChange() {
+          clearTimeout(this._debounceTimer);
+          this._debounceTimer = setTimeout(() => {
+            if (this.form.content.trim()) {
+              this.generateQR();
+            }
+          }, 500);
+        },
+
+        handleLogoUpload(event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.logoData = e.target.result;
+              this.showToast(this.translations.toastLogo, true);
+              if (this.qrGenerated) {
+                this.generateQR();
+              }
+            };
+            reader.readAsDataURL(file);
+          }
+        },
+
+        clearLogo() {
+          this.logoData = null;
+          if (this.qrGenerated) {
+            this.generateQR();
+          }
+        },
+
+        generateQR() {
+          if (this.isGenerating) return;
+          
+          let content = this.form.content.trim();
+          if (!content) {
+            this.showToast(this.translations.toastError, false);
+            return;
+          }
+
+          // Format content based on use case
+          if (this.selectedUseCase === 'url' && !content.startsWith('http')) {
+            content = 'https://' + content;
+          } else if (this.selectedUseCase === 'email' && !content.startsWith('mailto:')) {
+            content = 'mailto:' + content;
+          } else if (this.selectedUseCase === 'phone' && !content.startsWith('tel:')) {
+            content = 'tel:' + content;
+          } else if (this.selectedUseCase === 'sms' && !content.startsWith('sms:')) {
+            content = 'sms:' + content;
+          }
+
+          this.isGenerating = true;
+          
+          const container = document.getElementById('qrcode');
+          container.innerHTML = '';
+
+          setTimeout(() => {
+            try {
+              const size = parseInt(this.form.size);
+              this.qrInstance = new QRCode(container, {
+                text: content,
+                width: size,
+                height: size,
+                colorDark: this.form.color,
+                colorLight: this.form.bgColor,
+                correctLevel: this.getErrorLevel(this.form.errorCorrection)
+              });
+              
+              this.qrGenerated = true;
+              this.isGenerating = false;
+              this.showToast(this.translations.toastSuccess, true);
+            } catch (e) {
+              this.isGenerating = false;
+              this.showToast('Error: ' + e.message, false);
+            }
+          }, 300);
+        },
+
+        getErrorLevel(level) {
+          const levels = {
+            'L': QRCode.CorrectLevel.L,
+            'M': QRCode.CorrectLevel.M,
+            'Q': QRCode.CorrectLevel.Q,
+            'H': QRCode.CorrectLevel.H
+          };
+          return levels[level] || QRCode.CorrectLevel.M;
+        },
+
+        downloadQR() {
+          if (!this.qrGenerated) return;
+          
+          const canvas = document.querySelector('#qrcode canvas');
+          if (!canvas) {
+            this.showToast('QR Code belum siap', false);
+            return;
+          }
+
+          const link = document.createElement('a');
+          link.download = `qr-code-${Date.now()}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          
+          this.showToast(this.translations.toastDownload, true);
+        },
+
+        downloadSVG() {
+          if (!this.qrGenerated) return;
+          
+          const canvas = document.querySelector('#qrcode canvas');
+          if (!canvas) {
+            this.showToast('QR Code belum siap', false);
+            return;
+          }
+
+          const ctx = canvas.getContext('2d');
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imageData.data;
+          
+          const size = canvas.width;
+          const cellSize = 4;
+          const modules = Math.floor(size / cellSize);
+          
+          let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+          svg += `<rect width="${size}" height="${size}" fill="${this.form.bgColor}"/>`;
+          
+          for (let y = 0; y < modules; y++) {
+            for (let x = 0; x < modules; x++) {
+              const px = x * cellSize + Math.floor(cellSize / 2);
+              const py = y * cellSize + Math.floor(cellSize / 2);
+              const index = (py * size + px) * 4;
+              if (data[index] < 128 && data[index + 1] < 128 && data[index + 2] < 128) {
+                svg += `<rect x="${x * cellSize}" y="${y * cellSize}" width="${cellSize}" height="${cellSize}" fill="${this.form.color}"/>`;
+              }
+            }
+          }
+          
+          svg += '</svg>';
+          
+          const blob = new Blob([svg], { type: 'image/svg+xml' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.download = `qr-code-${Date.now()}.svg`;
+          link.href = url;
+          link.click();
+          URL.revokeObjectURL(url);
+          
+          this.showToast(this.translations.toastSVG, true);
+        },
+
+        printQR() {
+          if (!this.qrGenerated) return;
+          const canvas = document.querySelector('#qrcode canvas');
+          if (!canvas) return;
+          
+          const win = window.open('', '_blank');
+          if (win) {
+            win.document.write('<html><head><title>Print QR Code</title>');
+            win.document.write('<style>body{display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:white;}</style>');
+            win.document.write('</head><body>');
+            win.document.write(`<img src="${canvas.toDataURL('image/png')}" style="max-width:90%;">`);
+            win.document.write('</body></html>');
+            win.document.close();
+            win.print();
+          }
+          this.showToast(this.translations.toastPrint, true);
+        },
+
+        showToast(message, success = true) {
+          this.toastMessage = message;
+          this.toastSuccess = success;
+          this.toastVisible = true;
+          
+          clearTimeout(this.toastTimer);
+          this.toastTimer = setTimeout(() => {
+            this.toastVisible = false;
+          }, 3000);
+        }
+      },
+      watch: {
+        'form.size'() {
+          if (this.qrGenerated) this.generateQR();
+        },
+        'form.color'() {
+          if (this.qrGenerated) this.generateQR();
+        },
+        'form.bgColor'() {
+          if (this.qrGenerated) this.generateQR();
+        },
+        'form.errorCorrection'() {
+          if (this.qrGenerated) this.generateQR();
+        }
+      },
+      mounted() {
+        // Set initial use case info
+        const uc = this.useCases.find(u => u.id === 'url');
+        this.selectedUseCaseInfo = uc ? uc.info : '';
+        setTimeout(() => {
+          this.generateQR();
+        }, 500);
+      }
+    });
+  })();
+</script>
+</body>
+</html>
