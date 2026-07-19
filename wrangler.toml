@@ -24,7 +24,8 @@ bucket = "./"
 command = ""
 
 # Output directory
-output_dir = "/"
+[pages_build_config]
+directory = "tools-site"
 
 # =============================================
 # ENVIRONMENT VARIABLES
