@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>PDF Merger · Gabung PDF Online Gratis</title>
+  <meta name="description" content="Gabungkan beberapa file PDF menjadi satu secara online gratis. Tanpa batasan ukuran file, tanpa watermark, dan aman. Support drag & drop, reorder halaman.">
+  <meta name="keywords" content="pdf merger, gabung pdf, combine pdf, merge pdf online, pdf joiner, pdf tools, tools.reboart.net">
+  <meta name="author" content="REBOART | ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/pdf-merger.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PDF Merger · Gabung PDF Online Gratis">
+  <meta property="og:description" content="Gabungkan beberapa file PDF menjadi satu secara online gratis. Tanpa batasan ukuran file, tanpa watermark.">
+  <meta property="og:url" content="https://tools.reboart.net/pdf-merger.html">
+  <meta property="og:site_name" content="REBOART | ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-pdf-merger.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Merger · Gabung PDF Online Gratis">
+  <meta name="twitter:description" content="Gabungkan beberapa file PDF menjadi satu secara online gratis.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-pdf-merger.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Merger by REBOART | ToolBox",
+    "description": "Gabungkan beberapa file PDF menjadi satu secara online gratis. Tanpa batasan ukuran file, tanpa watermark, dan aman.",
+    "url": "https://tools.reboart.net/pdf-merger.html",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Organization", "name": "REBOART | ToolBox", "url": "https://tools.reboart.net" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- ===== PDF LIBRARY ===== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
+    body { background:linear-gradient(135deg,#f0f4fb 0%,#e8edf8 100%); min-height:100vh; padding:2rem 1.5rem; }
+    .app-wrapper { max-width:1000px; margin:0 auto; }
+    .skip-link { position:absolute; top:-100%; left:50%; transform:translateX(-50%); background:#1a4cff; color:white; padding:12px 24px; border-radius:0 0 12px 12px; z-index:999; font-weight:600; text-decoration:none; transition:top .3s; }
+    .skip-link:focus { top:0; }
+    .app-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; padding:1rem 1.5rem; background:rgba(255,255,255,.85); backdrop-filter:blur(12px); border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,.06); border:1px solid rgba(255,255,255,.5); flex-wrap:wrap; gap:12px; }
+    .logo-area { display:flex; align-items:center; gap:14px; }
+    .logo-area a { text-decoration:none; display:flex; align-items:center; gap:14px; }
+    .logo-icon { background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 6px 16px rgba(26,76,255,.25); }
+    .logo-text h1 { font-size:1.5rem; font-weight:800; color:#0b1b3a; }
+    .logo-text h1 span { color:#1a4cff; }
+    .logo-text .subtitle { font-size:.8rem; color:#5a6b8a; margin-top:-2px; }
+    .header-right { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .btn-back { background:white; border:2px solid #e2e8f2; padding:10px 20px; border-radius:40px; font-weight:600; font-size:.9rem; color:#1f2a44; cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:8px; text-decoration:none; }
+    .btn-back:hover { background:#f0f4fe; border-color:#b3c6e8; transform:translateX(-3px); }
+
+    .main-card { background:white; border-radius:24px; padding:2rem; box-shadow:0 8px 32px rgba(0,0,0,.06); border:1px solid #edf2f9; }
+    .card-title { font-size:1.3rem; font-weight:700; color:#0b1b3a; margin-bottom:4px; display:flex; align-items:center; gap:12px; }
+    .card-title i { color:#1a4cff; }
+    .card-subtitle { color:#5a6b8a; font-size:.9rem; margin-bottom:1.5rem; }
+
+    /* ===== DROP ZONE ===== */
+    .drop-zone { border:3px dashed #e2e8f2; border-radius:20px; padding:2.5rem 1rem; text-align:center; cursor:pointer; transition:.3s; background:#fafcff; position:relative; }
+    .drop-zone:hover { border-color:#b0c4e8; background:#f0f4fe; }
+    .drop-zone.dragover { border-color:#1a4cff; background:#eef4ff; }
+    .drop-zone .icon { font-size:3rem; color:#bcc9e0; margin-bottom:12px; display:block; }
+    .drop-zone .label { font-weight:600; color:#1f2a44; font-size:1.05rem; }
+    .drop-zone .sub-label { color:#8a9bb8; font-size:.85rem; margin-top:4px; }
+    .drop-zone .file-types { font-size:.75rem; color:#bcc9e0; margin-top:8px; }
+    .drop-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+    /* ===== FILE LIST ===== */
+    .file-list { margin-top:1.5rem; max-height:300px; overflow-y:auto; }
+    .file-item { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:#f8faff; border-radius:12px; margin-bottom:6px; border:1px solid #edf2f9; transition:.2s; }
+    .file-item:hover { background:#f0f4fe; border-color:#b0c4e8; }
+    .file-item .info { display:flex; align-items:center; gap:12px; flex:1; min-width:0; }
+    .file-item .info .num { font-weight:700; color:#8a9bb8; min-width:28px; font-size:.85rem; }
+    .file-item .info .name { font-weight:500; color:#1f2a44; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .file-item .info .size { font-size:.75rem; color:#8a9bb8; margin-left:8px; flex-shrink:0; }
+    .file-item .actions { display:flex; gap:6px; flex-shrink:0; }
+    .file-item .btn-mini { padding:4px 10px; border-radius:12px; font-weight:600; font-size:.7rem; cursor:pointer; transition:.2s; border:none; background:#f0f4fb; color:#1f2a44; display:inline-flex; align-items:center; gap:4px; }
+    .file-item .btn-mini:hover { background:#e2e8f2; }
+    .file-item .btn-mini.danger { color:#e74c6f; }
+    .file-item .btn-mini.danger:hover { background:#fde8ec; }
+    .file-item .btn-mini.primary { background:#eef4ff; color:#1a4cff; }
+    .file-item .btn-mini.primary:hover { background:#dce8ff; }
+
+    /* ===== CONTROLS ===== */
+    .controls { display:flex; gap:12px; flex-wrap:wrap; margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #edf2f9; }
+    .controls .btn-action { padding:12px 24px; border-radius:40px; font-weight:700; font-size:.95rem; cursor:pointer; transition:.25s; border:none; display:inline-flex; align-items:center; gap:8px; flex:1; justify-content:center; min-width:120px; }
+    .controls .btn-action:hover { transform:translateY(-2px); }
+    .controls .btn-action.primary { background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; box-shadow:0 4px 16px rgba(26,76,255,.25); }
+    .controls .btn-action.primary:hover { box-shadow:0 8px 24px rgba(26,76,255,.35); }
+    .controls .btn-action.primary:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+    .controls .btn-action.success { background:#27ae60; color:white; }
+    .controls .btn-action.success:hover { background:#1e8449; }
+    .controls .btn-action.danger { background:#e74c6f; color:white; }
+    .controls .btn-action.danger:hover { background:#c0392b; }
+
+    /* ===== STATUS ===== */
+    .status-box { margin-top:1rem; padding:12px 16px; border-radius:12px; display:none; align-items:center; gap:10px; font-weight:600; font-size:.9rem; }
+    .status-box.show { display:flex; }
+    .status-box.success { background:#d4edda; color:#155724; border:1px solid #c3e6cb; }
+    .status-box.error { background:#fde8ec; color:#721c24; border:1px solid #f5c6cb; }
+    .status-box.info { background:#eaf4fb; color:#1a4cff; border:1px solid #d6eaf8; }
+
+    /* ===== PROGRESS ===== */
+    .progress-container { margin-top:1rem; display:none; }
+    .progress-container.show { display:block; }
+    .progress-bar { width:100%; height:8px; background:#edf2f9; border-radius:4px; overflow:hidden; }
+    .progress-bar .fill { height:100%; background:linear-gradient(90deg,#1a4cff,#6c5ce7); border-radius:4px; transition:width .3s; width:0%; }
+    .progress-text { font-size:.8rem; color:#5a6b8a; margin-top:4px; text-align:center; }
+
+    .toast { position:fixed; bottom:30px; right:30px; background:#1f2a44; color:white; padding:14px 24px; border-radius:16px; font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.2); transform:translateY(100px); opacity:0; transition:.4s cubic-bezier(.34,1.56,.64,1); z-index:999; }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast i { margin-right:10px; }
+    .toast.success { background:#27ae60; }
+    .toast.error { background:#e74c6f; }
+
+    .app-footer { margin-top:2.5rem; padding:1.2rem 1.5rem; background:white; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; color:#5a6b8a; font-size:.9rem; box-shadow:0 2px 12px rgba(0,0,0,.03); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { color:#5a6b8a; text-decoration:none; transition:.2s; }
+    .footer-links a:hover { color:#1a4cff; }
+
+    @media(max-width:768px){ body{padding:1rem; } .app-header{flex-direction:column;align-items:stretch;gap:12px;padding:1rem;} .header-right{flex-direction:column;width:100%;} .btn-back{justify-content:center;width:100%;} .main-card{padding:1.2rem;} .controls{flex-direction:column;} .controls .btn-action{width:100%;} .drop-zone{padding:1.5rem .5rem;} .file-item{flex-wrap:wrap;gap:6px;} .file-item .info{width:100%;} .file-item .actions{margin-left:auto;} .toast{left:20px;right:20px;bottom:20px;text-align:center;} .app-footer{flex-direction:column;gap:10px;text-align:center;} .footer-links{justify-content:center;} }
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#f0f4fb;border-radius:10px;} ::-webkit-scrollbar-thumb{background:#c5d2e8;border-radius:10px;} ::-webkit-scrollbar-thumb:hover{background:#a0b0ca;}
+    .file-list::-webkit-scrollbar{width:6px;} .file-list::-webkit-scrollbar-track{background:#f0f4fb;border-radius:8px;} .file-list::-webkit-scrollbar-thumb{background:#c5d2e8;border-radius:8px;}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+  <div class="app-wrapper" id="app">
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-object-group"></i></div>
+          <div class="logo-text">
+            <h1>PDF <span>Merger</span></h1>
+            <div class="subtitle">Gabung PDF Online Gratis</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <h1 class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">PDF Merger - Gabung PDF Online Gratis</h1>
+
+      <div class="main-card">
+        <div class="card-title">
+          <i class="fas fa-merge"></i> Gabung PDF
+        </div>
+        <p class="card-subtitle">Pilih beberapa file PDF, atur urutan, dan gabungkan menjadi satu file</p>
+
+        <!-- ===== DROP ZONE ===== -->
+        <div class="drop-zone" @dragover.prevent="dragover" @dragleave.prevent="dragleave" @drop.prevent="handleDrop" :class="{ dragover: isDragover }">
+          <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+          <div class="label">Upload File PDF</div>
+          <div class="sub-label">Drag & drop file PDF ke sini, atau klik untuk memilih</div>
+          <div class="file-types">Support: PDF (maks. 50MB per file)</div>
+          <input type="file" accept=".pdf,application/pdf" multiple @change="handleFiles">
+        </div>
+
+        <!-- ===== FILE LIST ===== -->
+        <div class="file-list" v-if="files.length">
+          <div class="file-item" v-for="(file, index) in files" :key="index">
+            <div class="info">
+              <span class="num">{{ index + 1 }}</span>
+              <span class="name">{{ file.name }}</span>
+              <span class="size">{{ formatSize(file.size) }}</span>
+            </div>
+            <div class="actions">
+              <button class="btn-mini primary" @click="moveFile(index, -1)" :disabled="index === 0">
+                <i class="fas fa-arrow-up"></i>
+              </button>
+              <button class="btn-mini primary" @click="moveFile(index, 1)" :disabled="index === files.length - 1">
+                <i class="fas fa-arrow-down"></i>
+              </button>
+              <button class="btn-mini danger" @click="removeFile(index)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CONTROLS ===== -->
+        <div class="controls">
+          <button class="btn-action primary" @click="mergePDF" :disabled="files.length < 2 || isProcessing">
+            <i class="fas fa-merge"></i> {{ isProcessing ? 'Memproses...' : 'Gabungkan PDF' }}
+          </button>
+          <button class="btn-action danger" @click="clearAll" :disabled="!files.length">
+            <i class="fas fa-trash-alt"></i> Hapus Semua
+          </button>
+        </div>
+
+        <!-- ===== PROGRESS ===== -->
+        <div class="progress-container" :class="{ show: isProcessing }">
+          <div class="progress-bar">
+            <div class="fill" :style="{ width: progress + '%' }"></div>
+          </div>
+          <div class="progress-text">{{ progress }}%</div>
+        </div>
+
+        <!-- ===== STATUS ===== -->
+        <div class="status-box" :class="statusClass" :class="{ show: statusMessage }">
+          <i :class="statusIcon"></i>
+          <span v-html="statusMessage"></span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer" role="contentinfo">
+      <div><i class="fas fa-code"></i> REBOART | ToolBox · <a href="https://tools.reboart.net" style="color:#1a4cff;text-decoration:none;">tools.reboart.net</a></div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/scribd-downloader.html">Scribd</a>
+        <span><i class="fas fa-heart" style="color:#e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i> {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      new Vue({
+        el: '#app',
+        data: {
+          files: [],
+          isProcessing: false,
+          progress: 0,
+          isDragover: false,
+          statusMessage: '',
+          statusType: '',
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null
+        },
+        computed: {
+          statusClass() {
+            return this.statusType;
+          },
+          statusIcon() {
+            if (this.statusType === 'success') return 'fas fa-check-circle';
+            if (this.statusType === 'error') return 'fas fa-exclamation-circle';
+            if (this.statusType === 'info') return 'fas fa-info-circle';
+            return '';
+          }
+        },
+        methods: {
+          // ===== HANDLE FILES =====
+          handleFiles(event) {
+            const fileList = event.target.files;
+            this.addFiles(fileList);
+            event.target.value = '';
+          },
+
+          handleDrop(event) {
+            this.isDragover = false;
+            const fileList = event.dataTransfer.files;
+            this.addFiles(fileList);
+          },
+
+          dragover() { this.isDragover = true; },
+          dragleave() { this.isDragover = false; },
+
+          addFiles(fileList) {
+            let validCount = 0;
+            for (const file of fileList) {
+              if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
+                if (file.size <= 50 * 1024 * 1024) {
+                  this.files.push(file);
+                  validCount++;
+                } else {
+                  this.showToast(`File "${file.name}" terlalu besar (maks 50MB)`, false);
+                }
+              } else {
+                this.showToast(`File "${file.name}" bukan format PDF`, false);
+              }
+            }
+            if (validCount > 0) {
+              this.showToast(`${validCount} file PDF berhasil ditambahkan!`, true);
+              this.clearStatus();
+            }
+          },
+
+          // ===== MOVE FILE =====
+          moveFile(index, direction) {
+            const newIndex = index + direction;
+            if (newIndex < 0 || newIndex >= this.files.length) return;
+            const temp = this.files[index];
+            this.files.splice(index, 1);
+            this.files.splice(newIndex, 0, temp);
+          },
+
+          // ===== REMOVE FILE =====
+          removeFile(index) {
+            this.files.splice(index, 1);
+            this.clearStatus();
+          },
+
+          // ===== CLEAR ALL =====
+          clearAll() {
+            this.files = [];
+            this.clearStatus();
+            this.progress = 0;
+          },
+
+          // ===== MERGE PDF =====
+          async mergePDF() {
+            if (this.files.length < 2 || this.isProcessing) return;
+
+            this.isProcessing = true;
+            this.progress = 0;
+            this.setStatus('info', '⏳ Memproses penggabungan PDF...');
+
+            try {
+              const { PDFDocument } = PDFLib;
+              const mergedPdf = await PDFDocument.create();
+
+              for (let i = 0; i < this.files.length; i++) {
+                const file = this.files[i];
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFDocument.load(arrayBuffer);
+                const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                pages.forEach(page => mergedPdf.addPage(page));
+                
+                this.progress = Math.round(((i + 1) / this.files.length) * 100);
+              }
+
+              const pdfBytes = await mergedPdf.save();
+              const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+              const fileName = `merged_${Date.now()}.pdf`;
+              
+              saveAs(blob, fileName);
+              this.setStatus('success', `✅ PDF berhasil digabungkan! Download otomatis: <strong>${fileName}</strong>`);
+              this.showToast('PDF berhasil digabungkan!', true);
+
+            } catch (error) {
+              console.error('Merge error:', error);
+              this.setStatus('error', '⚠️ Gagal menggabungkan PDF. Pastikan file PDF valid dan tidak rusak.');
+              this.showToast('Gagal menggabungkan PDF: ' + error.message, false);
+            }
+
+            this.isProcessing = false;
+          },
+
+          // ===== STATUS =====
+          setStatus(type, message) {
+            this.statusType = type;
+            this.statusMessage = message;
+          },
+
+          clearStatus() {
+            this.statusType = '';
+            this.statusMessage = '';
+          },
+
+          // ===== UTILITY =====
+          formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => { this.toastVisible = false; }, 3500);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
