@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Timer & Stopwatch · Alat Pengukur Waktu Online</title>
+  <meta name="description" content="Timer countdown dan stopwatch online dengan fitur lengkap. Atur waktu, mulai, pause, reset, dan catat waktu putaran. Dilengkapi dengan notifikasi suara.">
+  <meta name="keywords" content="timer online, stopwatch online, countdown timer, pengukur waktu, waktu online, timer countdown, stopwatch digital, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/timer-stopwatch.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Timer & Stopwatch · Alat Pengukur Waktu Online">
+  <meta property="og:description" content="Timer countdown dan stopwatch online dengan fitur lengkap. Atur waktu, mulai, pause, reset, dan catat waktu putaran.">
+  <meta property="og:url" content="https://tools.reboart.net/timer-stopwatch.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-timer-stopwatch.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timer & Stopwatch · Alat Pengukur Waktu Online">
+  <meta name="twitter:description" content="Timer countdown dan stopwatch online dengan fitur lengkap.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-timer-stopwatch.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Timer & Stopwatch by ToolBox",
+    "description": "Timer countdown dan stopwatch online dengan fitur lengkap. Atur waktu, mulai, pause, reset, dan catat waktu putaran.",
+    "url": "https://tools.reboart.net/timer-stopwatch.html",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏱️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏱️</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MODE SELECTOR ===== */
+    .mode-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .mode-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      border: 2px solid #e2e8f2;
+      background: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #4a5b7a;
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .mode-btn:hover {
+      background: #f0f4fe;
+      border-color: #b0c4e8;
+    }
+
+    .mode-btn.active {
+      background: #1a4cff;
+      color: white;
+      border-color: #1a4cff;
+      box-shadow: 0 4px 14px rgba(26, 76, 255, 0.25);
+    }
+
+    /* ===== MAIN CARD ===== */
+    .main-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+    }
+
+    .card-title i {
+      color: #1a4cff;
+    }
+
+    .card-subtitle {
+      color: #5a6b8a;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== TIME DISPLAY ===== */
+    .time-display {
+      font-size: 4.5rem;
+      font-weight: 800;
+      font-family: 'Courier New', monospace;
+      color: #0b1b3a;
+      padding: 1rem 0;
+      letter-spacing: 4px;
+      background: #f8faff;
+      border-radius: 16px;
+      border: 2px solid #edf2f9;
+      margin-bottom: 1.5rem;
+      transition: 0.3s;
+    }
+
+    .time-display.warning {
+      color: #e74c6f;
+      border-color: #e74c6f;
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .time-display .milliseconds {
+      font-size: 2rem;
+      color: #8a9bb8;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ===== TIMER SETTINGS ===== */
+    .timer-settings {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .timer-settings .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .timer-settings .input-group label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #8a9bb8;
+      letter-spacing: 0.5px;
+    }
+
+    .timer-settings .input-group input {
+      width: 70px;
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: 2px solid #e2e8f2;
+      border-radius: 10px;
+      background: #fafcff;
+      color: #1f2a44;
+      transition: 0.2s;
+    }
+
+    .timer-settings .input-group input:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .timer-settings .input-group input::-webkit-outer-spin-button,
+    .timer-settings .input-group input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .timer-settings .input-group input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .btn-set-timer {
+      padding: 8px 24px;
+      border-radius: 30px;
+      border: 2px solid #1a4cff;
+      background: transparent;
+      color: #1a4cff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      align-self: flex-end;
+      margin-bottom: 2px;
+    }
+
+    .btn-set-timer:hover {
+      background: #1a4cff;
+      color: white;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-control {
+      padding: 12px 30px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.25s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .btn-control:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-control:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-start {
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      box-shadow: 0 4px 16px rgba(39, 174, 96, 0.25);
+    }
+
+    .btn-start:hover:not(:disabled) {
+      box-shadow: 0 8px 24px rgba(39, 174, 96, 0.35);
+    }
+
+    .btn-pause {
+      background: linear-gradient(135deg, #f39c12, #f1c40f);
+      color: white;
+      box-shadow: 0 4px 16px rgba(243, 156, 18, 0.25);
+    }
+
+    .btn-pause:hover:not(:disabled) {
+      box-shadow: 0 8px 24px rgba(243, 156, 18, 0.35);
+    }
+
+    .btn-reset {
+      background: linear-gradient(135deg, #e74c6f, #c0392b);
+      color: white;
+      box-shadow: 0 4px 16px rgba(231, 76, 111, 0.25);
+    }
+
+    .btn-reset:hover:not(:disabled) {
+      box-shadow: 0 8px 24px rgba(231, 76, 111, 0.35);
+    }
+
+    .btn-lap {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      box-shadow: 0 4px 16px rgba(52, 152, 219, 0.25);
+    }
+
+    .btn-lap:hover:not(:disabled) {
+      box-shadow: 0 8px 24px rgba(52, 152, 219, 0.35);
+    }
+
+    /* ===== LAP TIMES ===== */
+    .lap-section {
+      border-top: 2px solid #edf2f9;
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .lap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lap-title {
+      font-weight: 700;
+      color: #1f2a44;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lap-title .count {
+      background: #eef4ff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #1a4cff;
+    }
+
+    .lap-list {
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    .lap-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-bottom: 1px solid #f0f4fb;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #1f2a44;
+    }
+
+    .lap-item .lap-number {
+      font-weight: 700;
+      color: #8a9bb8;
+    }
+
+    .lap-item .lap-time {
+      font-weight: 600;
+    }
+
+    .lap-item .lap-diff {
+      color: #8a9bb8;
+      font-size: 0.8rem;
+    }
+
+    .lap-item:last-child {
+      border-bottom: none;
+    }
+
+    .lap-item.best {
+      background: #d4edda;
+      border-radius: 4px;
+    }
+
+    .lap-item.worst {
+      background: #fde8ec;
+      border-radius: 4px;
+    }
+
+    .btn-clear-laps {
+      background: transparent;
+      border: none;
+      color: #e74c6f;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+
+    .btn-clear-laps:hover {
+      background: #fde8ec;
+    }
+
+    /* ===== PRESETS ===== */
+    .preset-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .preset-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #8a9bb8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .preset-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .preset-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 2px solid #e2e8f2;
+      background: white;
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: #4a5b7a;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .preset-btn:hover {
+      border-color: #1a4cff;
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    .toast.error {
+      background: #e74c6f;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-card {
+        padding: 1.2rem;
+      }
+
+      .mode-selector {
+        flex-direction: column;
+      }
+
+      .mode-btn {
+        width: 100%;
+      }
+
+      .time-display {
+        font-size: 2.8rem;
+        padding: 0.8rem;
+      }
+
+      .time-display .milliseconds {
+        font-size: 1.4rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-control {
+        width: 100%;
+      }
+
+      .timer-settings {
+        gap: 8px;
+      }
+
+      .timer-settings .input-group input {
+        width: 60px;
+        font-size: 1rem;
+      }
+
+      .lap-list {
+        max-height: 150px;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .time-display {
+        font-size: 2rem;
+        letter-spacing: 2px;
+      }
+
+      .time-display .milliseconds {
+        font-size: 1rem;
+      }
+
+      .preset-buttons {
+        gap: 5px;
+      }
+
+      .preset-btn {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+
+    .lap-list::-webkit-scrollbar {
+      width: 4px;
+    }
+    .lap-list::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-stopwatch"></i></div>
+          <div class="logo-text">
+            <h1>Timer <span>&amp; Stopwatch</span></h1>
+            <div class="subtitle">Alat Pengukur Waktu Online</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Timer & Stopwatch - Alat Pengukur Waktu Online</h1>
+
+      <div class="main-card">
+        <!-- ===== MODE SELECTOR ===== -->
+        <div class="mode-selector">
+          <button class="mode-btn" :class="{ active: mode === 'stopwatch' }" @click="setMode('stopwatch')">
+            <i class="fas fa-play"></i> Stopwatch
+          </button>
+          <button class="mode-btn" :class="{ active: mode === 'timer' }" @click="setMode('timer')">
+            <i class="fas fa-hourglass-half"></i> Timer
+          </button>
+        </div>
+
+        <!-- ===== TIME DISPLAY ===== -->
+        <div class="time-display" :class="{ warning: mode === 'timer' && time <= 10 && isRunning }">
+          <span>{{ formattedTime }}</span>
+          <span class="milliseconds" v-if="mode === 'stopwatch' || isRunning">.{{ milliseconds }}</span>
+        </div>
+
+        <!-- ===== TIMER SETTINGS ===== -->
+        <div class="timer-settings" v-if="mode === 'timer'">
+          <div class="input-group">
+            <label>Menit</label>
+            <input type="number" v-model="timerMinutes" min="0" max="99" :disabled="isRunning">
+          </div>
+          <div class="input-group">
+            <label>Detik</label>
+            <input type="number" v-model="timerSeconds" min="0" max="59" :disabled="isRunning">
+          </div>
+          <button class="btn-set-timer" @click="setTimer" :disabled="isRunning">
+            <i class="fas fa-check"></i> Set
+          </button>
+        </div>
+
+        <!-- ===== PRESETS ===== -->
+        <div class="preset-section" v-if="mode === 'timer'">
+          <div class="preset-label">Preset Waktu</div>
+          <div class="preset-buttons">
+            <button class="preset-btn" @click="setPreset(1)">1 menit</button>
+            <button class="preset-btn" @click="setPreset(5)">5 menit</button>
+            <button class="preset-btn" @click="setPreset(10)">10 menit</button>
+            <button class="preset-btn" @click="setPreset(15)">15 menit</button>
+            <button class="preset-btn" @click="setPreset(30)">30 menit</button>
+            <button class="preset-btn" @click="setPreset(60)">60 menit</button>
+          </div>
+        </div>
+
+        <!-- ===== CONTROL BUTTONS ===== -->
+        <div class="btn-group">
+          <button class="btn-control btn-start" @click="start" :disabled="isRunning && mode === 'stopwatch'">
+            <i class="fas fa-play"></i> Mulai
+          </button>
+          <button class="btn-control btn-pause" @click="pause" :disabled="!isRunning">
+            <i class="fas fa-pause"></i> Pause
+          </button>
+          <button class="btn-control btn-reset" @click="reset">
+            <i class="fas fa-undo"></i> Reset
+          </button>
+          <button class="btn-control btn-lap" @click="addLap" :disabled="!isRunning || mode === 'timer'">
+            <i class="fas fa-flag"></i> Lap
+          </button>
+        </div>
+
+        <!-- ===== LAP TIMES ===== -->
+        <div class="lap-section" v-if="mode === 'stopwatch' && laps.length">
+          <div class="lap-header">
+            <span class="lap-title">
+              <i class="fas fa-flag-checkered" style="color: #f39c12;"></i>
+              Lap Times
+              <span class="count">{{ laps.length }}</span>
+            </span>
+            <button class="btn-clear-laps" @click="clearLaps">
+              <i class="fas fa-trash-alt"></i> Hapus Semua
+            </button>
+          </div>
+          <div class="lap-list">
+            <div class="lap-item" v-for="(lap, index) in laps" :key="index"
+                 :class="{ best: lap.isBest, worst: lap.isWorst }">
+              <span class="lap-number">Lap {{ index + 1 }}</span>
+              <span class="lap-time">{{ lap.time }}</span>
+              <span class="lap-diff" v-if="index > 0">+{{ lap.diff }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/hash-generator.html">Hash Generator</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      new Vue({
+        el: '#app',
+        data: {
+          mode: 'stopwatch',
+          time: 0,
+          isRunning: false,
+          interval: null,
+          timerMinutes: 5,
+          timerSeconds: 0,
+          laps: [],
+          lapCount: 0,
+          lastLapTime: 0,
+          bestLap: null,
+          worstLap: null,
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null
+        },
+        computed: {
+          formattedTime() {
+            const totalSeconds = Math.floor(this.time / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+          },
+          milliseconds() {
+            return String(Math.floor((this.time % 1000) / 10)).padStart(2, '0');
+          }
+        },
+        methods: {
+          // ===== SET MODE =====
+          setMode(mode) {
+            if (this.isRunning) {
+              this.pause();
+            }
+            this.mode = mode;
+            this.time = 0;
+            this.laps = [];
+            this.lapCount = 0;
+            this.lastLapTime = 0;
+            this.bestLap = null;
+            this.worstLap = null;
+            if (mode === 'timer') {
+              this.setTimer();
+            }
+          },
+
+          // ===== START =====
+          start() {
+            if (this.isRunning) return;
+            
+            if (this.mode === 'timer' && this.time <= 0) {
+              this.showToast('Atur waktu timer terlebih dahulu!', false);
+              return;
+            }
+
+            this.isRunning = true;
+            const startTime = Date.now() - this.time;
+            
+            this.interval = setInterval(() => {
+              const elapsed = Date.now() - startTime;
+              this.time = elapsed;
+              
+              if (this.mode === 'timer' && this.time <= 0) {
+                this.time = 0;
+                this.pause();
+                this.showToast('⏰ Waktu habis!', true);
+                // Play beep
+                this.playBeep();
+              }
+            }, 10);
+          },
+
+          // ===== PAUSE =====
+          pause() {
+            if (!this.isRunning) return;
+            this.isRunning = false;
+            clearInterval(this.interval);
+            this.interval = null;
+          },
+
+          // ===== RESET =====
+          reset() {
+            this.pause();
+            this.time = 0;
+            this.laps = [];
+            this.lapCount = 0;
+            this.lastLapTime = 0;
+            this.bestLap = null;
+            this.worstLap = null;
+            if (this.mode === 'timer') {
+              this.setTimer();
+            }
+          },
+
+          // ===== SET TIMER =====
+          setTimer() {
+            if (this.isRunning) return;
+            const totalSeconds = (this.timerMinutes * 60) + this.timerSeconds;
+            this.time = totalSeconds * 1000;
+          },
+
+          // ===== SET PRESET =====
+          setPreset(minutes) {
+            if (this.isRunning) return;
+            this.timerMinutes = minutes;
+            this.timerSeconds = 0;
+            this.setTimer();
+            this.showToast(`Timer ${minutes} menit diset!`, true);
+          },
+
+          // ===== ADD LAP =====
+          addLap() {
+            if (!this.isRunning || this.mode === 'timer') return;
+            
+            const currentTime = this.time;
+            const lapTime = currentTime - this.lastLapTime;
+            this.lastLapTime = currentTime;
+            this.lapCount++;
+            
+            const lapObj = {
+              number: this.lapCount,
+              time: this.formatLapTime(lapTime),
+              raw: lapTime,
+              diff: ''
+            };
+            
+            // Calculate diff from previous lap
+            if (this.laps.length > 0) {
+              const prevLap = this.laps[this.laps.length - 1];
+              const diff = lapTime - prevLap.raw;
+              lapObj.diff = (diff > 0 ? '+' : '') + this.formatLapTime(Math.abs(diff));
+            }
+            
+            this.laps.push(lapObj);
+            
+            // Update best/worst
+            this.updateBestWorst();
+          },
+
+          // ===== UPDATE BEST/WORST =====
+          updateBestWorst() {
+            if (this.laps.length === 0) return;
+            
+            // Reset flags
+            this.laps.forEach(l => { l.isBest = false; l.isWorst = false; });
+            
+            const sorted = [...this.laps].sort((a, b) => a.raw - b.raw);
+            if (sorted.length > 0) {
+              const best = sorted[0];
+              const worst = sorted[sorted.length - 1];
+              
+              // Find and mark best
+              const bestIndex = this.laps.findIndex(l => l === best);
+              if (bestIndex !== -1) this.laps[bestIndex].isBest = true;
+              
+              // Find and mark worst
+              const worstIndex = this.laps.findIndex(l => l === worst);
+              if (worstIndex !== -1) this.laps[worstIndex].isWorst = true;
+            }
+          },
+
+          // ===== CLEAR LAPS =====
+          clearLaps() {
+            this.laps = [];
+            this.lapCount = 0;
+            this.lastLapTime = 0;
+            this.bestLap = null;
+            this.worstLap = null;
+          },
+
+          // ===== FORMAT LAP TIME =====
+          formatLapTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const millis = String(Math.floor((ms % 1000) / 10)).padStart(2, '0');
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${millis}`;
+          },
+
+          // ===== PLAY BEEP =====
+          playBeep() {
+            try {
+              const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+              const oscillator = audioCtx.createOscillator();
+              const gainNode = audioCtx.createGain();
+              
+              oscillator.connect(gainNode);
+              gainNode.connect(audioCtx.destination);
+              
+              oscillator.frequency.value = 800;
+              oscillator.type = 'sine';
+              gainNode.gain.value = 0.3;
+              
+              oscillator.start();
+              setTimeout(() => {
+                oscillator.stop();
+                audioCtx.close();
+              }, 500);
+            } catch (e) {
+              // Silently fail if audio not supported
+            }
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        },
+        beforeDestroy() {
+          if (this.interval) {
+            clearInterval(this.interval);
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

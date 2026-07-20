@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>JSON Formatter · Format & Validasi JSON Online</title>
+  <meta name="description" content="Format dan validasi JSON online dengan mudah. Beautify, minify, dan validasi struktur JSON secara real-time. Dilengkapi dengan syntax highlighting dan error detection.">
+  <meta name="keywords" content="json formatter, json validator, json beautifier, json minify, json online, format json, validate json, json tools, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/json-formatter.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JSON Formatter · Format & Validasi JSON Online">
+  <meta property="og:description" content="Format dan validasi JSON online dengan mudah. Beautify, minify, dan validasi struktur JSON secara real-time.">
+  <meta property="og:url" content="https://tools.reboart.net/json-formatter.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-json-formatter.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON Formatter · Format & Validasi JSON Online">
+  <meta name="twitter:description" content="Format dan validasi JSON online dengan mudah. Beautify, minify, dan validasi struktur JSON.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-json-formatter.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON Formatter by ToolBox",
+    "description": "Format dan validasi JSON online dengan mudah. Beautify, minify, dan validasi struktur JSON secara real-time.",
+    "url": "https://tools.reboart.net/json-formatter.html",
+    "applicationCategory": "Developer",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{ }</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{ }</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ===== PANELS ===== */
+    .panel {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title i {
+      color: #1a4cff;
+    }
+
+    .panel-title .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #eef4ff;
+      color: #1a4cff;
+      margin-left: auto;
+    }
+
+    .panel-title .badge.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .panel-title .badge.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .panel-subtitle {
+      color: #5a6b8a;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== TEXTAREA ===== */
+    .json-textarea {
+      width: 100%;
+      min-height: 350px;
+      padding: 16px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+      resize: vertical;
+      line-height: 1.6;
+      tab-size: 2;
+    }
+
+    .json-textarea:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .json-textarea.error {
+      border-color: #e74c6f;
+      background: #fff5f5;
+    }
+
+    .json-textarea.success {
+      border-color: #27ae60;
+      background: #f0fff4;
+    }
+
+    /* ===== VALIDATION STATUS ===== */
+    .validation-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .validation-status.valid {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .validation-status.invalid {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .validation-status.idle {
+      background: #f0f4fb;
+      color: #5a6b8a;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-action {
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      flex: 1;
+      justify-content: center;
+      min-width: 100px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      box-shadow: 0 4px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 24px rgba(26, 76, 255, 0.35);
+    }
+
+    .btn-success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #1e8449;
+      box-shadow: 0 4px 16px rgba(39, 174, 96, 0.3);
+    }
+
+    .btn-warning {
+      background: #f39c12;
+      color: white;
+    }
+
+    .btn-warning:hover {
+      background: #d68910;
+      box-shadow: 0 4px 16px rgba(243, 156, 18, 0.3);
+    }
+
+    .btn-danger {
+      background: #e74c6f;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c0392b;
+      box-shadow: 0 4px 16px rgba(231, 76, 111, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #1f2a44;
+      border: 2px solid #e2e8f2;
+    }
+
+    .btn-outline:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+    }
+
+    /* ===== STATS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 8px;
+      background: #f8faff;
+      border-radius: 10px;
+    }
+
+    .stat-item .number {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0b1b3a;
+    }
+
+    .stat-item .label {
+      font-size: 0.7rem;
+      color: #8a9bb8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    .toast.error {
+      background: #e74c6f;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .json-textarea {
+        min-height: 250px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .panel {
+        padding: 1rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn-action {
+        width: 100%;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+
+    .json-textarea::-webkit-scrollbar {
+      width: 8px;
+    }
+    .json-textarea::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    .json-textarea::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-code"></i></div>
+          <div class="logo-text">
+            <h1>JSON <span>Formatter</span></h1>
+            <div class="subtitle">Format & Validasi JSON Online</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">JSON Formatter - Format & Validasi JSON Online</h1>
+      
+      <div class="main-grid">
+        <!-- INPUT PANEL -->
+        <section class="panel" aria-label="Input JSON">
+          <div class="panel-title">
+            <i class="fas fa-pencil-alt"></i> Input JSON
+            <span class="badge" :class="validationClass">{{ validationText }}</span>
+          </div>
+          <p class="panel-subtitle">Tempelkan atau tulis JSON di bawah ini</p>
+
+          <textarea 
+            class="json-textarea" 
+            v-model="jsonInput" 
+            @input="autoValidate"
+            @keydown.tab.prevent="insertTab"
+            :class="inputClass"
+            placeholder='Contoh: {"nama":"John","umur":30,"kota":"Jakarta"}'
+            spellcheck="false"
+            aria-label="Input JSON"
+          ></textarea>
+
+          <div class="validation-status" :class="validationStatusClass">
+            <i :class="validationIcon"></i>
+            {{ validationMessage }}
+          </div>
+
+          <div class="btn-group">
+            <button class="btn-action btn-primary" @click="formatJSON">
+              <i class="fas fa-magic"></i> Beautify
+            </button>
+            <button class="btn-action btn-success" @click="minifyJSON">
+              <i class="fas fa-compress-alt"></i> Minify
+            </button>
+            <button class="btn-action btn-warning" @click="validateJSON">
+              <i class="fas fa-check-circle"></i> Validate
+            </button>
+            <button class="btn-action btn-danger" @click="clearJSON">
+              <i class="fas fa-trash-alt"></i> Clear
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="number">{{ charCount }}</div>
+              <div class="label">Karakter</div>
+            </div>
+            <div class="stat-item">
+              <div class="number">{{ lineCount }}</div>
+              <div class="label">Baris</div>
+            </div>
+            <div class="stat-item">
+              <div class="number">{{ keyCount }}</div>
+              <div class="label">Keys</div>
+            </div>
+            <div class="stat-item">
+              <div class="number">{{ sizeKB }}</div>
+              <div class="label">Size (KB)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- OUTPUT PANEL -->
+        <section class="panel" aria-label="Output JSON">
+          <div class="panel-title">
+            <i class="fas fa-eye"></i> Output
+            <span class="badge" :class="outputClass">{{ outputStatus }}</span>
+          </div>
+          <p class="panel-subtitle">Hasil format atau minify JSON</p>
+
+          <textarea 
+            class="json-textarea" 
+            v-model="jsonOutput" 
+            readonly
+            :class="outputClass"
+            placeholder="Hasil akan muncul di sini..."
+            spellcheck="false"
+            aria-label="Output JSON"
+          ></textarea>
+
+          <div class="btn-group">
+            <button class="btn-action btn-primary" @click="copyOutput">
+              <i class="fas fa-copy"></i> Salin Output
+            </button>
+            <button class="btn-action btn-success" @click="downloadJSON">
+              <i class="fas fa-download"></i> Download .json
+            </button>
+            <button class="btn-action btn-outline" @click="swapJSON">
+              <i class="fas fa-exchange-alt"></i> Swap
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/color-picker.html">Color Picker</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      new Vue({
+        el: '#app',
+        data: {
+          jsonInput: '{\n  "nama": "John Doe",\n  "umur": 30,\n  "kota": "Jakarta",\n  "hobi": ["coding", "membaca", "traveling"],\n  "aktif": true\n}',
+          jsonOutput: '',
+          validationResult: null,
+          validationError: null,
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null,
+          _debounceTimer: null
+        },
+        computed: {
+          // ===== VALIDATION =====
+          validationClass() {
+            if (this.validationResult === true) return 'success';
+            if (this.validationResult === false) return 'error';
+            return '';
+          },
+          validationText() {
+            if (this.validationResult === true) return 'Valid ✓';
+            if (this.validationResult === false) return 'Invalid ✗';
+            return 'Idle';
+          },
+          validationStatusClass() {
+            if (this.validationResult === true) return 'valid';
+            if (this.validationResult === false) return 'invalid';
+            return 'idle';
+          },
+          validationMessage() {
+            if (this.validationResult === true) return '✓ JSON valid!';
+            if (this.validationResult === false) return '✗ ' + (this.validationError || 'JSON tidak valid');
+            return '⏳ Menunggu input...';
+          },
+          validationIcon() {
+            if (this.validationResult === true) return 'fas fa-check-circle';
+            if (this.validationResult === false) return 'fas fa-exclamation-circle';
+            return 'fas fa-circle';
+          },
+          inputClass() {
+            if (this.validationResult === true) return 'success';
+            if (this.validationResult === false) return 'error';
+            return '';
+          },
+          outputClass() {
+            return this.jsonOutput ? 'success' : '';
+          },
+          outputStatus() {
+            return this.jsonOutput ? 'Ready' : 'Empty';
+          },
+
+          // ===== STATS =====
+          charCount() {
+            return this.jsonInput.length.toLocaleString();
+          },
+          lineCount() {
+            return this.jsonInput.split('\n').length;
+          },
+          keyCount() {
+            try {
+              const parsed = JSON.parse(this.jsonInput);
+              return this.countKeys(parsed);
+            } catch {
+              return 0;
+            }
+          },
+          sizeKB() {
+            return (this.jsonInput.length / 1024).toFixed(2);
+          }
+        },
+        methods: {
+          // ===== COUNT KEYS =====
+          countKeys(obj) {
+            if (typeof obj !== 'object' || obj === null) return 0;
+            let count = 0;
+            for (const key in obj) {
+              count++;
+              if (typeof obj[key] === 'object' && obj[key] !== null) {
+                count += this.countKeys(obj[key]);
+              }
+            }
+            return count;
+          },
+
+          // ===== AUTO VALIDATE =====
+          autoValidate() {
+            clearTimeout(this._debounceTimer);
+            this._debounceTimer = setTimeout(() => {
+              this.validateJSON();
+            }, 500);
+          },
+
+          // ===== VALIDATE JSON =====
+          validateJSON() {
+            const input = this.jsonInput.trim();
+            if (!input) {
+              this.validationResult = null;
+              this.validationError = null;
+              return;
+            }
+
+            try {
+              JSON.parse(input);
+              this.validationResult = true;
+              this.validationError = null;
+            } catch (e) {
+              this.validationResult = false;
+              this.validationError = e.message;
+            }
+          },
+
+          // ===== FORMAT JSON (Beautify) =====
+          formatJSON() {
+            const input = this.jsonInput.trim();
+            if (!input) {
+              this.showToast('Input JSON kosong!', false);
+              return;
+            }
+
+            try {
+              const parsed = JSON.parse(input);
+              this.jsonOutput = JSON.stringify(parsed, null, 2);
+              this.validationResult = true;
+              this.validationError = null;
+              this.jsonInput = this.jsonOutput;
+              this.showToast('JSON berhasil diformat!', true);
+            } catch (e) {
+              this.validationResult = false;
+              this.validationError = e.message;
+              this.showToast('Error: ' + e.message, false);
+            }
+          },
+
+          // ===== MINIFY JSON =====
+          minifyJSON() {
+            const input = this.jsonInput.trim();
+            if (!input) {
+              this.showToast('Input JSON kosong!', false);
+              return;
+            }
+
+            try {
+              const parsed = JSON.parse(input);
+              this.jsonOutput = JSON.stringify(parsed);
+              this.validationResult = true;
+              this.validationError = null;
+              this.showToast('JSON berhasil di-minify!', true);
+            } catch (e) {
+              this.validationResult = false;
+              this.validationError = e.message;
+              this.showToast('Error: ' + e.message, false);
+            }
+          },
+
+          // ===== CLEAR JSON =====
+          clearJSON() {
+            this.jsonInput = '';
+            this.jsonOutput = '';
+            this.validationResult = null;
+            this.validationError = null;
+            this.showToast('JSON telah dibersihkan', true);
+          },
+
+          // ===== SWAP JSON =====
+          swapJSON() {
+            const temp = this.jsonInput;
+            this.jsonInput = this.jsonOutput || this.jsonInput;
+            this.jsonOutput = temp;
+            this.autoValidate();
+            this.showToast('Input dan output ditukar', true);
+          },
+
+          // ===== INSERT TAB =====
+          insertTab(e) {
+            e.preventDefault();
+            const start = e.target.selectionStart;
+            const end = e.target.selectionEnd;
+            this.jsonInput = this.jsonInput.substring(0, start) + '  ' + this.jsonInput.substring(end);
+            this.$nextTick(() => {
+              e.target.selectionStart = e.target.selectionEnd = start + 2;
+            });
+          },
+
+          // ===== COPY OUTPUT =====
+          copyOutput() {
+            if (!this.jsonOutput) {
+              this.showToast('Tidak ada output untuk disalin!', false);
+              return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(this.jsonOutput).then(() => {
+                this.showToast('Output berhasil disalin!', true);
+              }).catch(() => {
+                this.fallbackCopy(this.jsonOutput);
+              });
+            } else {
+              this.fallbackCopy(this.jsonOutput);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.showToast('Output berhasil disalin!', true);
+            } catch (e) {
+              this.showToast('Gagal menyalin output', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== DOWNLOAD JSON =====
+          downloadJSON() {
+            if (!this.jsonOutput) {
+              this.showToast('Tidak ada output untuk di-download!', false);
+              return;
+            }
+
+            try {
+              const blob = new Blob([this.jsonOutput], { type: 'application/json' });
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = `formatted-${Date.now()}.json`;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(url);
+              this.showToast('File JSON berhasil di-download!', true);
+            } catch (e) {
+              this.showToast('Gagal download: ' + e.message, false);
+            }
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        },
+        mounted() {
+          // Auto-validate on load
+          this.autoValidate();
+          // Format initial JSON
+          this.formatJSON();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
