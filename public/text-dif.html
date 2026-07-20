@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Text Diff Checker · Bandingkan Teks Online</title>
+  <meta name="description" content="Bandingkan dua teks secara online dengan Text Diff Checker. Lihat perbedaan, penambahan, dan penghapusan teks secara visual dengan highlighting warna.">
+  <meta name="keywords" content="text diff, diff checker, perbandingan teks, text comparison, diff tool, compare text, text differ, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/text-diff.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Text Diff Checker · Bandingkan Teks Online">
+  <meta property="og:description" content="Bandingkan dua teks secara online. Lihat perbedaan, penambahan, dan penghapusan teks secara visual dengan highlighting warna.">
+  <meta property="og:url" content="https://tools.reboart.net/text-diff.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-text-diff.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Text Diff Checker · Bandingkan Teks Online">
+  <meta name="twitter:description" content="Bandingkan dua teks secara online. Lihat perbedaan secara visual.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-text-diff.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Text Diff Checker by ToolBox",
+    "description": "Bandingkan dua teks secara online. Lihat perbedaan, penambahan, dan penghapusan teks secara visual dengan highlighting warna.",
+    "url": "https://tools.reboart.net/text-diff.html",
+    "applicationCategory": "Developer",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-title i {
+      color: #1a4cff;
+    }
+
+    .card-subtitle {
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== INPUT SECTION ===== */
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input-group label {
+      font-weight: 700;
+      color: #1f2a44;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-group label .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .input-group label .badge.original {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .input-group label .badge.modified {
+      background: #fde8ec;
+      color: #721c24;
+    }
+
+    .input-group textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 14px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .input-group textarea.original:focus {
+      border-color: #27ae60;
+      box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.08);
+    }
+
+    .input-group textarea.modified:focus {
+      border-color: #e74c6f;
+      box-shadow: 0 0 0 4px rgba(231, 76, 111, 0.08);
+    }
+
+    .input-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-mini {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #f0f4fb;
+      color: #1f2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-mini:hover {
+      background: #e2e8f2;
+    }
+
+    .btn-mini.primary {
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .btn-mini.primary:hover {
+      background: #dce8ff;
+    }
+
+    /* ===== DIFF OPTIONS ===== */
+    .diff-options {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #f8faff;
+      border-radius: 14px;
+      border: 1px solid #edf2f9;
+    }
+
+    .diff-options label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1f2a44;
+      cursor: pointer;
+    }
+
+    .diff-options input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #1a4cff;
+      cursor: pointer;
+    }
+
+    .diff-options .separator {
+      color: #dce3ef;
+    }
+
+    /* ===== RESULT SECTION ===== */
+    .result-section {
+      border-top: 2px solid #edf2f9;
+      padding-top: 1.5rem;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .result-title {
+      font-weight: 700;
+      color: #0b1b3a;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .result-title .count {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5a6b8a;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-action.primary {
+      background: #1a4cff;
+      color: white;
+    }
+
+    .btn-action.primary:hover {
+      background: #0d3de0;
+      box-shadow: 0 4px 14px rgba(26, 76, 255, 0.25);
+    }
+
+    .btn-action.success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-action.success:hover {
+      background: #1e8449;
+    }
+
+    .btn-action.outline {
+      background: transparent;
+      border: 2px solid #e2e8f2;
+      color: #1f2a44;
+    }
+
+    .btn-action.outline:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+    }
+
+    /* ===== DIFF DISPLAY ===== */
+    .diff-container {
+      background: #fafcff;
+      border-radius: 14px;
+      border: 1px solid #edf2f9;
+      overflow: hidden;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .diff-line {
+      display: flex;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.8;
+      border-bottom: 1px solid #f0f4fb;
+      min-height: 30px;
+    }
+
+    .diff-line:last-child {
+      border-bottom: none;
+    }
+
+    .diff-line .line-number {
+      min-width: 50px;
+      padding: 0 12px;
+      background: #f0f4fb;
+      color: #8a9bb8;
+      text-align: right;
+      user-select: none;
+      font-size: 0.75rem;
+      border-right: 1px solid #e2e8f2;
+      flex-shrink: 0;
+    }
+
+    .diff-line .line-content {
+      flex: 1;
+      padding: 0 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+
+    /* Diff types */
+    .diff-line.unchanged .line-content {
+      color: #1f2a44;
+    }
+
+    .diff-line.added {
+      background: #d5f5e3;
+    }
+
+    .diff-line.added .line-number {
+      background: #a9dfbf;
+      color: #155724;
+    }
+
+    .diff-line.added .line-content {
+      color: #155724;
+    }
+
+    .diff-line.added .line-content::before {
+      content: '+ ';
+      color: #27ae60;
+      font-weight: 700;
+    }
+
+    .diff-line.removed {
+      background: #fde8ec;
+    }
+
+    .diff-line.removed .line-number {
+      background: #f5c6cb;
+      color: #721c24;
+    }
+
+    .diff-line.removed .line-content {
+      color: #721c24;
+    }
+
+    .diff-line.removed .line-content::before {
+      content: '- ';
+      color: #e74c6f;
+      font-weight: 700;
+    }
+
+    .diff-line.modified {
+      background: #fff3cd;
+    }
+
+    .diff-line.modified .line-number {
+      background: #f5e6b8;
+      color: #856404;
+    }
+
+    .diff-line.modified .line-content {
+      color: #856404;
+    }
+
+    .diff-line.modified .line-content::before {
+      content: '~ ';
+      color: #f39c12;
+      font-weight: 700;
+    }
+
+    /* Inline word diff highlighting */
+    .diff-word-added {
+      background: #a9dfbf;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    .diff-word-removed {
+      background: #f5c6cb;
+      padding: 0 2px;
+      border-radius: 2px;
+      text-decoration: line-through;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #8a9bb8;
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      color: #dce3ef;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+      color: #4a5b7a;
+      font-size: 1.1rem;
+    }
+
+    .empty-state p {
+      font-size: 0.9rem;
+    }
+
+    /* ===== STATS ===== */
+    .diff-stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 0.8rem 1rem;
+      background: #f8faff;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .diff-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f2a44;
+    }
+
+    .diff-stat .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .diff-stat .dot.added { background: #27ae60; }
+    .diff-stat .dot.removed { background: #e74c6f; }
+    .diff-stat .dot.modified { background: #f39c12; }
+    .diff-stat .dot.unchanged { background: #8a9bb8; }
+
+    .diff-stat .num {
+      font-weight: 700;
+      margin-left: 2px;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 850px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-card {
+        padding: 1.2rem;
+      }
+
+      .input-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .input-group textarea {
+        min-height: 150px;
+      }
+
+      .diff-options {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .diff-options .separator {
+        display: none;
+      }
+
+      .result-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .result-actions {
+        justify-content: stretch;
+      }
+
+      .result-actions .btn-action {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .diff-stats {
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .diff-line {
+        font-size: 0.78rem;
+      }
+
+      .diff-line .line-number {
+        min-width: 35px;
+        padding: 0 8px;
+        font-size: 0.7rem;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .diff-line {
+        font-size: 0.7rem;
+        flex-wrap: wrap;
+      }
+
+      .diff-line .line-number {
+        min-width: 30px;
+        padding: 0 6px;
+      }
+
+      .diff-line .line-content {
+        padding: 0 8px;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+
+    .diff-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .diff-container::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 8px;
+    }
+    .diff-container::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 8px;
+    }
+    .diff-container::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-columns"></i></div>
+          <div class="logo-text">
+            <h1>Text <span>Diff</span></h1>
+            <div class="subtitle">Bandingkan Teks Online</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Text Diff Checker - Bandingkan Teks Online</h1>
+
+      <div class="main-card">
+        <div class="card-title">
+          <i class="fas fa-code-compare"></i> Text Diff Checker
+        </div>
+        <p class="card-subtitle">Bandingkan dua teks dan lihat perbedaannya secara visual</p>
+
+        <!-- ===== INPUT SECTION ===== -->
+        <div class="input-grid">
+          <div class="input-group">
+            <label>
+              <i class="fas fa-file-alt" style="color: #27ae60;"></i> Teks Asli
+              <span class="badge original">Original</span>
+            </label>
+            <textarea 
+              v-model="textOriginal" 
+              @input="compareTexts"
+              class="original"
+              placeholder="Tempelkan teks asli di sini..."
+              spellcheck="false"
+              aria-label="Teks asli untuk dibandingkan"
+            ></textarea>
+            <div class="input-actions">
+              <button class="btn-mini primary" @click="loadSample('original')">
+                <i class="fas fa-file-import"></i> Contoh
+              </button>
+              <button class="btn-mini" @click="clearText('original')">
+                <i class="fas fa-times"></i> Hapus
+              </button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>
+              <i class="fas fa-file-alt" style="color: #e74c6f;"></i> Teks Baru
+              <span class="badge modified">Modified</span>
+            </label>
+            <textarea 
+              v-model="textModified" 
+              @input="compareTexts"
+              class="modified"
+              placeholder="Tempelkan teks baru di sini..."
+              spellcheck="false"
+              aria-label="Teks baru untuk dibandingkan"
+            ></textarea>
+            <div class="input-actions">
+              <button class="btn-mini primary" @click="loadSample('modified')">
+                <i class="fas fa-file-import"></i> Contoh
+              </button>
+              <button class="btn-mini" @click="clearText('modified')">
+                <i class="fas fa-times"></i> Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== DIFF OPTIONS ===== -->
+        <div class="diff-options">
+          <label>
+            <input type="checkbox" v-model="options.ignoreWhitespace" @change="compareTexts">
+            Abaikan spasi berlebih
+          </label>
+          <label>
+            <input type="checkbox" v-model="options.ignoreCase" @change="compareTexts">
+            Abaikan huruf besar/kecil
+          </label>
+          <span class="separator">|</span>
+          <label>
+            <input type="checkbox" v-model="options.showWordDiff" @change="compareTexts">
+            Tampilkan diff per kata
+          </label>
+          <label>
+            <input type="checkbox" v-model="options.showLineNumbers" @change="compareTexts">
+            Tampilkan nomor baris
+          </label>
+        </div>
+
+        <!-- ===== RESULT SECTION ===== -->
+        <div class="result-section">
+          <div class="result-header">
+            <div class="result-title">
+              <i class="fas fa-eye"></i> Hasil Perbandingan
+              <span class="count" v-if="diffStats.total > 0">
+                ({{ diffStats.total }} perubahan)
+              </span>
+            </div>
+            <div class="result-actions">
+              <button class="btn-action primary" @click="compareTexts" v-if="!diffResult.length">
+                <i class="fas fa-play"></i> Bandingkan
+              </button>
+              <button class="btn-action success" @click="copyResult" v-if="diffResult.length">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+              <button class="btn-action outline" @click="clearAll">
+                <i class="fas fa-trash-alt"></i> Hapus Semua
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== STATS ===== -->
+          <div class="diff-stats" v-if="diffResult.length">
+            <span class="diff-stat">
+              <span class="dot added"></span> Tambahan: <span class="num">{{ diffStats.added }}</span>
+            </span>
+            <span class="diff-stat">
+              <span class="dot removed"></span> Penghapusan: <span class="num">{{ diffStats.removed }}</span>
+            </span>
+            <span class="diff-stat">
+              <span class="dot modified"></span> Modifikasi: <span class="num">{{ diffStats.modified }}</span>
+            </span>
+            <span class="diff-stat">
+              <span class="dot unchanged"></span> Tidak berubah: <span class="num">{{ diffStats.unchanged }}</span>
+            </span>
+          </div>
+
+          <!-- ===== DIFF DISPLAY ===== -->
+          <div class="diff-container" v-if="diffResult.length">
+            <div class="diff-line" v-for="(line, index) in diffResult" :key="index"
+                 :class="line.type">
+              <span class="line-number" v-if="options.showLineNumbers">
+                {{ line.lineNumber || '' }}
+              </span>
+              <span class="line-content" v-html="highlightLine(line)"></span>
+            </div>
+          </div>
+
+          <!-- ===== EMPTY STATE ===== -->
+          <div class="empty-state" v-else>
+            <i class="fas fa-code-branch"></i>
+            <h3>Belum ada perbandingan</h3>
+            <p>Masukkan dua teks di atas dan klik "Bandingkan" atau tunggu otomatis</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/unit-converter.html">Converter</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess }" role="alert" aria-live="polite">
+    <i :class="toastSuccess ? 'fas fa-check-circle' : 'fas fa-info-circle'"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== SAMPLE TEXTS =====
+      const sampleOriginal = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+  Nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse.`;
+
+      const sampleModified = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse.`;
+
+      // ===== DIFF ENGINE =====
+      function computeDiff(text1, text2, options) {
+        let lines1 = text1.split('\n');
+        let lines2 = text2.split('\n');
+
+        // Apply options
+        if (options.ignoreWhitespace) {
+          lines1 = lines1.map(l => l.replace(/\s+/g, ' ').trim());
+          lines2 = lines2.map(l => l.replace(/\s+/g, ' ').trim());
+        }
+
+        if (options.ignoreCase) {
+          lines1 = lines1.map(l => l.toLowerCase());
+          lines2 = lines2.map(l => l.toLowerCase());
+        }
+
+        // Simple LCS-based diff
+        const result = [];
+        let i = 0, j = 0;
+
+        while (i < lines1.length || j < lines2.length) {
+          if (i < lines1.length && j < lines2.length && lines1[i] === lines2[j]) {
+            result.push({
+              type: 'unchanged',
+              content: lines1[i],
+              lineNumber: i + 1
+            });
+            i++;
+            j++;
+          } else if (i < lines1.length && (j >= lines2.length || !lines2.includes(lines1[i]))) {
+            result.push({
+              type: 'removed',
+              content: lines1[i],
+              lineNumber: i + 1
+            });
+            i++;
+          } else if (j < lines2.length && (i >= lines1.length || !lines1.includes(lines2[j]))) {
+            result.push({
+              type: 'added',
+              content: lines2[j],
+              lineNumber: j + 1
+            });
+            j++;
+          } else {
+            // Find matching lines ahead
+            let found = false;
+            for (let k = i + 1; k < lines1.length; k++) {
+              if (lines1[k] === lines2[j]) {
+                // Lines between are removed
+                while (i < k) {
+                  result.push({
+                    type: 'removed',
+                    content: lines1[i],
+                    lineNumber: i + 1
+                  });
+                  i++;
+                }
+                found = true;
+                break;
+              }
+            }
+            if (!found) {
+              // Lines between are added
+              while (j < lines2.length && !lines1.includes(lines2[j])) {
+                result.push({
+                  type: 'added',
+                  content: lines2[j],
+                  lineNumber: j + 1
+                });
+                j++;
+              }
+            }
+          }
+        }
+
+        // Mark modified lines (adjacent removed + added)
+        for (let k = 0; k < result.length - 1; k++) {
+          if (result[k].type === 'removed' && result[k + 1].type === 'added') {
+            result[k].type = 'modified';
+            result[k].content = result[k].content + ' → ' + result[k + 1].content;
+            result[k].modifiedContent = result[k + 1].content;
+            result.splice(k + 1, 1);
+          }
+        }
+
+        return result;
+      }
+
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          textOriginal: '',
+          textModified: '',
+          diffResult: [],
+          options: {
+            ignoreWhitespace: false,
+            ignoreCase: false,
+            showWordDiff: true,
+            showLineNumbers: true
+          },
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastTimer: null,
+          _debounceTimer: null
+        },
+        computed: {
+          diffStats() {
+            const stats = { added: 0, removed: 0, modified: 0, unchanged: 0, total: 0 };
+            this.diffResult.forEach(line => {
+              stats[line.type] = (stats[line.type] || 0) + 1;
+              stats.total++;
+            });
+            return stats;
+          }
+        },
+        methods: {
+          // ===== COMPARE TEXTS =====
+          compareTexts() {
+            clearTimeout(this._debounceTimer);
+            this._debounceTimer = setTimeout(() => {
+              if (!this.textOriginal.trim() && !this.textModified.trim()) {
+                this.diffResult = [];
+                return;
+              }
+
+              this.diffResult = computeDiff(
+                this.textOriginal,
+                this.textModified,
+                this.options
+              );
+            }, 300);
+          },
+
+          // ===== HIGHLIGHT LINE =====
+          highlightLine(line) {
+            if (!this.options.showWordDiff || line.type === 'unchanged') {
+              return line.content;
+            }
+
+            let content = line.content;
+            if (line.type === 'modified' && line.modifiedContent) {
+              // Highlight differences between old and new
+              const oldWords = content.split(' → ')[0].split(' ');
+              const newWords = line.modifiedContent.split(' ');
+              let result = '';
+              
+              // Simple word diff
+              const maxLen = Math.max(oldWords.length, newWords.length);
+              for (let i = 0; i < maxLen; i++) {
+                const oldWord = oldWords[i] || '';
+                const newWord = newWords[i] || '';
+                if (oldWord && newWord && oldWord === newWord) {
+                  result += oldWord + ' ';
+                } else if (oldWord && !newWord) {
+                  result += `<span class="diff-word-removed">${oldWord}</span> `;
+                } else if (!oldWord && newWord) {
+                  result += `<span class="diff-word-added">${newWord}</span> `;
+                } else {
+                  result += `<span class="diff-word-removed">${oldWord}</span>`;
+                  result += `<span class="diff-word-added">${newWord}</span> `;
+                }
+              }
+              return result.trim();
+            }
+
+            return content;
+          },
+
+          // ===== LOAD SAMPLE =====
+          loadSample(type) {
+            if (type === 'original') {
+              this.textOriginal = sampleOriginal;
+            } else {
+              this.textModified = sampleModified;
+            }
+            this.compareTexts();
+            this.showToast('Contoh teks dimuat!', true);
+          },
+
+          // ===== CLEAR TEXT =====
+          clearText(type) {
+            if (type === 'original') {
+              this.textOriginal = '';
+            } else {
+              this.textModified = '';
+            }
+            this.compareTexts();
+          },
+
+          // ===== CLEAR ALL =====
+          clearAll() {
+            this.textOriginal = '';
+            this.textModified = '';
+            this.diffResult = [];
+            this.showToast('Semua teks dihapus!', true);
+          },
+
+          // ===== COPY RESULT =====
+          copyResult() {
+            if (!this.diffResult.length) {
+              this.showToast('Tidak ada hasil untuk disalin!', false);
+              return;
+            }
+
+            let text = '=== PERBANDINGAN TEKS ===\n\n';
+            this.diffResult.forEach(line => {
+              const prefix = {
+                added: '[+] ',
+                removed: '[-] ',
+                modified: '[~] ',
+                unchanged: '[=] '
+              }[line.type] || '';
+              text += prefix + line.content + '\n';
+            });
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(() => {
+                this.showToast('Hasil berhasil disalin!', true);
+              }).catch(() => {
+                this.fallbackCopy(text);
+              });
+            } else {
+              this.fallbackCopy(text);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.showToast('Hasil berhasil disalin!', true);
+            } catch (e) {
+              this.showToast('Gagal menyalin hasil', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          }
+        },
+        watch: {
+          'options.ignoreWhitespace'() { this.compareTexts(); },
+          'options.ignoreCase'() { this.compareTexts(); },
+          'options.showWordDiff'() { this.compareTexts(); }
+        },
+        mounted() {
+          // Load sample on first visit
+          this.textOriginal = sampleOriginal;
+          this.textModified = sampleModified;
+          setTimeout(() => {
+            this.compareTexts();
+          }, 300);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

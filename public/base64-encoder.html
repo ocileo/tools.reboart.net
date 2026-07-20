@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Base64 Encoder · Encode & Decode Base64 Online</title>
+  <meta name="description" content="Encode dan decode Base64 online dengan mudah. Support teks, file, dan berbagai format encoding. Dilengkapi dengan opsi URL-safe dan line wrapping.">
+  <meta name="keywords" content="base64 encoder, base64 decoder, encode base64, decode base64, base64 online, base64 converter, base64 tools, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/base64-encoder.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Base64 Encoder · Encode & Decode Base64 Online">
+  <meta property="og:description" content="Encode dan decode Base64 online dengan mudah. Support teks, file, dan berbagai format encoding.">
+  <meta property="og:url" content="https://tools.reboart.net/base64-encoder.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-base64-encoder.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Base64 Encoder · Encode & Decode Base64 Online">
+  <meta name="twitter:description" content="Encode dan decode Base64 online dengan mudah.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-base64-encoder.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Base64 Encoder by ToolBox",
+    "description": "Encode dan decode Base64 online dengan mudah. Support teks, file, dan berbagai format encoding.",
+    "url": "https://tools.reboart.net/base64-encoder.html",
+    "applicationCategory": "Developer",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MODE SELECTOR ===== */
+    .mode-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .mode-btn {
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: 2px solid #e2e8f2;
+      background: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #4a5b7a;
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mode-btn:hover {
+      background: #f0f4fe;
+      border-color: #b0c4e8;
+    }
+
+    .mode-btn.active {
+      background: #1a4cff;
+      color: white;
+      border-color: #1a4cff;
+      box-shadow: 0 4px 14px rgba(26, 76, 255, 0.25);
+    }
+
+    .mode-btn .icon {
+      font-size: 0.9rem;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-title i {
+      color: #1a4cff;
+    }
+
+    .card-subtitle {
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== OPTIONS ===== */
+    .options-bar {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      background: #f8faff;
+      border-radius: 14px;
+      border: 1px solid #edf2f9;
+      margin-bottom: 1.5rem;
+    }
+
+    .options-bar label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1f2a44;
+      cursor: pointer;
+    }
+
+    .options-bar input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #1a4cff;
+      cursor: pointer;
+    }
+
+    .options-bar .separator {
+      color: #dce3ef;
+    }
+
+    /* ===== INPUT/OUTPUT ===== */
+    .io-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .io-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .io-group label {
+      font-weight: 700;
+      color: #1f2a44;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .io-group label .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .io-group label .badge.input {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .io-group label .badge.output {
+      background: #fde8ec;
+      color: #721c24;
+    }
+
+    .io-group textarea {
+      width: 100%;
+      min-height: 250px;
+      padding: 14px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .io-group textarea:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .io-group textarea.input:focus {
+      border-color: #27ae60;
+      box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.08);
+    }
+
+    .io-group textarea.output:focus {
+      border-color: #e74c6f;
+      box-shadow: 0 0 0 4px rgba(231, 76, 111, 0.08);
+    }
+
+    .io-group textarea.output {
+      background: #fafcff;
+    }
+
+    .io-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-mini {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #f0f4fb;
+      color: #1f2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-mini:hover {
+      background: #e2e8f2;
+    }
+
+    .btn-mini.primary {
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .btn-mini.primary:hover {
+      background: #dce8ff;
+    }
+
+    .btn-mini.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .btn-mini.success:hover {
+      background: #c3e6cb;
+    }
+
+    /* ===== FILE UPLOAD ===== */
+    .file-upload-area {
+      border: 2px dashed #e2e8f2;
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.25s;
+      background: #fafcff;
+    }
+
+    .file-upload-area:hover {
+      border-color: #1a4cff;
+      background: #f0f4fe;
+    }
+
+    .file-upload-area i {
+      font-size: 2rem;
+      color: #8a9bb8;
+      margin-bottom: 8px;
+    }
+
+    .file-upload-area p {
+      color: #5a6b8a;
+      font-size: 0.85rem;
+    }
+
+    .file-upload-area .filename {
+      font-weight: 600;
+      color: #1a4cff;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-action {
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.25s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+      min-width: 120px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      box-shadow: 0 4px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 24px rgba(26, 76, 255, 0.35);
+    }
+
+    .btn-success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #1e8449;
+      box-shadow: 0 4px 16px rgba(39, 174, 96, 0.3);
+    }
+
+    .btn-danger {
+      background: #e74c6f;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c0392b;
+      box-shadow: 0 4px 16px rgba(231, 76, 111, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #e2e8f2;
+      color: #1f2a44;
+    }
+
+    .btn-outline:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+    }
+
+    /* ===== STATS ===== */
+    .stats-bar {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 0.8rem 1rem;
+      background: #f8faff;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f2a44;
+    }
+
+    .stat-item .num {
+      font-weight: 700;
+      color: #0b1b3a;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    .toast.error {
+      background: #e74c6f;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 850px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-card {
+        padding: 1.2rem;
+      }
+
+      .io-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .io-group textarea {
+        min-height: 150px;
+      }
+
+      .mode-selector {
+        flex-direction: column;
+      }
+
+      .mode-btn {
+        justify-content: center;
+      }
+
+      .options-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .options-bar .separator {
+        display: none;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn-action {
+        width: 100%;
+      }
+
+      .stats-bar {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .io-actions {
+        flex-direction: column;
+      }
+
+      .io-actions .btn-mini {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .file-upload-area {
+        padding: 1rem;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="logo-text">
+            <h1>Base64 <span>Encoder</span></h1>
+            <div class="subtitle">Encode & Decode Base64 Online</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Base64 Encoder - Encode & Decode Base64 Online</h1>
+
+      <div class="main-card">
+        <div class="card-title">
+          <i class="fas fa-lock"></i> Base64 Encoder / Decoder
+        </div>
+        <p class="card-subtitle">Encode atau decode teks ke/dari format Base64 dengan mudah</p>
+
+        <!-- ===== MODE SELECTOR ===== -->
+        <div class="mode-selector">
+          <button class="mode-btn" :class="{ active: mode === 'encode' }" @click="setMode('encode')">
+            <span class="icon"><i class="fas fa-arrow-up"></i></span>
+            Encode
+          </button>
+          <button class="mode-btn" :class="{ active: mode === 'decode' }" @click="setMode('decode')">
+            <span class="icon"><i class="fas fa-arrow-down"></i></span>
+            Decode
+          </button>
+        </div>
+
+        <!-- ===== OPTIONS ===== -->
+        <div class="options-bar">
+          <label>
+            <input type="checkbox" v-model="options.urlSafe" @change="process">
+            URL-safe
+          </label>
+          <label>
+            <input type="checkbox" v-model="options.lineWrap" @change="process">
+            Line wrap (64 chars)
+          </label>
+          <label>
+            <input type="checkbox" v-model="options.showStats" @change="updateStats">
+            Tampilkan statistik
+          </label>
+        </div>
+
+        <!-- ===== INPUT/OUTPUT ===== -->
+        <div class="io-grid">
+          <div class="io-group">
+            <label>
+              <i class="fas fa-arrow-right" style="color: #27ae60;"></i>
+              {{ mode === 'encode' ? 'Input Teks' : 'Input Base64' }}
+              <span class="badge input">{{ mode === 'encode' ? 'Plain' : 'Base64' }}</span>
+            </label>
+            <textarea 
+              v-model="inputText" 
+              @input="process"
+              class="input"
+              :placeholder="mode === 'encode' ? 'Masukkan teks yang akan di-encode...' : 'Masukkan string Base64 yang akan di-decode...'"
+              spellcheck="false"
+              aria-label="Input"
+            ></textarea>
+            <div class="io-actions">
+              <button class="btn-mini primary" @click="loadSample">
+                <i class="fas fa-file-import"></i> Contoh
+              </button>
+              <button class="btn-mini" @click="clearInput">
+                <i class="fas fa-times"></i> Hapus
+              </button>
+              <button class="btn-mini success" @click="uploadFile">
+                <i class="fas fa-upload"></i> Upload File
+              </button>
+              <input type="file" ref="fileInput" @change="handleFileUpload" style="display:none" accept=".txt,.json,.xml,.html,.css,.js">
+            </div>
+          </div>
+
+          <div class="io-group">
+            <label>
+              <i class="fas fa-arrow-left" style="color: #e74c6f;"></i>
+              {{ mode === 'encode' ? 'Output Base64' : 'Output Teks' }}
+              <span class="badge output">{{ mode === 'encode' ? 'Base64' : 'Plain' }}</span>
+            </label>
+            <textarea 
+              v-model="outputText" 
+              readonly
+              class="output"
+              :placeholder="mode === 'encode' ? 'Hasil encode Base64 akan muncul di sini...' : 'Hasil decode akan muncul di sini...'"
+              spellcheck="false"
+              aria-label="Output"
+            ></textarea>
+            <div class="io-actions">
+              <button class="btn-mini primary" @click="copyOutput">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+              <button class="btn-mini success" @click="downloadOutput">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== BUTTONS ===== -->
+        <div class="btn-group">
+          <button class="btn-action btn-primary" @click="process">
+            <i class="fas fa-sync-alt"></i> {{ mode === 'encode' ? 'Encode' : 'Decode' }}
+          </button>
+          <button class="btn-action btn-success" @click="swap">
+            <i class="fas fa-exchange-alt"></i> Swap
+          </button>
+          <button class="btn-action btn-danger" @click="clearAll">
+            <i class="fas fa-trash-alt"></i> Hapus Semua
+          </button>
+        </div>
+
+        <!-- ===== STATS ===== -->
+        <div class="stats-bar" v-if="options.showStats && outputText">
+          <span class="stat-item">
+            <i class="fas fa-ruler"></i> Panjang: <span class="num">{{ inputLength }}</span>
+            <span style="color:#8a9bb8;margin:0 4px;">→</span>
+            <span class="num">{{ outputLength }}</span>
+          </span>
+          <span class="stat-item" v-if="mode === 'encode'">
+            <i class="fas fa-arrow-up"></i> Rasio: <span class="num">{{ ratio }}%</span>
+          </span>
+          <span class="stat-item">
+            <i class="fas fa-check-circle" style="color:#27ae60;"></i> Status: <span class="num" style="color:#27ae60;">Valid</span>
+          </span>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/json-formatter.html">JSON Formatter</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== SAMPLE TEXTS =====
+      const sampleText = 'Selamat datang di ToolBox!\nIni adalah contoh teks untuk di-encode ke Base64.\nBase64 digunakan untuk mengencode data biner ke format teks.';
+
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          mode: 'encode',
+          inputText: '',
+          outputText: '',
+          options: {
+            urlSafe: false,
+            lineWrap: false,
+            showStats: true
+          },
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null,
+          _debounceTimer: null
+        },
+        computed: {
+          inputLength() {
+            return this.inputText.length;
+          },
+          outputLength() {
+            return this.outputText.length;
+          },
+          ratio() {
+            if (!this.inputLength) return 0;
+            return Math.round((this.outputLength / this.inputLength) * 100);
+          }
+        },
+        methods: {
+          // ===== SET MODE =====
+          setMode(mode) {
+            this.mode = mode;
+            this.inputText = '';
+            this.outputText = '';
+          },
+
+          // ===== PROCESS =====
+          process() {
+            clearTimeout(this._debounceTimer);
+            this._debounceTimer = setTimeout(() => {
+              if (!this.inputText.trim()) {
+                this.outputText = '';
+                return;
+              }
+
+              try {
+                if (this.mode === 'encode') {
+                  this.outputText = this.encodeBase64(this.inputText);
+                } else {
+                  this.outputText = this.decodeBase64(this.inputText);
+                }
+              } catch (e) {
+                this.outputText = 'Error: ' + e.message;
+                this.showToast('Error: ' + e.message, false);
+              }
+            }, 300);
+          },
+
+          // ===== ENCODE BASE64 =====
+          encodeBase64(text) {
+            let encoded = btoa(unescape(encodeURIComponent(text)));
+            
+            if (this.options.urlSafe) {
+              encoded = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+            }
+            
+            if (this.options.lineWrap) {
+              encoded = encoded.replace(/(.{64})/g, '$1\n');
+            }
+            
+            return encoded;
+          },
+
+          // ===== DECODE BASE64 =====
+          decodeBase64(text) {
+            let decoded = text.trim();
+            
+            if (this.options.urlSafe) {
+              decoded = decoded.replace(/-/g, '+').replace(/_/g, '/');
+              // Add padding if needed
+              while (decoded.length % 4) {
+                decoded += '=';
+              }
+            }
+            
+            if (this.options.lineWrap) {
+              decoded = decoded.replace(/\n/g, '');
+            }
+            
+            return decodeURIComponent(escape(atob(decoded)));
+          },
+
+          // ===== SWAP =====
+          swap() {
+            this.inputText = this.outputText;
+            this.outputText = '';
+            this.process();
+            this.showToast('Input dan output ditukar!', true);
+          },
+
+          // ===== LOAD SAMPLE =====
+          loadSample() {
+            this.inputText = sampleText;
+            this.process();
+            this.showToast('Contoh teks dimuat!', true);
+          },
+
+          // ===== CLEAR INPUT =====
+          clearInput() {
+            this.inputText = '';
+            this.outputText = '';
+          },
+
+          // ===== CLEAR ALL =====
+          clearAll() {
+            this.inputText = '';
+            this.outputText = '';
+            this.showToast('Semua data dihapus!', true);
+          },
+
+          // ===== COPY OUTPUT =====
+          copyOutput() {
+            if (!this.outputText) {
+              this.showToast('Tidak ada output untuk disalin!', false);
+              return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(this.outputText).then(() => {
+                this.showToast('Output berhasil disalin!', true);
+              }).catch(() => {
+                this.fallbackCopy(this.outputText);
+              });
+            } else {
+              this.fallbackCopy(this.outputText);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.showToast('Output berhasil disalin!', true);
+            } catch (e) {
+              this.showToast('Gagal menyalin output', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== DOWNLOAD OUTPUT =====
+          downloadOutput() {
+            if (!this.outputText) {
+              this.showToast('Tidak ada output untuk di-download!', false);
+              return;
+            }
+
+            const ext = this.mode === 'encode' ? '.b64' : '.txt';
+            const blob = new Blob([this.outputText], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `base64-${Date.now()}${ext}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            this.showToast('File berhasil di-download!', true);
+          },
+
+          // ===== UPLOAD FILE =====
+          uploadFile() {
+            this.$refs.fileInput.click();
+          },
+
+          handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.inputText = e.target.result;
+              this.process();
+              this.showToast(`File "${file.name}" berhasil diupload!`, true);
+            };
+            reader.onerror = () => {
+              this.showToast('Gagal membaca file!', false);
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+          },
+
+          // ===== UPDATE STATS =====
+          updateStats() {
+            // Just trigger reactivity
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        },
+        watch: {
+          'options.urlSafe'() { this.process(); },
+          'options.lineWrap'() { this.process(); }
+        },
+        mounted() {
+          // Load sample on first visit
+          this.inputText = sampleText;
+          setTimeout(() => {
+            this.process();
+          }, 300);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Hash Generator · Buat Hash MD5, SHA-1, SHA-256 Online</title>
+  <meta name="description" content="Generate hash MD5, SHA-1, SHA-256, SHA-512, dan lainnya secara online. Dilengkapi dengan perbandingan hash dan validasi integritas file.">
+  <meta name="keywords" content="hash generator, md5 generator, sha1 generator, sha256 generator, sha512 generator, hash online, generate hash, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/hash-generator.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hash Generator · Buat Hash MD5, SHA-1, SHA-256 Online">
+  <meta property="og:description" content="Generate hash MD5, SHA-1, SHA-256, SHA-512, dan lainnya secara online.">
+  <meta property="og:url" content="https://tools.reboart.net/hash-generator.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-hash-generator.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hash Generator · Buat Hash MD5, SHA-1, SHA-256 Online">
+  <meta name="twitter:description" content="Generate hash MD5, SHA-1, SHA-256, SHA-512, dan lainnya secara online.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-hash-generator.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hash Generator by ToolBox",
+    "description": "Generate hash MD5, SHA-1, SHA-256, SHA-512, dan lainnya secara online. Dilengkapi dengan perbandingan hash dan validasi integritas.",
+    "url": "https://tools.reboart.net/hash-generator.html",
+    "applicationCategory": "Security",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔑</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔑</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- ===== CRYPTO-JS LIBRARY ===== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MAIN CARD ===== */
+    .main-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-title i {
+      color: #1a4cff;
+    }
+
+    .card-subtitle {
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== ALGORITHM SELECTOR ===== */
+    .algo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .algo-btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f2;
+      background: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #4a5b7a;
+      cursor: pointer;
+      transition: 0.25s;
+      text-align: center;
+    }
+
+    .algo-btn:hover {
+      background: #f0f4fe;
+      border-color: #b0c4e8;
+    }
+
+    .algo-btn.active {
+      background: #1a4cff;
+      color: white;
+      border-color: #1a4cff;
+      box-shadow: 0 4px 14px rgba(26, 76, 255, 0.25);
+    }
+
+    .algo-btn .badge {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 400;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    /* ===== INPUT SECTION ===== */
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-section textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 14px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+      resize: vertical;
+      line-height: 1.8;
+    }
+
+    .input-section textarea:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .input-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-mini {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #f0f4fb;
+      color: #1f2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-mini:hover {
+      background: #e2e8f2;
+    }
+
+    .btn-mini.primary {
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .btn-mini.primary:hover {
+      background: #dce8ff;
+    }
+
+    .btn-mini.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .btn-mini.success:hover {
+      background: #c3e6cb;
+    }
+
+    /* ===== RESULT SECTION ===== */
+    .result-section {
+      border-top: 2px solid #edf2f9;
+      padding-top: 1.5rem;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .result-title {
+      font-weight: 700;
+      color: #0b1b3a;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-action.primary {
+      background: #1a4cff;
+      color: white;
+    }
+
+    .btn-action.primary:hover {
+      background: #0d3de0;
+      box-shadow: 0 4px 14px rgba(26, 76, 255, 0.25);
+    }
+
+    .btn-action.success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-action.success:hover {
+      background: #1e8449;
+    }
+
+    .btn-action.outline {
+      background: transparent;
+      border: 2px solid #e2e8f2;
+      color: #1f2a44;
+    }
+
+    .btn-action.outline:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+    }
+
+    /* ===== HASH DISPLAY ===== */
+    .hash-display {
+      background: #f8faff;
+      border-radius: 14px;
+      border: 1px solid #edf2f9;
+      padding: 16px 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #0b1b3a;
+      word-break: break-all;
+      min-height: 60px;
+      line-height: 1.6;
+    }
+
+    .hash-display .placeholder {
+      color: #bcc9e0;
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 400;
+    }
+
+    /* ===== COMPARE SECTION ===== */
+    .compare-section {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .compare-title {
+      font-weight: 700;
+      color: #1f2a44;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .compare-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .compare-item .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #8a9bb8;
+      letter-spacing: 0.5px;
+    }
+
+    .compare-item .value {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #1f2a44;
+      padding: 8px 12px;
+      background: #fafcff;
+      border-radius: 8px;
+      border: 1px solid #edf2f9;
+      word-break: break-all;
+      min-height: 36px;
+    }
+
+    .compare-item .value.match {
+      border-color: #27ae60;
+      background: #f0fff4;
+    }
+
+    .compare-item .value.mismatch {
+      border-color: #e74c6f;
+      background: #fff5f5;
+    }
+
+    .compare-status {
+      grid-column: span 2;
+      text-align: center;
+      padding: 8px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .compare-status.match {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .compare-status.mismatch {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    .toast.error {
+      background: #e74c6f;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-card {
+        padding: 1.2rem;
+      }
+
+      .algo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-status {
+        grid-column: span 1;
+      }
+
+      .result-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .result-actions {
+        justify-content: stretch;
+      }
+
+      .result-actions .btn-action {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .hash-display {
+        font-size: 0.78rem;
+        padding: 12px 14px;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .algo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .input-actions {
+        flex-direction: column;
+      }
+
+      .input-actions .btn-mini {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-fingerprint"></i></div>
+          <div class="logo-text">
+            <h1>Hash <span>Generator</span></h1>
+            <div class="subtitle">Buat Hash MD5, SHA-1, SHA-256 & Lainnya</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Hash Generator - Buat Hash MD5, SHA-1, SHA-256 Online</h1>
+
+      <div class="main-card">
+        <div class="card-title">
+          <i class="fas fa-lock"></i> Hash Generator
+        </div>
+        <p class="card-subtitle">Generate hash dari teks menggunakan berbagai algoritma kriptografi</p>
+
+        <!-- ===== ALGORITHM SELECTOR ===== -->
+        <div class="algo-grid" role="radiogroup" aria-label="Pilih algoritma hash">
+          <button class="algo-btn" v-for="algo in algorithms" :key="algo.id"
+                  :class="{ active: selectedAlgorithm === algo.id }"
+                  @click="selectAlgorithm(algo.id)"
+                  role="radio"
+                  :aria-checked="selectedAlgorithm === algo.id">
+            {{ algo.name }}
+            <span class="badge">{{ algo.bits }} bits</span>
+          </button>
+        </div>
+
+        <!-- ===== INPUT SECTION ===== -->
+        <div class="input-section">
+          <textarea 
+            v-model="inputText" 
+            @input="generateHash"
+            placeholder="Masukkan teks untuk di-hash..."
+            spellcheck="false"
+            aria-label="Input teks untuk di-hash"
+          ></textarea>
+          <div class="input-actions">
+            <button class="btn-mini primary" @click="loadSample">
+              <i class="fas fa-file-import"></i> Contoh
+            </button>
+            <button class="btn-mini" @click="clearInput">
+              <i class="fas fa-times"></i> Hapus
+            </button>
+            <button class="btn-mini success" @click="uploadFile">
+              <i class="fas fa-upload"></i> Upload File
+            </button>
+            <input type="file" ref="fileInput" @change="handleFileUpload" style="display:none" accept=".txt,.json,.xml,.html,.css,.js">
+          </div>
+        </div>
+
+        <!-- ===== RESULT SECTION ===== -->
+        <div class="result-section">
+          <div class="result-header">
+            <div class="result-title">
+              <i class="fas fa-hashtag" style="color: #1a4cff;"></i>
+              Hasil Hash
+              <span style="font-size:0.7rem;color:#8a9bb8;font-weight:400;font-family:'Courier New',monospace;">
+                {{ currentAlgorithm.name }}
+              </span>
+            </div>
+            <div class="result-actions">
+              <button class="btn-action primary" @click="copyHash">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+              <button class="btn-action outline" @click="generateHash">
+                <i class="fas fa-sync-alt"></i> Generate
+              </button>
+            </div>
+          </div>
+
+          <div class="hash-display">
+            <span v-if="!currentHash" class="placeholder">
+              <i class="fas fa-info-circle"></i> Masukkan teks atau klik "Contoh" untuk mulai
+            </span>
+            <span v-else>{{ currentHash }}</span>
+          </div>
+        </div>
+
+        <!-- ===== COMPARE SECTION ===== -->
+        <div class="compare-section" v-if="compareInput">
+          <div class="compare-title">
+            <i class="fas fa-code-compare" style="color: #f39c12;"></i>
+            Verifikasi Hash
+            <span style="font-size:0.7rem;color:#8a9bb8;font-weight:400;margin-left:4px;">
+              (Bandingkan dengan hash lain)
+            </span>
+          </div>
+          <div class="compare-grid">
+            <div class="compare-item">
+              <span class="label">Hash Saat Ini</span>
+              <div class="value">{{ currentHash || '-' }}</div>
+            </div>
+            <div class="compare-item">
+              <span class="label">Hash Pembanding</span>
+              <input type="text" v-model="compareInput" @input="compareHash" 
+                     placeholder="Tempelkan hash untuk dibandingkan..."
+                     style="width:100%;padding:8px 12px;border:2px solid #e2e8f2;border-radius:8px;font-family:'Courier New',monospace;font-size:0.8rem;background:#fafcff;color:#1f2a44;">
+            </div>
+            <div class="compare-status" :class="compareStatus">
+              {{ compareMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/word-counter.html">Word Counter</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== ALGORITHMS =====
+      const algorithms = [
+        { id: 'md5', name: 'MD5', bits: 128 },
+        { id: 'sha1', name: 'SHA-1', bits: 160 },
+        { id: 'sha256', name: 'SHA-256', bits: 256 },
+        { id: 'sha384', name: 'SHA-384', bits: 384 },
+        { id: 'sha512', name: 'SHA-512', bits: 512 },
+        { id: 'sha3_256', name: 'SHA3-256', bits: 256 },
+        { id: 'sha3_512', name: 'SHA3-512', bits: 512 },
+        { id: 'ripemd160', name: 'RIPEMD-160', bits: 160 }
+      ];
+
+      // ===== SAMPLE TEXT =====
+      const sampleText = `Selamat datang di ToolBox!
+    Hash Generator adalah alat untuk membuat hash dari teks.
+    Hash digunakan untuk verifikasi integritas data dan keamanan.`;
+
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          algorithms: algorithms,
+          selectedAlgorithm: 'md5',
+          inputText: '',
+          currentHash: '',
+          compareInput: '',
+          compareStatus: '',
+          compareMessage: '',
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null,
+          _debounceTimer: null
+        },
+        computed: {
+          currentAlgorithm() {
+            return this.algorithms.find(a => a.id === this.selectedAlgorithm) || this.algorithms[0];
+          }
+        },
+        methods: {
+          // ===== SELECT ALGORITHM =====
+          selectAlgorithm(id) {
+            this.selectedAlgorithm = id;
+            if (this.inputText.trim()) {
+              this.generateHash();
+            }
+          },
+
+          // ===== GENERATE HASH =====
+          generateHash() {
+            clearTimeout(this._debounceTimer);
+            this._debounceTimer = setTimeout(() => {
+              if (!this.inputText.trim()) {
+                this.currentHash = '';
+                return;
+              }
+
+              try {
+                const text = this.inputText;
+                let hash = '';
+
+                switch (this.selectedAlgorithm) {
+                  case 'md5':
+                    hash = CryptoJS.MD5(text).toString();
+                    break;
+                  case 'sha1':
+                    hash = CryptoJS.SHA1(text).toString();
+                    break;
+                  case 'sha256':
+                    hash = CryptoJS.SHA256(text).toString();
+                    break;
+                  case 'sha384':
+                    hash = CryptoJS.SHA384(text).toString();
+                    break;
+                  case 'sha512':
+                    hash = CryptoJS.SHA512(text).toString();
+                    break;
+                  case 'sha3_256':
+                    hash = CryptoJS.SHA3(text, { outputLength: 256 }).toString();
+                    break;
+                  case 'sha3_512':
+                    hash = CryptoJS.SHA3(text, { outputLength: 512 }).toString();
+                    break;
+                  case 'ripemd160':
+                    hash = CryptoJS.RIPEMD160(text).toString();
+                    break;
+                  default:
+                    hash = CryptoJS.MD5(text).toString();
+                }
+
+                this.currentHash = hash;
+                this.compareHash();
+              } catch (e) {
+                this.currentHash = 'Error: ' + e.message;
+                this.showToast('Error generating hash: ' + e.message, false);
+              }
+            }, 300);
+          },
+
+          // ===== COMPARE HASH =====
+          compareHash() {
+            if (!this.compareInput || !this.currentHash) {
+              this.compareStatus = '';
+              this.compareMessage = '';
+              return;
+            }
+
+            const isMatch = this.compareInput.trim() === this.currentHash;
+            this.compareStatus = isMatch ? 'match' : 'mismatch';
+            this.compareMessage = isMatch ? '✓ Hash cocok!' : '✗ Hash tidak cocok!';
+          },
+
+          // ===== LOAD SAMPLE =====
+          loadSample() {
+            this.inputText = sampleText;
+            this.generateHash();
+            this.showToast('Contoh teks dimuat!', true);
+          },
+
+          // ===== CLEAR INPUT =====
+          clearInput() {
+            this.inputText = '';
+            this.currentHash = '';
+            this.compareInput = '';
+            this.compareStatus = '';
+            this.compareMessage = '';
+          },
+
+          // ===== COPY HASH =====
+          copyHash() {
+            if (!this.currentHash) {
+              this.showToast('Tidak ada hash untuk disalin!', false);
+              return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(this.currentHash).then(() => {
+                this.showToast('Hash berhasil disalin!', true);
+              }).catch(() => {
+                this.fallbackCopy(this.currentHash);
+              });
+            } else {
+              this.fallbackCopy(this.currentHash);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.showToast('Hash berhasil disalin!', true);
+            } catch (e) {
+              this.showToast('Gagal menyalin hash', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== UPLOAD FILE =====
+          uploadFile() {
+            this.$refs.fileInput.click();
+          },
+
+          handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.inputText = e.target.result;
+              this.generateHash();
+              this.showToast(`File "${file.name}" berhasil diupload!`, true);
+            };
+            reader.onerror = () => {
+              this.showToast('Gagal membaca file!', false);
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        },
+        watch: {
+          inputText() {
+            this.generateHash();
+          }
+        },
+        mounted() {
+          // Load sample on first visit
+          this.inputText = sampleText;
+          setTimeout(() => {
+            this.generateHash();
+          }, 300);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

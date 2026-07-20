@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Word Counter · Hitung Kata, Karakter, & Paragraf Online</title>
+  <meta name="description" content="Hitung jumlah kata, karakter, kalimat, dan paragraf secara online. Dilengkapi dengan analisis teks, kepadatan kata, dan statistik lengkap.">
+  <meta name="keywords" content="word counter, hitung kata, character counter, hitung karakter, text analyzer, paragraph counter, hitung paragraf, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/word-counter.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Word Counter · Hitung Kata, Karakter, & Paragraf Online">
+  <meta property="og:description" content="Hitung jumlah kata, karakter, kalimat, dan paragraf secara online. Dilengkapi dengan analisis teks lengkap.">
+  <meta property="og:url" content="https://tools.reboart.net/word-counter.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-word-counter.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word Counter · Hitung Kata, Karakter, & Paragraf Online">
+  <meta name="twitter:description" content="Hitung jumlah kata, karakter, kalimat, dan paragraf secara online.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-word-counter.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word Counter by ToolBox",
+    "description": "Hitung jumlah kata, karakter, kalimat, dan paragraf secara online. Dilengkapi dengan analisis teks dan statistik lengkap.",
+    "url": "https://tools.reboart.net/word-counter.html",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ===== TEXT INPUT PANEL ===== */
+    .input-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title i {
+      color: #1a4cff;
+    }
+
+    .panel-subtitle {
+      color: #5a6b8a;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 350px;
+      padding: 16px;
+      border: 2px solid #e2e8f2;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+      resize: vertical;
+      line-height: 1.8;
+    }
+
+    .text-input:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .input-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .btn-mini {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #f0f4fb;
+      color: #1f2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-mini:hover {
+      background: #e2e8f2;
+    }
+
+    .btn-mini.primary {
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .btn-mini.primary:hover {
+      background: #dce8ff;
+    }
+
+    /* ===== STATS PANEL ===== */
+    .stats-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .stat-card {
+      background: #f8faff;
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-align: center;
+      border: 1px solid #edf2f9;
+      transition: 0.2s;
+    }
+
+    .stat-card:hover {
+      border-color: #b0c4e8;
+    }
+
+    .stat-card .number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0b1b3a;
+      line-height: 1.2;
+    }
+
+    .stat-card .number.primary { color: #1a4cff; }
+    .stat-card .number.green { color: #27ae60; }
+    .stat-card .number.orange { color: #f39c12; }
+    .stat-card .number.purple { color: #6c5ce7; }
+    .stat-card .number.red { color: #e74c6f; }
+    .stat-card .number.teal { color: #1abc9c; }
+
+    .stat-card .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #8a9bb8;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .stat-card .icon {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    /* ===== DETAILED STATS ===== */
+    .detail-section {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .detail-title {
+      font-weight: 700;
+      color: #1f2a44;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f4fb;
+      font-size: 0.85rem;
+      color: #1f2a44;
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-item .value {
+      font-weight: 700;
+      color: #0b1b3a;
+    }
+
+    /* ===== WORD DENSITY ===== */
+    .density-section {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .density-title {
+      font-weight: 700;
+      color: #1f2a44;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .density-list {
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .density-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      font-size: 0.82rem;
+      color: #1f2a44;
+      border-bottom: 1px solid #f5f7fa;
+    }
+
+    .density-item .word {
+      font-weight: 600;
+    }
+
+    .density-item .count {
+      background: #eef4ff;
+      padding: 1px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #1a4cff;
+    }
+
+    .density-bar {
+      flex: 1;
+      height: 4px;
+      background: #edf2f9;
+      border-radius: 2px;
+      margin: 0 10px;
+      overflow: hidden;
+    }
+
+    .density-bar .fill {
+      height: 100%;
+      background: #1a4cff;
+      border-radius: 2px;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 850px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .text-input {
+        min-height: 200px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-card .number {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .input-actions {
+        flex-direction: column;
+      }
+
+      .input-actions .btn-mini {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+
+    .density-list::-webkit-scrollbar {
+      width: 4px;
+    }
+    .density-list::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-file-alt"></i></div>
+          <div class="logo-text">
+            <h1>Word <span>Counter</span></h1>
+            <div class="subtitle">Hitung Kata & Karakter Online</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Word Counter - Hitung Kata, Karakter, Kalimat & Paragraf Online</h1>
+
+      <div class="main-grid">
+        <!-- ===== INPUT PANEL ===== -->
+        <section class="input-panel" aria-label="Input teks">
+          <div class="panel-title">
+            <i class="fas fa-pencil-alt"></i> Masukkan Teks
+          </div>
+          <p class="panel-subtitle">Tempelkan atau tulis teks untuk dianalisis</p>
+
+          <textarea 
+            class="text-input" 
+            v-model="text" 
+            @input="analyze"
+            placeholder="Masukkan atau tempelkan teks di sini untuk menghitung kata, karakter, kalimat, dan paragraf..."
+            spellcheck="true"
+            aria-label="Input teks untuk dianalisis"
+          ></textarea>
+
+          <div class="input-actions">
+            <button class="btn-mini primary" @click="loadSample">
+              <i class="fas fa-file-import"></i> Contoh Teks
+            </button>
+            <button class="btn-mini" @click="clearText">
+              <i class="fas fa-times"></i> Hapus
+            </button>
+            <button class="btn-mini" @click="copyText">
+              <i class="fas fa-copy"></i> Salin Teks
+            </button>
+          </div>
+        </section>
+
+        <!-- ===== STATS PANEL ===== -->
+        <aside class="stats-panel" aria-label="Statistik teks">
+          <div class="panel-title">
+            <i class="fas fa-chart-bar"></i> Statistik
+          </div>
+          <p class="panel-subtitle" v-if="!text.trim()">Belum ada teks untuk dianalisis</p>
+          <p class="panel-subtitle" v-else>Hasil analisis teks Anda</p>
+
+          <!-- ===== MAIN STATS ===== -->
+          <div class="stats-grid" v-if="text.trim()">
+            <div class="stat-card">
+              <span class="icon">📝</span>
+              <div class="number primary">{{ stats.words }}</div>
+              <div class="label">Kata</div>
+            </div>
+            <div class="stat-card">
+              <span class="icon">🔤</span>
+              <div class="number green">{{ stats.characters }}</div>
+              <div class="label">Karakter</div>
+            </div>
+            <div class="stat-card">
+              <span class="icon">📄</span>
+              <div class="number orange">{{ stats.sentences }}</div>
+              <div class="label">Kalimat</div>
+            </div>
+            <div class="stat-card">
+              <span class="icon">📃</span>
+              <div class="number purple">{{ stats.paragraphs }}</div>
+              <div class="label">Paragraf</div>
+            </div>
+            <div class="stat-card">
+              <span class="icon">📏</span>
+              <div class="number teal">{{ stats.avgWordLength }}</div>
+              <div class="label">Rata-rata Kata</div>
+            </div>
+            <div class="stat-card">
+              <span class="icon">⏱️</span>
+              <div class="number red">{{ stats.readTime }}</div>
+              <div class="label">Waktu Baca (menit)</div>
+            </div>
+          </div>
+
+          <!-- ===== DETAILED STATS ===== -->
+          <div class="detail-section" v-if="text.trim()">
+            <div class="detail-title">
+              <i class="fas fa-list-ul" style="color: #1a4cff;"></i> Detail
+            </div>
+            <div class="detail-item">
+              <span>Karakter (tanpa spasi)</span>
+              <span class="value">{{ stats.charactersNoSpace }}</span>
+            </div>
+            <div class="detail-item">
+              <span>Kata unik</span>
+              <span class="value">{{ stats.uniqueWords }}</span>
+            </div>
+            <div class="detail-item">
+              <span>Kata terpanjang</span>
+              <span class="value">{{ stats.longestWord || '-' }}</span>
+            </div>
+            <div class="detail-item">
+              <span>Rata-rata kata/kalimat</span>
+              <span class="value">{{ stats.avgWordsPerSentence }}</span>
+            </div>
+            <div class="detail-item">
+              <span>Jumlah baris</span>
+              <span class="value">{{ stats.lines }}</span>
+            </div>
+          </div>
+
+          <!-- ===== WORD DENSITY ===== -->
+          <div class="density-section" v-if="text.trim() && stats.wordFrequency.length">
+            <div class="density-title">
+              <span><i class="fas fa-tags" style="color: #f39c12;"></i> Kepadatan Kata</span>
+              <span style="font-size:0.7rem;color:#8a9bb8;font-weight:400;">Top {{ stats.wordFrequency.length }}</span>
+            </div>
+            <div class="density-list">
+              <div class="density-item" v-for="item in stats.wordFrequency" :key="item.word">
+                <span class="word">{{ item.word }}</span>
+                <div class="density-bar">
+                  <div class="fill" :style="{ width: (item.count / stats.wordFrequency[0].count * 100) + '%' }"></div>
+                </div>
+                <span class="count">{{ item.count }}</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/base64-encoder.html">Base64</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess }" role="alert" aria-live="polite">
+    <i :class="toastSuccess ? 'fas fa-check-circle' : 'fas fa-info-circle'"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== SAMPLE TEXT =====
+      const sampleText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          text: '',
+          stats: {
+            words: 0,
+            characters: 0,
+            charactersNoSpace: 0,
+            sentences: 0,
+            paragraphs: 0,
+            avgWordLength: 0,
+            readTime: 0,
+            uniqueWords: 0,
+            longestWord: '',
+            avgWordsPerSentence: 0,
+            lines: 0,
+            wordFrequency: []
+          },
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastTimer: null,
+          _debounceTimer: null
+        },
+        methods: {
+          // ===== ANALYZE TEXT =====
+          analyze() {
+            clearTimeout(this._debounceTimer);
+            this._debounceTimer = setTimeout(() => {
+              const text = this.text;
+              
+              if (!text.trim()) {
+                this.resetStats();
+                return;
+              }
+
+              // Words
+              const words = text.match(/[a-zA-Z0-9_\-]+/g) || [];
+              const wordCount = words.length;
+
+              // Characters
+              const charCount = text.length;
+              const charNoSpace = text.replace(/\s/g, '').length;
+
+              // Sentences (split by . ! ?)
+              const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+              const sentenceCount = sentences.length || (text.trim() ? 1 : 0);
+
+              // Paragraphs (split by double newline)
+              const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim());
+              const paragraphCount = paragraphs.length || (text.trim() ? 1 : 0);
+
+              // Lines
+              const lines = text.split('\n').filter(l => l.trim());
+              const lineCount = lines.length;
+
+              // Average word length
+              const avgLength = wordCount > 0 ? (words.reduce((sum, w) => sum + w.length, 0) / wordCount) : 0;
+
+              // Read time (average 200 words per minute)
+              const readTime = Math.ceil(wordCount / 200);
+
+              // Unique words
+              const uniqueWords = new Set(words.map(w => w.toLowerCase()));
+              const uniqueCount = uniqueWords.size;
+
+              // Longest word
+              const longest = words.length > 0 ? words.reduce((a, b) => a.length >= b.length ? a : b) : '';
+
+              // Average words per sentence
+              const avgWordsPerSentence = sentenceCount > 0 ? (wordCount / sentenceCount) : 0;
+
+              // Word frequency (top 15)
+              const freqMap = {};
+              words.forEach(w => {
+                const key = w.toLowerCase();
+                freqMap[key] = (freqMap[key] || 0) + 1;
+              });
+              const freqArray = Object.entries(freqMap)
+                .map(([word, count]) => ({ word, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 15);
+
+              this.stats = {
+                words: wordCount,
+                characters: charCount,
+                charactersNoSpace: charNoSpace,
+                sentences: sentenceCount,
+                paragraphs: paragraphCount,
+                avgWordLength: avgLength.toFixed(1),
+                readTime: readTime,
+                uniqueWords: uniqueCount,
+                longestWord: longest,
+                avgWordsPerSentence: avgWordsPerSentence.toFixed(1),
+                lines: lineCount,
+                wordFrequency: freqArray
+              };
+            }, 300);
+          },
+
+          // ===== RESET STATS =====
+          resetStats() {
+            this.stats = {
+              words: 0,
+              characters: 0,
+              charactersNoSpace: 0,
+              sentences: 0,
+              paragraphs: 0,
+              avgWordLength: 0,
+              readTime: 0,
+              uniqueWords: 0,
+              longestWord: '',
+              avgWordsPerSentence: 0,
+              lines: 0,
+              wordFrequency: []
+            };
+          },
+
+          // ===== LOAD SAMPLE =====
+          loadSample() {
+            this.text = sampleText;
+            this.analyze();
+            this.showToast('Contoh teks dimuat!', true);
+          },
+
+          // ===== CLEAR TEXT =====
+          clearText() {
+            this.text = '';
+            this.resetStats();
+            this.showToast('Teks dihapus!', true);
+          },
+
+          // ===== COPY TEXT =====
+          copyText() {
+            if (!this.text.trim()) {
+              this.showToast('Tidak ada teks untuk disalin!', false);
+              return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(this.text).then(() => {
+                this.showToast('Teks berhasil disalin!', true);
+              }).catch(() => {
+                this.fallbackCopy(this.text);
+              });
+            } else {
+              this.fallbackCopy(this.text);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.showToast('Teks berhasil disalin!', true);
+            } catch (e) {
+              this.showToast('Gagal menyalin teks', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          }
+        },
+        mounted() {
+          // Load sample on first visit
+          this.text = sampleText;
+          setTimeout(() => {
+            this.analyze();
+          }, 300);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

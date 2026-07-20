@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Lorem Ipsum Generator · Hasilkan Teks Placeholder Online</title>
+  <meta name="description" content="Hasilkan teks Lorem Ipsum placeholder untuk desain, mockup, dan konten. Dilengkapi dengan berbagai format, panjang, dan opsi kustomisasi.">
+  <meta name="keywords" content="lorem ipsum generator, teks placeholder, dummy text, generate lorem ipsum, lorem ipsum online, content generator, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/lorem-ipsum-generator.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lorem Ipsum Generator · Hasilkan Teks Placeholder Online">
+  <meta property="og:description" content="Hasilkan teks Lorem Ipsum placeholder untuk desain, mockup, dan konten dengan berbagai opsi kustomisasi.">
+  <meta property="og:url" content="https://tools.reboart.net/lorem-ipsum-generator.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-lorem-ipsum.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lorem Ipsum Generator · Hasilkan Teks Placeholder Online">
+  <meta name="twitter:description" content="Hasilkan teks Lorem Ipsum placeholder untuk desain, mockup, dan konten.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-lorem-ipsum.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lorem Ipsum Generator by ToolBox",
+    "description": "Hasilkan teks Lorem Ipsum placeholder untuk desain, mockup, dan konten. Dilengkapi dengan berbagai format dan opsi kustomisasi.",
+    "url": "https://tools.reboart.net/lorem-ipsum-generator.html",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4fb 0%, #e8edf8 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a4cff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-area a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 16px rgba(26, 76, 255, 0.25);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0b1b3a;
+    }
+
+    .logo-text h1 span {
+      color: #1a4cff;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.8rem;
+      color: #5a6b8a;
+      margin-top: -2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid #e2e8f2;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1f2a44;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #f0f4fe;
+      border-color: #b3c6e8;
+      transform: translateX(-3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ===== CONTROLS PANEL ===== */
+    .controls-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b1b3a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title i {
+      color: #1a4cff;
+    }
+
+    .panel-subtitle {
+      color: #5a6b8a;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== CONTROLS ===== */
+    .control-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .control-group label {
+      display: block;
+      font-weight: 600;
+      color: #1f2a44;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .control-group select,
+    .control-group input[type="number"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #e2e8f2;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      transition: 0.25s;
+      background: #fafcff;
+      color: #1f2a44;
+    }
+
+    .control-group select:focus,
+    .control-group input[type="number"]:focus {
+      outline: none;
+      border-color: #1a4cff;
+      box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.08);
+    }
+
+    .control-group input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f2;
+      outline: none;
+      transition: 0.2s;
+      margin-top: 6px;
+    }
+
+    .control-group input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1a4cff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(26, 76, 255, 0.3);
+    }
+
+    .control-group input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1a4cff;
+      cursor: pointer;
+      border: none;
+    }
+
+    .range-value {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #8a9bb8;
+      margin-top: 2px;
+    }
+
+    /* ===== CHECKBOXES ===== */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #1f2a44;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #1a4cff;
+      cursor: pointer;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-generate {
+      background: linear-gradient(135deg, #1a4cff, #6c5ce7);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(26, 76, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 76, 255, 0.35);
+    }
+
+    .btn-generate:active {
+      transform: scale(0.97);
+    }
+
+    /* ===== OUTPUT PANEL ===== */
+    .output-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf2f9;
+    }
+
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .output-title {
+      font-weight: 700;
+      color: #0b1b3a;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .output-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-mini {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #f0f4fb;
+      color: #1f2a44;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-mini:hover {
+      background: #e2e8f2;
+    }
+
+    .btn-mini.primary {
+      background: #eef4ff;
+      color: #1a4cff;
+    }
+
+    .btn-mini.primary:hover {
+      background: #dce8ff;
+    }
+
+    .btn-mini.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .btn-mini.success:hover {
+      background: #c3e6cb;
+    }
+
+    /* ===== TEXT OUTPUT ===== */
+    .text-output {
+      background: #fafcff;
+      border: 2px solid #edf2f9;
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 300px;
+      max-height: 500px;
+      overflow-y: auto;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #1f2a44;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .text-output .placeholder {
+      color: #bcc9e0;
+      font-style: italic;
+    }
+
+    /* ===== STATS ===== */
+    .output-stats {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      color: #5a6b8a;
+    }
+
+    .stat-item .num {
+      font-weight: 700;
+      color: #0b1b3a;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1f2a44;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      margin-right: 10px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
+
+    .toast.error {
+      background: #e74c6f;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #5a6b8a;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #5a6b8a;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #1a4cff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 850px) {
+      body {
+        padding: 1rem;
+      }
+
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 1rem;
+      }
+
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-back {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .controls-panel,
+      .output-panel {
+        padding: 1.2rem;
+      }
+
+      .text-output {
+        min-height: 200px;
+        max-height: 350px;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+
+      .app-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .output-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .output-actions .btn-mini {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .output-stats {
+        gap: 10px;
+        justify-content: center;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+
+    .text-output::-webkit-scrollbar {
+      width: 8px;
+    }
+    .text-output::-webkit-scrollbar-track {
+      background: #f0f4fb;
+      border-radius: 8px;
+    }
+    .text-output::-webkit-scrollbar-thumb {
+      background: #c5d2e8;
+      border-radius: 8px;
+    }
+    .text-output::-webkit-scrollbar-thumb:hover {
+      background: #a0b0ca;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-paragraph"></i></div>
+          <div class="logo-text">
+            <h1>Lorem <span>Ipsum</span></h1>
+            <div class="subtitle">Generator Teks Placeholder</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content" role="main">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Lorem Ipsum Generator - Hasilkan Teks Placeholder Online</h1>
+
+      <div class="main-grid">
+        <!-- ===== CONTROLS PANEL ===== -->
+        <aside class="controls-panel" aria-label="Kontrol generator">
+          <div class="panel-title">
+            <i class="fas fa-sliders-h"></i> Pengaturan
+          </div>
+          <p class="panel-subtitle">Atur opsi untuk menghasilkan teks</p>
+
+          <!-- ===== FORMAT ===== -->
+          <div class="control-group">
+            <label for="format">Format</label>
+            <select id="format" v-model="settings.format" @change="generate">
+              <option value="paragraphs">Paragraf</option>
+              <option value="sentences">Kalimat</option>
+              <option value="words">Kata</option>
+              <option value="list">Daftar (List)</option>
+              <option value="html">HTML</option>
+            </select>
+          </div>
+
+          <!-- ===== COUNT ===== -->
+          <div class="control-group">
+            <label for="count">Jumlah</label>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <input type="range" id="count" v-model="settings.count" min="1" max="50" @input="generate">
+              <span style="min-width:40px;font-weight:700;color:#1a4cff;">{{ settings.count }}</span>
+            </div>
+            <div class="range-value">
+              <span>1</span>
+              <span>50</span>
+            </div>
+          </div>
+
+          <!-- ===== START WITH ===== -->
+          <div class="control-group">
+            <label for="startWith">Mulai dengan</label>
+            <select id="startWith" v-model="settings.startWith" @change="generate">
+              <option value="lorem">Lorem Ipsum</option>
+              <option value="random">Acak</option>
+              <option value="custom">Kustom</option>
+            </select>
+          </div>
+
+          <!-- ===== CUSTOM START ===== -->
+          <div class="control-group" v-if="settings.startWith === 'custom'">
+            <input type="text" v-model="settings.customStart" placeholder="Teks awal..." @input="generate" style="width:100%;padding:10px 14px;border:2px solid #e2e8f2;border-radius:12px;font-size:0.9rem;background:#fafcff;color:#1f2a44;">
+          </div>
+
+          <!-- ===== OPTIONS ===== -->
+          <div class="control-group">
+            <label>Opsi Tambahan</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="settings.includeStart" @change="generate">
+                Sertakan "Lorem Ipsum" di awal
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="settings.includeEnding" @change="generate">
+                Sertakan kalimat penutup
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="settings.htmlParagraphs" @change="generate" v-if="settings.format === 'html'">
+                Paragraf HTML (&lt;p&gt;)
+              </label>
+            </div>
+          </div>
+
+          <!-- ===== GENERATE BUTTON ===== -->
+          <button class="btn-generate" @click="generate">
+            <i class="fas fa-magic"></i> Generate
+          </button>
+        </aside>
+
+        <!-- ===== OUTPUT PANEL ===== -->
+        <section class="output-panel" aria-label="Hasil teks">
+          <div class="output-header">
+            <span class="output-title">
+              <i class="fas fa-file-alt" style="color: #1a4cff;"></i> Hasil Teks
+            </span>
+            <div class="output-actions">
+              <button class="btn-mini primary" @click="copyText">
+                <i class="fas fa-copy"></i> Salin
+              </button>
+              <button class="btn-mini success" @click="downloadText">
+                <i class="fas fa-download"></i> Download
+              </button>
+              <button class="btn-mini" @click="regenerate">
+                <i class="fas fa-sync-alt"></i> Ulang
+              </button>
+            </div>
+          </div>
+
+          <div class="text-output" ref="outputContainer">
+            <span v-if="!generatedText" class="placeholder">
+              <i class="fas fa-info-circle"></i> Klik "Generate" untuk membuat teks Lorem Ipsum
+            </span>
+            <span v-else v-html="displayText"></span>
+          </div>
+
+          <!-- ===== STATS ===== -->
+          <div class="output-stats" v-if="generatedText">
+            <span class="stat-item">
+              <i class="fas fa-font"></i> Kata: <span class="num">{{ wordCount }}</span>
+            </span>
+            <span class="stat-item">
+              <i class="fas fa-ruler"></i> Karakter: <span class="num">{{ charCount }}</span>
+            </span>
+            <span class="stat-item">
+              <i class="fas fa-paragraph"></i> Paragraf: <span class="num">{{ paragraphCount }}</span>
+            </span>
+            <span class="stat-item">
+              <i class="fas fa-clock"></i> Waktu baca: <span class="num">{{ readTime }} menit</span>
+            </span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div>
+        <i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color: #1a4cff; text-decoration: none;">tools.reboart.net</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/word-counter.html">Word Counter</a>
+        <span><i class="fas fa-heart" style="color: #e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i>
+    {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      // ===== LOREM IPSUM WORDS =====
+      const loremWords = [
+        'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+        'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore',
+        'magna', 'aliqua', 'ut', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud',
+        'exercitation', 'ullamco', 'laboris', 'nisi', 'ut', 'aliquip', 'ex', 'ea',
+        'commodo', 'consequat', 'duis', 'aute', 'irure', 'dolor', 'in', 'reprehenderit',
+        'in', 'voluptate', 'velit', 'esse', 'cillum', 'dolore', 'eu', 'fugiat',
+        'nulla', 'pariatur', 'excepteur', 'sint', 'occaecat', 'cupidatat', 'non',
+        'proident', 'sunt', 'in', 'culpa', 'qui', 'officia', 'deserunt', 'mollit',
+        'anim', 'id', 'est', 'laborum'
+      ];
+
+      // ===== SENTENCE ENDINGS =====
+      const endings = ['.', '.', '.', '?', '!'];
+
+      // ===== SAMPLE STARTS =====
+      const startPhrases = [
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+        'Duis aute irure dolor in reprehenderit in voluptate velit esse.',
+        'Excepteur sint occaecat cupidatat non proident, sunt in culpa.',
+        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.',
+        'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.',
+        'Consectetur, adipisci velit, sed quia non numquam eius modi tempora.'
+      ];
+
+      // ===== ENDING PHRASES =====
+      const endingPhrases = [
+        'Sic semper tyrannis.',
+        'Veni, vidi, vici.',
+        'Carpe diem.',
+        'Ad astra per aspera.',
+        'In vino veritas.',
+        'Fiat lux.'
+      ];
+
+      // ===== VUE APP =====
+      new Vue({
+        el: '#app',
+        data: {
+          settings: {
+            format: 'paragraphs',
+            count: 5,
+            startWith: 'lorem',
+            customStart: 'Ini adalah teks kustom...',
+            includeStart: true,
+            includeEnding: false,
+            htmlParagraphs: true
+          },
+          generatedText: '',
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null
+        },
+        computed: {
+          displayText() {
+            if (!this.generatedText) return '';
+            if (this.settings.format === 'html') {
+              if (this.settings.htmlParagraphs) {
+                return this.generatedText.split('\n\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('');
+              }
+              return this.generatedText;
+            }
+            return this.generatedText;
+          },
+          wordCount() {
+            if (!this.generatedText) return 0;
+            return this.generatedText.split(/\s+/).length;
+          },
+          charCount() {
+            if (!this.generatedText) return 0;
+            return this.generatedText.replace(/\s/g, '').length;
+          },
+          paragraphCount() {
+            if (!this.generatedText) return 0;
+            return this.generatedText.split(/\n\s*\n/).filter(p => p.trim()).length;
+          },
+          readTime() {
+            if (!this.generatedText) return 0;
+            const words = this.wordCount;
+            return Math.ceil(words / 200);
+          }
+        },
+        methods: {
+          // ===== GENERATE =====
+          generate() {
+            const count = parseInt(this.settings.count);
+            
+            if (this.settings.format === 'words') {
+              this.generatedText = this.generateWords(count);
+            } else if (this.settings.format === 'sentences') {
+              this.generatedText = this.generateSentences(count);
+            } else if (this.settings.format === 'paragraphs') {
+              this.generatedText = this.generateParagraphs(count);
+            } else if (this.settings.format === 'list') {
+              this.generatedText = this.generateList(count);
+            } else if (this.settings.format === 'html') {
+              this.generatedText = this.generateHTML(count);
+            }
+          },
+
+          // ===== GENERATE WORDS =====
+          generateWords(count) {
+            let words = [];
+            for (let i = 0; i < count; i++) {
+              words.push(this.getRandomWord());
+            }
+            return words.join(' ');
+          },
+
+          // ===== GENERATE SENTENCES =====
+          generateSentences(count) {
+            let sentences = [];
+            for (let i = 0; i < count; i++) {
+              sentences.push(this.generateSentence(i === 0));
+            }
+            return sentences.join(' ');
+          },
+
+          // ===== GENERATE PARAGRAPHS =====
+          generateParagraphs(count) {
+            let paragraphs = [];
+            for (let i = 0; i < count; i++) {
+              const sentenceCount = 3 + Math.floor(Math.random() * 5);
+              let sentences = [];
+              for (let j = 0; j < sentenceCount; j++) {
+                sentences.push(this.generateSentence(j === 0 && i === 0));
+              }
+              paragraphs.push(sentences.join(' '));
+            }
+            
+            let result = paragraphs.join('\n\n');
+            
+            // Add ending if enabled
+            if (this.settings.includeEnding && count > 0) {
+              const ending = endingPhrases[Math.floor(Math.random() * endingPhrases.length)];
+              result += '\n\n' + ending;
+            }
+            
+            return result;
+          },
+
+          // ===== GENERATE LIST =====
+          generateList(count) {
+            let items = [];
+            for (let i = 0; i < count; i++) {
+              const words = this.generateWords(3 + Math.floor(Math.random() * 7));
+              items.push(`• ${words}`);
+            }
+            return items.join('\n');
+          },
+
+          // ===== GENERATE HTML =====
+          generateHTML(count) {
+            const text = this.generateParagraphs(count);
+            if (this.settings.htmlParagraphs) {
+              return text.split('\n\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('');
+            }
+            return text;
+          },
+
+          // ===== GENERATE SENTENCE =====
+          generateSentence(isFirst) {
+            let wordCount = 6 + Math.floor(Math.random() * 10);
+            let words = [];
+            
+            for (let i = 0; i < wordCount; i++) {
+              let word = this.getRandomWord();
+              if (i === 0 && isFirst && this.settings.includeStart) {
+                word = 'Lorem ipsum';
+              } else if (i === 0) {
+                word = word.charAt(0).toUpperCase() + word.slice(1);
+              }
+              words.push(word);
+            }
+            
+            let sentence = words.join(' ');
+            sentence += endings[Math.floor(Math.random() * endings.length)];
+            
+            return sentence;
+          },
+
+          // ===== GET RANDOM WORD =====
+          getRandomWord() {
+            return loremWords[Math.floor(Math.random() * loremWords.length)];
+          },
+
+          // ===== REGENERATE =====
+          regenerate() {
+            this.generate();
+            this.showToast('Teks berhasil di-generate ulang!', true);
+          },
+
+          // ===== COPY TEXT =====
+          copyText() {
+            if (!this.generatedText) {
+              this.showToast('Tidak ada teks untuk disalin!', false);
+              return;
+            }
+
+            // Get plain text without HTML tags
+            let textToCopy = this.generatedText;
+            if (this.settings.format === 'html') {
+              textToCopy = textToCopy.replace(/<[^>]*>/g, '');
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(textToCopy).then(() => {
+                this.showToast('Teks berhasil disalin!', true);
+              }).catch(() => {
+                this.fallbackCopy(textToCopy);
+              });
+            } else {
+              this.fallbackCopy(textToCopy);
+            }
+          },
+
+          fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              this.showToast('Teks berhasil disalin!', true);
+            } catch (e) {
+              this.showToast('Gagal menyalin teks', false);
+            }
+            document.body.removeChild(textarea);
+          },
+
+          // ===== DOWNLOAD TEXT =====
+          downloadText() {
+            if (!this.generatedText) {
+              this.showToast('Tidak ada teks untuk di-download!', false);
+              return;
+            }
+
+            let text = this.generatedText;
+            if (this.settings.format === 'html') {
+              text = text.replace(/<[^>]*>/g, '');
+            }
+
+            const ext = this.settings.format === 'html' ? '.html' : '.txt';
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `lorem-ipsum-${Date.now()}${ext}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            this.showToast('File berhasil di-download!', true);
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => {
+              this.toastVisible = false;
+            }, 3000);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        },
+        mounted() {
+          // Auto-generate on load
+          setTimeout(() => {
+            this.generate();
+          }, 300);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
