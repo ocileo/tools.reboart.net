@@ -1113,8 +1113,12 @@
         { id: 11, name: 'URL Encode/Decode', desc: 'Encode atau decode URL parameter dengan cepat.', category: 'Developer', icon: 'fas fa-link' },
         { id: 12, name: 'Lorem Ipsum Generator', desc: 'Hasilkan teks placeholder untuk desain dan mockup.', category: 'Penulisan', icon: 'fas fa-paragraph' },
         { id: 13, name: 'Generate Desain Prompt', desc: 'Buat prompt detail untuk desain grafis, UI/UX, atau ilustrasi.', category: 'Desain', icon: 'fas fa-magic' },
-        { id: 14, name: 'PDF Merger', desc: 'Gabungkan beberapa file PDF menjadi satu secara online gratis tanpa batasan.', category: 'Utilitas', icon: 'fas fa-object-group' }
-      ];
+        { id: 14, name: 'PDF Merger', desc: 'Gabungkan beberapa file PDF menjadi satu secara online gratis tanpa batasan.', category: 'Utilitas', icon: 'fas fa-object-group' },
+        { id: 15, name: 'PDF Splitter', desc: 'Pisahkan halaman PDF menjadi beberapa file dengan 3 metode split.', category: 'Utilitas', icon: 'fas fa-cut' },
+        { id: 16, name: 'PDF Compressor', desc: 'Kurangi ukuran file PDF hingga 70% tanpa mengurangi kualitas.', category: 'Utilitas', icon: 'fas fa-compress-arrows-alt' },
+        { id: 17, name: 'PDF to Word Converter', desc: 'Konversi file PDF ke Word (DOCX) dengan mode Standard & OCR.', category: 'Utilitas', icon: 'fas fa-file-word' }
+        ]
+      ;
 
       const categories = [...new Set(toolData.map(t => t.category))].sort();
 
@@ -1219,7 +1223,13 @@
             } else if (tool.id === 12) {
               window.location.href = '/url-encode-decode.html';
             } else if (tool.id === 14) {
-              window.location.href = '/tools/convert/pdf/pdf-merger.html';
+              window.location.href = '/tools/pdf/pdf-merger.html';
+            } else if (tool.id === 15) {
+              window.location.href = '/tools/pdf/pdf-splitter.html';
+            } else if (tool.id === 16) {
+              window.location.href = '/tools/pdf/pdf-compressor.html';
+            } else if (tool.id === 17) {
+              window.location.href = '/tools/pdf/pdf-to-word.html';
             } else {
               alert(`🔧 Membuka tool: "${tool.name}"\n📋 ${tool.desc}\n\n(Fitur ini dalam tahap pengembangan)`);
             }

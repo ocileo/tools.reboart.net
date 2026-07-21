@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>PDF Splitter · Pisah Halaman PDF Online Gratis</title>
+  <meta name="description" content="Pisahkan halaman PDF menjadi beberapa file secara online gratis. Support ekstraksi halaman tertentu, range halaman, dan split per halaman. Tanpa batasan ukuran.">
+  <meta name="keywords" content="pdf splitter, pisah pdf, extract pdf pages, split pdf online, pdf tools, tools.reboart.net">
+  <meta name="author" content="REBOART | ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/tools/pdf/pdf-splitter.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PDF Splitter · Pisah Halaman PDF Online Gratis">
+  <meta property="og:description" content="Pisahkan halaman PDF menjadi beberapa file secara online gratis. Support ekstraksi halaman tertentu, range halaman, dan split per halaman.">
+  <meta property="og:url" content="https://tools.reboart.net/tools/pdf/pdf-splitter.html">
+  <meta property="og:site_name" content="REBOART | ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-pdf-splitter.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Splitter · Pisah Halaman PDF Online Gratis">
+  <meta name="twitter:description" content="Pisahkan halaman PDF menjadi beberapa file secara online gratis.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-pdf-splitter.jpg">
+
+  <!-- ===== SCHEMA.ORG ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Splitter by REBOART | ToolBox",
+    "description": "Pisahkan halaman PDF menjadi beberapa file secara online gratis. Support ekstraksi halaman tertentu, range halaman, dan split per halaman.",
+    "url": "https://tools.reboart.net/tools/pdf/pdf-splitter.html",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Organization", "name": "REBOART | ToolBox", "url": "https://tools.reboart.net" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂️</text></svg>">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
+    body { background:linear-gradient(135deg,#f0f4fb 0%,#e8edf8 100%); min-height:100vh; padding:2rem 1.5rem; }
+    .app-wrapper { max-width:1000px; margin:0 auto; }
+    .skip-link { position:absolute; top:-100%; left:50%; transform:translateX(-50%); background:#1a4cff; color:white; padding:12px 24px; border-radius:0 0 12px 12px; z-index:999; font-weight:600; text-decoration:none; transition:top .3s; }
+    .skip-link:focus { top:0; }
+    .app-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; padding:1rem 1.5rem; background:rgba(255,255,255,.85); backdrop-filter:blur(12px); border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,.06); border:1px solid rgba(255,255,255,.5); flex-wrap:wrap; gap:12px; }
+    .logo-area { display:flex; align-items:center; gap:14px; }
+    .logo-area a { text-decoration:none; display:flex; align-items:center; gap:14px; }
+    .logo-icon { background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 6px 16px rgba(26,76,255,.25); }
+    .logo-text h1 { font-size:1.5rem; font-weight:800; color:#0b1b3a; }
+    .logo-text h1 span { color:#1a4cff; }
+    .logo-text .subtitle { font-size:.8rem; color:#5a6b8a; margin-top:-2px; }
+    .header-right { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .btn-back { background:white; border:2px solid #e2e8f2; padding:10px 20px; border-radius:40px; font-weight:600; font-size:.9rem; color:#1f2a44; cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:8px; text-decoration:none; }
+    .btn-back:hover { background:#f0f4fe; border-color:#b3c6e8; transform:translateX(-3px); }
+
+    .main-card { background:white; border-radius:24px; padding:2rem; box-shadow:0 8px 32px rgba(0,0,0,.06); border:1px solid #edf2f9; }
+    .card-title { font-size:1.3rem; font-weight:700; color:#0b1b3a; margin-bottom:4px; display:flex; align-items:center; gap:12px; }
+    .card-title i { color:#1a4cff; }
+    .card-subtitle { color:#5a6b8a; font-size:.9rem; margin-bottom:1.5rem; }
+
+    /* ===== MODE SELECTOR ===== */
+    .mode-selector { display:flex; gap:10px; margin-bottom:1.5rem; flex-wrap:wrap; }
+    .mode-btn { padding:10px 20px; border-radius:30px; border:2px solid #e2e8f2; background:white; font-weight:600; font-size:.85rem; color:#4a5b7a; cursor:pointer; transition:.25s; display:flex; align-items:center; gap:8px; }
+    .mode-btn:hover { background:#f0f4fe; border-color:#b0c4e8; }
+    .mode-btn.active { background:#1a4cff; color:white; border-color:#1a4cff; box-shadow:0 4px 14px rgba(26,76,255,.25); }
+
+    .mode-desc { font-size:.8rem; color:#8a9bb8; margin-bottom:1rem; padding:8px 14px; background:#f8faff; border-radius:10px; border-left:3px solid #1a4cff; }
+
+    /* ===== INPUT GROUP ===== */
+    .input-group { margin-bottom:1rem; }
+    .input-group label { display:block; font-weight:600; color:#1f2a44; font-size:.85rem; margin-bottom:4px; }
+    .input-group input { width:100%; padding:10px 14px; border:2px solid #e2e8f2; border-radius:12px; font-size:.9rem; transition:.25s; background:#fafcff; color:#1f2a44; }
+    .input-group input:focus { outline:none; border-color:#1a4cff; box-shadow:0 0 0 4px rgba(26,76,255,.08); }
+    .input-group .hint { font-size:.75rem; color:#8a9bb8; margin-top:4px; }
+
+    /* ===== DROP ZONE ===== */
+    .drop-zone { border:3px dashed #e2e8f2; border-radius:20px; padding:2.5rem 1rem; text-align:center; cursor:pointer; transition:.3s; background:#fafcff; position:relative; }
+    .drop-zone:hover { border-color:#b0c4e8; background:#f0f4fe; }
+    .drop-zone.dragover { border-color:#1a4cff; background:#eef4ff; }
+    .drop-zone .icon { font-size:3rem; color:#bcc9e0; margin-bottom:12px; display:block; }
+    .drop-zone .label { font-weight:600; color:#1f2a44; font-size:1.05rem; }
+    .drop-zone .sub-label { color:#8a9bb8; font-size:.85rem; margin-top:4px; }
+    .drop-zone .file-types { font-size:.75rem; color:#bcc9e0; margin-top:8px; }
+    .drop-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+    /* ===== FILE INFO ===== */
+    .file-info { margin-top:1rem; padding:12px 16px; background:#f8faff; border-radius:12px; border:1px solid #edf2f9; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .file-info .name { font-weight:600; color:#0b1b3a; flex:1; }
+    .file-info .size { color:#8a9bb8; font-size:.85rem; }
+    .file-info .pages { color:#1a4cff; font-weight:600; font-size:.85rem; }
+    .file-info .btn-remove { background:transparent; border:none; color:#e74c6f; cursor:pointer; padding:4px 10px; border-radius:8px; transition:.2s; }
+    .file-info .btn-remove:hover { background:#fde8ec; }
+
+    /* ===== CONTROLS ===== */
+    .controls { display:flex; gap:12px; flex-wrap:wrap; margin-top:1.2rem; }
+    .controls .btn-action { padding:12px 24px; border-radius:40px; font-weight:700; font-size:.95rem; cursor:pointer; transition:.25s; border:none; display:inline-flex; align-items:center; gap:8px; flex:1; justify-content:center; min-width:120px; }
+    .controls .btn-action:hover { transform:translateY(-2px); }
+    .controls .btn-action.primary { background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; box-shadow:0 4px 16px rgba(26,76,255,.25); }
+    .controls .btn-action.primary:hover { box-shadow:0 8px 24px rgba(26,76,255,.35); }
+    .controls .btn-action.primary:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+    .controls .btn-action.danger { background:#e74c6f; color:white; }
+    .controls .btn-action.danger:hover { background:#c0392b; }
+
+    /* ===== STATUS ===== */
+    .status-box { margin-top:1rem; padding:12px 16px; border-radius:12px; display:none; align-items:center; gap:10px; font-weight:600; font-size:.9rem; }
+    .status-box.show { display:flex; }
+    .status-box.success { background:#d4edda; color:#155724; border:1px solid #c3e6cb; }
+    .status-box.error { background:#fde8ec; color:#721c24; border:1px solid #f5c6cb; }
+    .status-box.info { background:#eaf4fb; color:#1a4cff; border:1px solid #d6eaf8; }
+
+    /* ===== PROGRESS ===== */
+    .progress-container { margin-top:1rem; display:none; }
+    .progress-container.show { display:block; }
+    .progress-bar { width:100%; height:8px; background:#edf2f9; border-radius:4px; overflow:hidden; }
+    .progress-bar .fill { height:100%; background:linear-gradient(90deg,#1a4cff,#6c5ce7); border-radius:4px; transition:width .3s; width:0%; }
+    .progress-text { font-size:.8rem; color:#5a6b8a; margin-top:4px; text-align:center; }
+
+    /* ===== RESULT ===== */
+    .result-section { margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid #edf2f9; display:none; }
+    .result-section.show { display:block; }
+    .result-title { font-weight:700; color:#0b1b3a; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .result-item { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:#f8faff; border-radius:10px; margin-bottom:6px; border:1px solid #edf2f9; }
+    .result-item .name { font-weight:500; color:#1f2a44; }
+    .result-item .size { font-size:.8rem; color:#8a9bb8; }
+    .result-item .btn-download { background:#1a4cff; color:white; border:none; padding:4px 14px; border-radius:20px; font-weight:600; font-size:.75rem; cursor:pointer; transition:.2s; }
+    .result-item .btn-download:hover { background:#0d3de0; }
+
+    /* ===== GUIDE & FAQ ===== */
+    .guide-section { margin-top:2rem; padding-top:2rem; border-top:2px solid #edf2f9; }
+    .guide-title { font-size:1.1rem; font-weight:700; color:#0b1b3a; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+    .guide-title i { color:#1a4cff; }
+
+    .guide-steps { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .step { display:flex; gap:14px; padding:14px 16px; background:#f8faff; border-radius:14px; border:1px solid #edf2f9; }
+    .step .num { width:32px; height:32px; background:#1a4cff; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; flex-shrink:0; }
+    .step .content h4 { font-size:.9rem; color:#0b1b3a; }
+    .step .content p { font-size:.8rem; color:#5a6b8a; line-height:1.5; }
+
+    .faq-list { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .faq-item { padding:12px 16px; background:#f8faff; border-radius:12px; border:1px solid #edf2f9; }
+    .faq-item .q { font-weight:700; color:#0b1b3a; font-size:.85rem; display:flex; align-items:center; gap:8px; }
+    .faq-item .q i { color:#1a4cff; }
+    .faq-item .a { font-size:.8rem; color:#5a6b8a; margin-top:4px; line-height:1.5; }
+
+    .toast { position:fixed; bottom:30px; right:30px; background:#1f2a44; color:white; padding:14px 24px; border-radius:16px; font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.2); transform:translateY(100px); opacity:0; transition:.4s cubic-bezier(.34,1.56,.64,1); z-index:999; }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast i { margin-right:10px; }
+    .toast.success { background:#27ae60; }
+    .toast.error { background:#e74c6f; }
+
+    .app-footer { margin-top:2.5rem; padding:1.2rem 1.5rem; background:white; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; color:#5a6b8a; font-size:.9rem; box-shadow:0 2px 12px rgba(0,0,0,.03); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { color:#5a6b8a; text-decoration:none; transition:.2s; }
+    .footer-links a:hover { color:#1a4cff; }
+
+    @media(max-width:768px){ body{padding:1rem; } .app-header{flex-direction:column;align-items:stretch;gap:12px;padding:1rem;} .header-right{flex-direction:column;width:100%;} .btn-back{justify-content:center;width:100%;} .main-card{padding:1.2rem;} .mode-selector{flex-direction:column;} .mode-btn{width:100%;justify-content:center;} .guide-steps{grid-template-columns:1fr;} .faq-list{grid-template-columns:1fr;} .controls{flex-direction:column;} .controls .btn-action{width:100%;} .drop-zone{padding:1.5rem .5rem;} .toast{left:20px;right:20px;bottom:20px;text-align:center;} .app-footer{flex-direction:column;gap:10px;text-align:center;} .footer-links{justify-content:center;} }
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#f0f4fb;border-radius:10px;} ::-webkit-scrollbar-thumb{background:#c5d2e8;border-radius:10px;} ::-webkit-scrollbar-thumb:hover{background:#a0b0ca;}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+  <div class="app-wrapper" id="app">
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net">
+          <div class="logo-icon"><i class="fas fa-cut"></i></div>
+          <div class="logo-text">
+            <h1>PDF <span>Splitter</span></h1>
+            <div class="subtitle">Pisah Halaman PDF Online Gratis</div>
+          </div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="https://tools.reboart.net" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <h1 class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">PDF Splitter - Pisah Halaman PDF Online Gratis</h1>
+
+      <div class="main-card">
+        <div class="card-title">
+          <i class="fas fa-cut"></i> Pisah PDF
+        </div>
+        <p class="card-subtitle">Pisahkan halaman PDF menjadi beberapa file sesuai kebutuhan Anda</p>
+
+        <!-- ===== MODE SELECTOR ===== -->
+        <div class="mode-selector">
+          <button class="mode-btn" :class="{ active: mode === 'range' }" @click="mode='range';resetAll()">
+            <i class="fas fa-arrows-alt-h"></i> Range Halaman
+          </button>
+          <button class="mode-btn" :class="{ active: mode === 'extract' }" @click="mode='extract';resetAll()">
+            <i class="fas fa-file-export"></i> Ekstrak Halaman
+          </button>
+          <button class="mode-btn" :class="{ active: mode === 'split' }" @click="mode='split';resetAll()">
+            <i class="fas fa-cut"></i> Pisah Semua Halaman
+          </button>
+        </div>
+
+        <div class="mode-desc" v-if="mode === 'range'">
+          <i class="fas fa-info-circle"></i> Pisahkan PDF menjadi beberapa bagian dengan range halaman. Contoh: 1-5, 6-10, 11-15
+        </div>
+        <div class="mode-desc" v-if="mode === 'extract'">
+          <i class="fas fa-info-circle"></i> Ekstrak halaman tertentu dari PDF. Contoh: 1,3,5,7 (gunakan koma sebagai pemisah)
+        </div>
+        <div class="mode-desc" v-if="mode === 'split'">
+          <i class="fas fa-info-circle"></i> Pisahkan setiap halaman menjadi file PDF terpisah. Cocok untuk dokumen dengan banyak halaman.
+        </div>
+
+        <!-- ===== INPUT GROUP ===== -->
+        <div class="input-group" v-if="mode === 'range' || mode === 'extract'">
+          <label for="pagesInput">{{ mode === 'range' ? 'Range Halaman (contoh: 1-5, 6-10)' : 'Nomor Halaman (contoh: 1,3,5,7)' }}</label>
+          <input type="text" id="pagesInput" v-model="pagesInput" :placeholder="mode === 'range' ? '1-5, 6-10, 11-15' : '1,3,5,7,9'" @input="validateInput">
+          <div class="hint" v-if="inputError" style="color:#e74c6f;">{{ inputError }}</div>
+          <div class="hint" v-else-if="totalPages > 0">Total halaman dalam PDF: <strong>{{ totalPages }}</strong></div>
+        </div>
+
+        <!-- ===== DROP ZONE ===== -->
+        <div class="drop-zone" @dragover.prevent="dragover" @dragleave.prevent="dragleave" @drop.prevent="handleDrop" :class="{ dragover: isDragover }">
+          <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+          <div class="label">Upload File PDF</div>
+          <div class="sub-label">Drag & drop file PDF ke sini, atau klik untuk memilih</div>
+          <div class="file-types">Support: PDF (maks. 50MB)</div>
+          <input type="file" accept=".pdf,application/pdf" @change="handleFile">
+        </div>
+
+        <!-- ===== FILE INFO ===== -->
+        <div class="file-info" v-if="file">
+          <i class="fas fa-file-pdf" style="color:#e74c6f;font-size:1.5rem;"></i>
+          <span class="name">{{ file.name }}</span>
+          <span class="size">{{ formatSize(file.size) }}</span>
+          <span class="pages" v-if="totalPages > 0">{{ totalPages }} halaman</span>
+          <button class="btn-remove" @click="removeFile"><i class="fas fa-times"></i></button>
+        </div>
+
+        <!-- ===== CONTROLS ===== -->
+        <div class="controls">
+          <button class="btn-action primary" @click="processSplit" :disabled="!file || isProcessing || (mode !== 'split' && !pagesInput.trim())">
+            <i class="fas fa-cut"></i> {{ isProcessing ? 'Memproses...' : mode === 'range' ? 'Pisah Range' : mode === 'extract' ? 'Ekstrak Halaman' : 'Pisah Semua Halaman' }}
+          </button>
+          <button class="btn-action danger" @click="resetAll" :disabled="!file">
+            <i class="fas fa-trash-alt"></i> Hapus
+          </button>
+        </div>
+
+        <!-- ===== PROGRESS ===== -->
+        <div class="progress-container" :class="{ show: isProcessing }">
+          <div class="progress-bar">
+            <div class="fill" :style="{ width: progress + '%' }"></div>
+          </div>
+          <div class="progress-text">{{ progress }}%</div>
+        </div>
+
+        <!-- ===== STATUS ===== -->
+        <div class="status-box" :class="statusClass" :class="{ show: statusMessage }">
+          <i :class="statusIcon"></i>
+          <span v-html="statusMessage"></span>
+        </div>
+
+        <!-- ===== RESULT ===== -->
+        <div class="result-section" :class="{ show: resultFiles.length }">
+          <div class="result-title">
+            <i class="fas fa-file-archive" style="color:#27ae60;"></i> Hasil Split ({{ resultFiles.length }} file)
+          </div>
+          <div class="result-item" v-for="(file, index) in resultFiles" :key="index">
+            <span class="name">{{ file.name }}</span>
+            <span class="size">{{ formatSize(file.size) }}</span>
+            <button class="btn-download" @click="downloadFile(file)"><i class="fas fa-download"></i> Download</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== GUIDE & FAQ ===== -->
+      <div class="guide-section">
+        <div class="guide-title"><i class="fas fa-book"></i> Panduan Penggunaan PDF Splitter</div>
+        <div class="guide-steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div class="content">
+              <h4>Upload File PDF</h4>
+              <p>Klik area upload atau drag & drop file PDF yang ingin dipisahkan. File maksimal 50MB.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div class="content">
+              <h4>Pilih Metode Split</h4>
+              <p>Pilih antara Range Halaman, Ekstrak Halaman, atau Pisah Semua Halaman sesuai kebutuhan.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div class="content">
+              <h4>Masukkan Halaman</h4>
+              <p>Untuk Range: tulis seperti "1-5, 6-10". Untuk Ekstrak: tulis "1,3,5,7".</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">4</span>
+            <div class="content">
+              <h4>Proses & Download</h4>
+              <p>Klik tombol split, tunggu proses selesai, lalu download file hasil pisahan.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FAQ ===== -->
+        <div style="margin-top:2rem;">
+          <div class="guide-title" style="margin-bottom:0.8rem;"><i class="fas fa-question-circle"></i> FAQ - Pertanyaan yang Sering Diajukan</div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Berapa ukuran maksimal file PDF?</div>
+              <div class="a">Maksimal 50MB per file. Untuk file lebih besar, disarankan kompres terlebih dahulu.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah data saya aman?</div>
+              <div class="a">100% aman! Proses split dilakukan sepenuhnya di browser Anda. File tidak pernah dikirim ke server.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Berapa jumlah halaman maksimal?</div>
+              <div class="a">Tidak ada batasan jumlah halaman. Namun, file dengan banyak halaman mungkin membutuhkan waktu lebih lama.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah ada watermark di hasil?</div>
+              <div class="a">Tidak ada watermark sama sekali. Hasil split bersih dan profesional.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Bisakah split PDF yang dilindungi password?</div>
+              <div class="a">Saat ini tidak mendukung PDF yang dilindungi password. Harap buka proteksi terlebih dahulu.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Format halaman apa yang didukung?</div>
+              <div class="a">Support semua format halaman PDF (A4, Letter, Legal, dll). Format asli akan dipertahankan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer" role="contentinfo">
+      <div><i class="fas fa-code"></i> REBOART | ToolBox · <a href="https://tools.reboart.net" style="color:#1a4cff;text-decoration:none;">tools.reboart.net</a></div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/pdf-merger.html">PDF Merger</a>
+        <a href="https://tools.reboart.net/pdf-converter.html">PDF Converter</a>
+        <span><i class="fas fa-heart" style="color:#e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i> {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      new Vue({
+        el: '#app',
+        data: {
+          mode: 'range',
+          file: null,
+          pagesInput: '',
+          totalPages: 0,
+          inputError: '',
+          isProcessing: false,
+          progress: 0,
+          isDragover: false,
+          statusMessage: '',
+          statusType: '',
+          resultFiles: [],
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null
+        },
+        computed: {
+          statusClass() {
+            return this.statusType;
+          },
+          statusIcon() {
+            if (this.statusType === 'success') return 'fas fa-check-circle';
+            if (this.statusType === 'error') return 'fas fa-exclamation-circle';
+            if (this.statusType === 'info') return 'fas fa-info-circle';
+            return '';
+          }
+        },
+        methods: {
+          // ===== HANDLE FILE =====
+          handleFile(event) {
+            const file = event.target.files[0];
+            if (file) this.processFile(file);
+            event.target.value = '';
+          },
+
+          handleDrop(event) {
+            this.isDragover = false;
+            const file = event.dataTransfer.files[0];
+            if (file) this.processFile(file);
+          },
+
+          dragover() { this.isDragover = true; },
+          dragleave() { this.isDragover = false; },
+
+          async processFile(file) {
+            if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) {
+              this.showToast('File harus berformat PDF!', false);
+              return;
+            }
+            if (file.size > 50 * 1024 * 1024) {
+              this.showToast('File terlalu besar! Maksimal 50MB.', false);
+              return;
+            }
+
+            this.file = file;
+            this.resultFiles = [];
+            this.clearStatus();
+            this.pagesInput = '';
+            this.inputError = '';
+
+            // Get total pages
+            try {
+              const arrayBuffer = await file.arrayBuffer();
+              const { PDFDocument } = PDFLib;
+              const pdf = await PDFDocument.load(arrayBuffer);
+              this.totalPages = pdf.getPageCount();
+            } catch (e) {
+              this.totalPages = 0;
+              this.showToast('Gagal membaca file PDF', false);
+            }
+          },
+
+          removeFile() {
+            this.file = null;
+            this.totalPages = 0;
+            this.pagesInput = '';
+            this.resultFiles = [];
+            this.clearStatus();
+          },
+
+          // ===== VALIDATE INPUT =====
+          validateInput() {
+            if (!this.pagesInput.trim()) {
+              this.inputError = '';
+              return;
+            }
+
+            if (this.mode === 'range') {
+              const ranges = this.pagesInput.split(',').map(r => r.trim());
+              let valid = true;
+              for (const range of ranges) {
+                const parts = range.split('-').map(Number);
+                if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1]) || parts[0] < 1 || parts[1] > this.totalPages || parts[0] > parts[1]) {
+                  valid = false;
+                  break;
+                }
+              }
+              this.inputError = valid ? '' : 'Format range tidak valid. Contoh: 1-5, 6-10';
+            } else {
+              const pages = this.pagesInput.split(',').map(p => parseInt(p.trim()));
+              const valid = pages.every(p => !isNaN(p) && p >= 1 && p <= this.totalPages);
+              this.inputError = valid ? '' : 'Nomor halaman tidak valid. Contoh: 1,3,5,7';
+            }
+          },
+
+          // ===== PROCESS SPLIT =====
+          async processSplit() {
+            if (!this.file || this.isProcessing) return;
+            if (this.mode !== 'split' && !this.pagesInput.trim()) {
+              this.showToast('Masukkan halaman terlebih dahulu!', false);
+              return;
+            }
+
+            this.isProcessing = true;
+            this.progress = 0;
+            this.resultFiles = [];
+            this.setStatus('info', '⏳ Memproses split PDF...');
+
+            try {
+              const { PDFDocument } = PDFLib;
+              const arrayBuffer = await this.file.arrayBuffer();
+              const sourcePdf = await PDFDocument.load(arrayBuffer);
+              const totalPages = sourcePdf.getPageCount();
+
+              let pageRanges = [];
+
+              if (this.mode === 'split') {
+                // Split all pages
+                for (let i = 0; i < totalPages; i++) {
+                  pageRanges.push([i]);
+                }
+              } else if (this.mode === 'range') {
+                const ranges = this.pagesInput.split(',').map(r => r.trim());
+                for (const range of ranges) {
+                  const [start, end] = range.split('-').map(Number);
+                  const pages = [];
+                  for (let i = start - 1; i < end; i++) {
+                    pages.push(i);
+                  }
+                  pageRanges.push(pages);
+                }
+              } else {
+                // Extract specific pages
+                const pageNumbers = this.pagesInput.split(',').map(p => parseInt(p.trim()));
+                for (const page of pageNumbers) {
+                  pageRanges.push([page - 1]);
+                }
+              }
+
+              const resultFiles = [];
+              const totalRanges = pageRanges.length;
+
+              for (let i = 0; i < totalRanges; i++) {
+                const newPdf = await PDFDocument.create();
+                const pages = pageRanges[i];
+                
+                for (const pageIndex of pages) {
+                  const [copiedPage] = await newPdf.copyPages(sourcePdf, [pageIndex]);
+                  newPdf.addPage(copiedPage);
+                }
+
+                const pdfBytes = await newPdf.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                
+                let fileName;
+                if (this.mode === 'split') {
+                  fileName = `page_${pages[0] + 1}.pdf`;
+                } else if (this.mode === 'range') {
+                  const start = pages[0] + 1;
+                  const end = pages[pages.length - 1] + 1;
+                  fileName = `pages_${start}-${end}.pdf`;
+                } else {
+                  fileName = `page_${pages[0] + 1}.pdf`;
+                }
+
+                resultFiles.push({
+                  blob: blob,
+                  name: fileName,
+                  size: blob.size
+                });
+
+                this.progress = Math.round(((i + 1) / totalRanges) * 100);
+              }
+
+              this.resultFiles = resultFiles;
+              this.setStatus('success', `✅ Split berhasil! ${resultFiles.length} file siap di-download.`);
+              this.showToast('PDF berhasil dipisah!', true);
+
+            } catch (error) {
+              this.setStatus('error', '⚠️ Gagal memproses split: ' + error.message);
+              this.showToast('Gagal split PDF: ' + error.message, false);
+            }
+
+            this.isProcessing = false;
+          },
+
+          // ===== DOWNLOAD FILE =====
+          downloadFile(file) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(file.blob);
+            link.download = file.name;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+          },
+
+          // ===== RESET =====
+          resetAll() {
+            this.file = null;
+            this.totalPages = 0;
+            this.pagesInput = '';
+            this.inputError = '';
+            this.resultFiles = [];
+            this.progress = 0;
+            this.clearStatus();
+          },
+
+          // ===== STATUS =====
+          setStatus(type, message) {
+            this.statusType = type;
+            this.statusMessage = message;
+          },
+
+          clearStatus() {
+            this.statusType = '';
+            this.statusMessage = '';
+          },
+
+          // ===== UTILITY =====
+          formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+          },
+
+          // ===== TOAST =====
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => { this.toastVisible = false; }, 3500);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
