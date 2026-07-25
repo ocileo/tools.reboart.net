@@ -4,9 +4,10 @@
     "description": "ToolBox - Kumpulan alat serba guna",
     "main": "src/index.js",
     "scripts": {
-      "dev": "wrangler dev",
-      "deploy": "wrangler deploy",
-      "deploy:prod": "wrangler deploy --env production"
+      "generate-sitemap": "node scripts/generate-sitemap.js",
+      "dev": "npm run generate-sitemap && wrangler dev",
+      "deploy": "npm run generate-sitemap && wrangler deploy",
+      "deploy:prod": "npm run generate-sitemap && wrangler deploy --env production"
     },
     "devDependencies": {
       "wrangler": "^3.0.0"
