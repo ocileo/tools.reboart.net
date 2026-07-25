@@ -17,3 +17,17 @@ export default {
     }
   }
 };
+
+// ===== ROUTE: 404 =====
+if (pathname === '/404.html') {
+  return env.ASSETS.fetch(request);
+}
+
+// ===== ROUTE: Fallback 404 =====
+// Di akhir fetch, setelah semua route:
+try {
+  return env.ASSETS.fetch(request);
+} catch (e) {
+  // Redirect ke 404.html
+  return env.ASSETS.fetch(new Request(url.origin + '/404.html', request));
+};
