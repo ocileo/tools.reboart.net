@@ -7,17 +7,17 @@
   
   <!-- ===== SEO TITLE & DESCRIPTION ===== -->
   <title>PDF Tools · Kumpulan Tools PDF Online Gratis</title>
-  <meta name="description" content="Kumpulan lengkap tools PDF online gratis: merge, split, compress, konversi, edit, proteksi, tanda tangan, dan banyak lagi. Semua tools PDF dalam satu tempat.">
-  <meta name="keywords" content="pdf tools, tools pdf, merge pdf, split pdf, compress pdf, pdf to word, converter pdf, edit pdf, sign pdf, free pdf tools, tools.reboart.net">
+  <meta name="description" content="Kumpulan lengkap tools PDF online gratis: merge, split, compress, konversi, edit, proteksi, tanda tangan, rotasi, OCR, dan banyak lagi. Semua tools PDF dalam satu tempat.">
+  <meta name="keywords" content="pdf tools, tools pdf, merge pdf, split pdf, compress pdf, pdf to word, converter pdf, edit pdf, sign pdf, ocr pdf, free pdf tools, tools.reboart.net">
   <meta name="author" content="REBOART | ToolBox">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://tools.reboart.net/tools/pdf/">
+  <link rel="canonical" href="https://tools.reboart.net/pdf-tools.html">
 
   <!-- ===== OPEN GRAPH ===== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="PDF Tools · Kumpulan Tools PDF Online Gratis">
   <meta property="og:description" content="Kumpulan lengkap tools PDF online gratis untuk merge, split, compress, konversi, edit, proteksi, dan lainnya. Semua tools PDF dalam satu tempat.">
-  <meta property="og:url" content="https://tools.reboart.net/tools/pdf/">
+  <meta property="og:url" content="https://tools.reboart.net/pdf-tools.html">
   <meta property="og:site_name" content="REBOART | ToolBox">
   <meta property="og:image" content="https://tools.reboart.net/og-pdf-tools.jpg">
   <meta property="og:image:width" content="1200">
@@ -36,8 +36,8 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "PDF Tools by REBOART | ToolBox",
-    "description": "Kumpulan lengkap tools PDF online gratis untuk merge, split, compress, konversi, edit, proteksi, tanda tangan, dan lainnya.",
-    "url": "https://tools.reboart.net/tools/pdf/",
+    "description": "Kumpulan lengkap tools PDF online gratis untuk merge, split, compress, konversi, edit, proteksi, tanda tangan, rotasi, OCR, dan banyak lagi.",
+    "url": "https://tools.reboart.net/pdf-tools.html",
     "author": { "@type": "Organization", "name": "REBOART | ToolBox", "url": "https://tools.reboart.net" }
   }
   </script>
@@ -76,16 +76,30 @@
     .hero .stat .num { font-size:2rem; font-weight:800; display:block; }
     .hero .stat .label { font-size:.8rem; opacity:.8; }
 
+    /* ===== SEARCH & FILTER ===== */
+    .filter-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:2rem; align-items:center; }
+    .filter-bar .search-box { flex:1; position:relative; min-width:200px; }
+    .filter-bar .search-box input { width:100%; padding:12px 18px 12px 44px; border:2px solid #e2e8f2; border-radius:14px; font-size:.95rem; transition:.25s; background:#fafcff; color:#1f2a44; }
+    .filter-bar .search-box input:focus { outline:none; border-color:#1a4cff; box-shadow:0 0 0 4px rgba(26,76,255,.08); }
+    .filter-bar .search-box i { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:#8a9bb8; }
+    .filter-bar .filter-group { display:flex; gap:8px; flex-wrap:wrap; }
+    .filter-bar .filter-btn { padding:8px 18px; border-radius:30px; border:2px solid #e2e8f2; background:white; font-weight:600; font-size:.8rem; color:#4a5b7a; cursor:pointer; transition:.25s; }
+    .filter-bar .filter-btn:hover { background:#f0f4fe; border-color:#b0c4e8; }
+    .filter-bar .filter-btn.active { background:#1a4cff; color:white; border-color:#1a4cff; box-shadow:0 4px 14px rgba(26,76,255,.25); }
+
     /* ===== TOOLS GRID ===== */
     .tools-section { margin-bottom:2.5rem; }
     .section-title { font-size:1.5rem; font-weight:700; color:#0b1b3a; margin-bottom:1.5rem; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
     .section-title i { color:#1a4cff; }
     .section-title .badge { font-size:.7rem; font-weight:600; padding:2px 12px; border-radius:20px; background:#eef4ff; color:#1a4cff; }
+    .section-title .badge.released { background:#d4edda; color:#155724; }
+    .section-title .badge.coming { background:#fef5e7; color:#856404; }
 
     .tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
     .tool-card { background:white; border-radius:20px; padding:1.5rem; box-shadow:0 4px 16px rgba(0,0,0,.04); border:1px solid #edf2f9; transition:.3s; display:flex; flex-direction:column; }
     .tool-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,.08); border-color:#d0def5; }
-    .tool-card .icon { font-size:2.2rem; margin-bottom:12px; display:block; }
+    .tool-card .header { display:flex; justify-content:space-between; align-items:start; margin-bottom:8px; }
+    .tool-card .icon { font-size:2.2rem; display:block; }
     .tool-card .icon.pdf { color:#e74c6f; }
     .tool-card .icon.word { color:#2b5797; }
     .tool-card .icon.compress { color:#27ae60; }
@@ -102,22 +116,29 @@
     .tool-card .icon.rotate { color:#16a085; }
     .tool-card .icon.excel { color:#217346; }
     .tool-card .icon.ppt { color:#d24726; }
+    .tool-card .icon.image { color:#e67e22; }
 
-    .tool-card h3 { font-size:1.05rem; font-weight:700; color:#0b1b3a; margin-bottom:6px; }
+    .tool-card .status-tag { font-size:.6rem; font-weight:700; padding:3px 12px; border-radius:20px; text-transform:uppercase; letter-spacing:0.3px; }
+    .tool-card .status-tag.released { background:#d4edda; color:#155724; }
+    .tool-card .status-tag.coming { background:#fef5e7; color:#856404; }
+    .tool-card .status-tag.coming-soon { background:#fde8ec; color:#721c24; }
+
+    .tool-card h3 { font-size:1.05rem; font-weight:700; color:#0b1b3a; margin-bottom:4px; }
     .tool-card p { color:#5a6b8a; font-size:.85rem; line-height:1.5; flex:1; margin-bottom:12px; }
-    .tool-card .meta { display:flex; justify-content:space-between; align-items:center; }
-    .tool-card .tag { font-size:.65rem; padding:2px 10px; border-radius:20px; font-weight:600; }
-    .tool-card .tag.released { background:#d4edda; color:#155724; }
-    .tool-card .tag.coming { background:#fef5e7; color:#856404; }
-    .tool-card .tag.coming-soon { background:#fde8ec; color:#721c24; }
+    .tool-card .meta { display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:12px; border-top:1px solid #edf2f9; }
+    .tool-card .tag { font-size:.65rem; padding:2px 10px; border-radius:20px; background:#eef4ff; color:#1a4cff; font-weight:600; }
     .tool-card .btn-use { padding:6px 18px; border-radius:30px; background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; border:none; font-weight:600; font-size:.8rem; cursor:pointer; transition:.2s; text-decoration:none; }
     .tool-card .btn-use:hover { transform:scale(1.05); box-shadow:0 4px 12px rgba(26,76,255,.3); }
     .tool-card .btn-use.coming { background:#bcc9e0; cursor:not-allowed; }
     .tool-card .btn-use.coming:hover { transform:none; box-shadow:none; }
-    .tool-card .coming-badge { font-size:.7rem; font-weight:600; padding:2px 10px; border-radius:20px; background:#fef5e7; color:#856404; }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state { text-align:center; padding:3rem 1rem; color:#8a9bb8; }
+    .empty-state i { font-size:3rem; color:#dce3ef; margin-bottom:1rem; display:block; }
+    .empty-state h3 { color:#4a5b7a; margin-bottom:.5rem; }
 
     /* ===== FEATURES ===== */
-    .features { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.5rem; margin-bottom:2.5rem; }
+    .features { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.5rem; margin-top:2.5rem; }
     .feature { background:white; border-radius:16px; padding:1.2rem; text-align:center; border:1px solid #edf2f9; }
     .feature .icon { font-size:2rem; color:#1a4cff; margin-bottom:8px; display:block; }
     .feature h4 { font-size:.9rem; color:#0b1b3a; }
@@ -135,7 +156,7 @@
     .footer-links a { color:#5a6b8a; text-decoration:none; transition:.2s; }
     .footer-links a:hover { color:#1a4cff; }
 
-    @media(max-width:768px){ body{padding:1rem; } .app-header{flex-direction:column;align-items:stretch;gap:12px;padding:1rem;} .header-right{flex-direction:column;width:100%;} .btn-back{justify-content:center;width:100%;} .hero h2{font-size:1.6rem;} .hero .stats{gap:20px;} .tools-grid{grid-template-columns:1fr;} .features{grid-template-columns:1fr 1fr;} .toast{left:20px;right:20px;bottom:20px;text-align:center;} .app-footer{flex-direction:column;gap:10px;text-align:center;} .footer-links{justify-content:center;} }
+    @media(max-width:768px){ body{padding:1rem; } .app-header{flex-direction:column;align-items:stretch;gap:12px;padding:1rem;} .header-right{flex-direction:column;width:100%;} .btn-back{justify-content:center;width:100%;} .hero h2{font-size:1.6rem;} .hero .stats{gap:20px;} .filter-bar{flex-direction:column;} .filter-bar .search-box{width:100%;} .filter-bar .filter-group{justify-content:center;} .tools-grid{grid-template-columns:1fr;} .features{grid-template-columns:1fr 1fr;} .toast{left:20px;right:20px;bottom:20px;text-align:center;} .app-footer{flex-direction:column;gap:10px;text-align:center;} .footer-links{justify-content:center;} }
     @media(max-width:400px){ .features{grid-template-columns:1fr;} }
     ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#f0f4fb;border-radius:10px;} ::-webkit-scrollbar-thumb{background:#c5d2e8;border-radius:10px;} ::-webkit-scrollbar-thumb:hover{background:#a0b0ca;}
   </style>
@@ -164,15 +185,15 @@
         <div class="content">
           <div class="icon"><i class="fas fa-file-pdf"></i></div>
           <h2>Kumpulan Tools PDF Online</h2>
-          <p>Semua kebutuhan PDF Anda dalam satu tempat. Merge, split, compress, konversi, edit, proteksi, dan banyak lagi. Gratis, cepat, dan aman.</p>
+          <p>Semua kebutuhan PDF Anda dalam satu tempat. Merge, split, compress, konversi, edit, proteksi, tanda tangan, rotasi, OCR, dan masih banyak lagi. Gratis, cepat, dan aman.</p>
           <div class="stats">
-            <div class="stat">
-              <span class="num">{{ releasedTools }}</span>
-              <span class="label">Tools Tersedia</span>
-            </div>
             <div class="stat">
               <span class="num">{{ totalTools }}</span>
               <span class="label">Total Tools</span>
+            </div>
+            <div class="stat">
+              <span class="num">{{ releasedTools }}</span>
+              <span class="label">Tersedia</span>
             </div>
             <div class="stat">
               <span class="num">🔒</span>
@@ -182,24 +203,50 @@
         </div>
       </section>
 
+      <!-- ===== SEARCH & FILTER ===== -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" v-model="searchQuery" @input="filterTools" placeholder="Cari tools PDF...">
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn" :class="{ active: filterStatus === 'all' }" @click="filterStatus='all';filterTools()">Semua</button>
+          <button class="filter-btn" :class="{ active: filterStatus === 'released' }" @click="filterStatus='released';filterTools()">✅ Tersedia</button>
+          <button class="filter-btn" :class="{ active: filterStatus === 'coming' }" @click="filterStatus='coming';filterTools()">📅 Coming Soon</button>
+        </div>
+      </div>
+
       <!-- ===== TOOLS GRID ===== -->
       <section class="tools-section" aria-label="Daftar Tools PDF">
         <div class="section-title">
           <i class="fas fa-tools"></i> Tools PDF
-          <span class="badge">{{ totalTools }} tools</span>
+          <span class="badge">{{ filteredTools.length }} tools</span>
+          <span class="badge released" v-if="releasedFilterCount">{{ releasedFilterCount }} tersedia</span>
+          <span class="badge coming" v-if="comingFilterCount">{{ comingFilterCount }} coming soon</span>
         </div>
-        <div class="tools-grid">
-          <div class="tool-card" v-for="tool in tools" :key="tool.id">
-            <span class="icon" :class="tool.iconClass"><i :class="tool.icon"></i></span>
+
+        <div class="tools-grid" v-if="filteredTools.length">
+          <div class="tool-card" v-for="tool in filteredTools" :key="tool.id">
+            <div class="header">
+              <span class="icon" :class="tool.iconClass"><i :class="tool.icon"></i></span>
+              <span class="status-tag" :class="tool.statusClass">{{ tool.statusLabel }}</span>
+            </div>
             <h3>{{ tool.name }}</h3>
             <p>{{ tool.desc }}</p>
             <div class="meta">
-              <span class="tag" :class="tool.statusClass">{{ tool.statusLabel }}</span>
+              <span class="tag">{{ tool.category }}</span>
               <a :href="tool.link" class="btn-use" :class="tool.link === '#' ? 'coming' : ''" @click.prevent="tool.link === '#' ? showComingSoon(tool) : null">
                 {{ tool.link === '#' ? 'Coming Soon' : 'Gunakan' }}
               </a>
             </div>
           </div>
+        </div>
+
+        <!-- ===== EMPTY STATE ===== -->
+        <div v-else class="empty-state">
+          <i class="fas fa-search"></i>
+          <h3>Tidak ada tools yang ditemukan</h3>
+          <p>Coba gunakan kata kunci lain atau ubah filter</p>
         </div>
       </section>
 
@@ -246,30 +293,34 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
   <script>
     (function() {
+      // ===== TOOLS DATA =====
       const toolsData = [
         // ===== RELEASED TOOLS =====
-        { id: 1, name: 'PDF Merger', desc: 'Gabungkan beberapa file PDF menjadi satu dokumen dengan mudah.', icon: 'fas fa-object-group', iconClass: 'merge', link: '/tools/pdf/pdf-merger.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 2, name: 'PDF Splitter', desc: 'Pisahkan halaman PDF menjadi beberapa file dengan 3 metode split.', icon: 'fas fa-cut', iconClass: 'split', link: '/tools/pdf/pdf-splitter.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 3, name: 'PDF Compressor', desc: 'Kurangi ukuran file PDF hingga 70% tanpa kehilangan kualitas.', icon: 'fas fa-compress-arrows-alt', iconClass: 'compress', link: '/tools/pdf/pdf-compressor.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 4, name: 'PDF to Word Converter', desc: 'Konversi PDF ke Word (DOCX) dengan mode Standard & OCR.', icon: 'fas fa-file-word', iconClass: 'word', link: '/tools/pdf/pdf-to-word.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 5, name: 'PDF Converter', desc: 'Konversi berbagai format dokumen ke PDF dan sebaliknya.', icon: 'fas fa-exchange-alt', iconClass: 'convert', link: '/tools/pdf/pdf-converter.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 6, name: 'Word Converter', desc: 'Konversi Word (DOC/DOCX) ke PDF, JPG, TXT, dan lainnya.', icon: 'fas fa-file-word', iconClass: 'word', link: '/tools/pdf/word-converter.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 7, name: 'PDF to Excel Converter', desc: 'Ekstrak tabel dari PDF dan ubah ke Excel (XLSX) untuk analisis data.', icon: 'fas fa-file-excel', iconClass: 'excel', link: '/tools/pdf/pdf-to-excel.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 8, name: 'PDF to JPG Converter', desc: 'Konversi setiap halaman PDF menjadi gambar JPG berkualitas tinggi.', icon: 'fas fa-file-image', iconClass: 'convert', link: '/tools/pdf/pdf-to-jpg.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 9, name: 'PDF Editor', desc: 'Edit teks, gambar, dan anotasi langsung di dokumen PDF.', icon: 'fas fa-edit', iconClass: 'edit', link: '/tools/pdf/pdf-editor.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 10, name: 'PDF to PPT Converter', desc: 'Ubah PDF menjadi presentasi PowerPoint (PPTX) yang siap diedit.', icon: 'fas fa-file-powerpoint', iconClass: 'ppt', link: '/tools/pdf/pdf-to-ppt.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 11, name: 'PDF Watermark', desc: 'Tambahkan watermark teks atau gambar ke dokumen PDF Anda.', icon: 'fas fa-watermark', iconClass: 'watermark', link: '/tools/pdf/pdf-watermark.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 12, name: 'PDF Protector', desc: 'Lindungi PDF dengan password dan enkripsi untuk keamanan maksimal.', icon: 'fas fa-lock', iconClass: 'lock', link: '/tools/pdf/pdf-protector.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 13, name: 'Unlock PDF', desc: 'Hapus password dari PDF yang terkunci (jika Anda berhak).', icon: 'fas fa-unlock', iconClass: 'unlock', link: '/tools/pdf/unlock-pdf.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 14, name: 'PDF Signer', desc: 'Tambahkan tanda tangan digital ke dokumen PDF Anda.', icon: 'fas fa-pen-fancy', iconClass: 'sign', link: '/tools/pdf/pdf-signer.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 15, name: 'OCR PDF', desc: 'Konversi PDF scan menjadi teks yang dapat diedit dan dicari.', icon: 'fas fa-eye', iconClass: 'ocr', link: '/tools/pdf/ocr-pdf.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' },
-        { id: 16, name: 'PDF Rotator', desc: 'Rotasi halaman PDF dengan cepat ke orientasi yang benar.', icon: 'fas fa-rotate', iconClass: 'rotate', link: '/tools/pdf/pdf-rotator.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released' }
+        { id: 1, name: 'PDF Merger', desc: 'Gabungkan beberapa file PDF menjadi satu dokumen dengan mudah.', icon: 'fas fa-object-group', iconClass: 'merge', link: '/pdf-merger.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Gabung' },
+        { id: 2, name: 'PDF Splitter', desc: 'Pisahkan halaman PDF menjadi beberapa file dengan 3 metode split.', icon: 'fas fa-cut', iconClass: 'split', link: '/pdf-splitter.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Pisah' },
+        { id: 3, name: 'PDF Compressor', desc: 'Kurangi ukuran file PDF hingga 70% tanpa kehilangan kualitas.', icon: 'fas fa-compress-arrows-alt', iconClass: 'compress', link: '/pdf-compressor.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Kompres' },
+        { id: 4, name: 'PDF to Word Converter', desc: 'Konversi PDF ke Word (DOCX) dengan mode Standard & OCR.', icon: 'fas fa-file-word', iconClass: 'word', link: '/pdf-to-word.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Konversi' },
+        { id: 5, name: 'PDF Converter', desc: 'Konversi berbagai format dokumen ke PDF dan sebaliknya.', icon: 'fas fa-exchange-alt', iconClass: 'convert', link: '/pdf-converter.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Konversi' },
+        { id: 6, name: 'Word Converter', desc: 'Konversi Word (DOC/DOCX) ke PDF, JPG, TXT, dan lainnya.', icon: 'fas fa-file-word', iconClass: 'word', link: '/word-converter.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Konversi' },
+        { id: 7, name: 'PDF to Excel Converter', desc: 'Ekstrak tabel dari PDF dan ubah ke Excel (XLSX) untuk analisis data.', icon: 'fas fa-file-excel', iconClass: 'excel', link: '/pdf-to-excel.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Konversi' },
+        { id: 8, name: 'PDF to JPG Converter', desc: 'Konversi setiap halaman PDF menjadi gambar JPG berkualitas tinggi.', icon: 'fas fa-file-image', iconClass: 'image', link: '/pdf-to-jpg.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Konversi' },
+        { id: 9, name: 'PDF Editor', desc: 'Edit teks, gambar, anotasi, dan tanda tangan langsung di PDF.', icon: 'fas fa-edit', iconClass: 'edit', link: '/pdf-editor.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Edit' },
+        { id: 10, name: 'PDF to PPT Converter', desc: 'Konversi PDF ke PowerPoint (PPTX) dengan mode Standard & OCR.', icon: 'fas fa-file-powerpoint', iconClass: 'ppt', link: '/pdf-to-ppt.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Konversi' },
+        { id: 11, name: 'PDF Watermark', desc: 'Tambahkan watermark teks atau gambar ke PDF dengan berbagai opsi kustomisasi.', icon: 'fas fa-watermark', iconClass: 'watermark', link: '/pdf-watermark.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Proteksi' },
+        { id: 12, name: 'PDF Protector', desc: 'Lindungi PDF dengan password dan atur izin akses dengan enkripsi AES-256.', icon: 'fas fa-lock', iconClass: 'lock', link: '/pdf-protector.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Proteksi' },
+        { id: 13, name: 'Unlock PDF', desc: 'Hapus password dari PDF yang terkunci dengan 3 metode unlock.', icon: 'fas fa-unlock', iconClass: 'unlock', link: '/unlock-pdf.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Proteksi' },
+        { id: 14, name: 'PDF Signer', desc: 'Tambahkan tanda tangan digital ke PDF dengan 3 metode: gambar, upload, atau teks.', icon: 'fas fa-pen-fancy', iconClass: 'sign', link: '/pdf-signer.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Tanda Tangan' },
+        { id: 15, name: 'OCR PDF', desc: 'Konversi PDF scan atau gambar menjadi teks yang dapat diedit dan dicari.', icon: 'fas fa-eye', iconClass: 'ocr', link: '/ocr-pdf.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'OCR' },
+        { id: 16, name: 'PDF Rotator', desc: 'Rotasi halaman PDF 90°, 180°, atau 270° dengan 3 mode rotasi.', icon: 'fas fa-rotate', iconClass: 'rotate', link: '/pdf-rotator.html', status: 'released', statusLabel: 'Rilis', statusClass: 'released', category: 'Orientasi' }
       ];
 
       new Vue({
         el: '#app',
         data: {
           tools: toolsData,
+          searchQuery: '',
+          filterStatus: 'all',
+          filteredTools: toolsData,
           toastVisible: false,
           toastMessage: '',
           toastSuccess: false,
@@ -282,12 +333,43 @@
           },
           releasedTools() {
             return this.tools.filter(t => t.status === 'released').length;
+          },
+          comingTools() {
+            return this.tools.filter(t => t.status === 'coming').length;
+          },
+          releasedFilterCount() {
+            return this.filteredTools.filter(t => t.status === 'released').length;
+          },
+          comingFilterCount() {
+            return this.filteredTools.filter(t => t.status === 'coming').length;
           }
         },
         methods: {
+          filterTools() {
+            let filtered = this.tools;
+            
+            // Filter by search
+            if (this.searchQuery.trim()) {
+              const q = this.searchQuery.trim().toLowerCase();
+              filtered = filtered.filter(t => 
+                t.name.toLowerCase().includes(q) ||
+                t.desc.toLowerCase().includes(q) ||
+                t.category.toLowerCase().includes(q)
+              );
+            }
+            
+            // Filter by status
+            if (this.filterStatus !== 'all') {
+              filtered = filtered.filter(t => t.status === this.filterStatus);
+            }
+            
+            this.filteredTools = filtered;
+          },
+
           showComingSoon(tool) {
             this.showToast(`📅 "${tool.name}" akan segera rilis! Pantau terus REBOART | ToolBox.`, false);
           },
+
           showToast(message, success = true) {
             this.toastMessage = message;
             this.toastSuccess = success;
@@ -296,6 +378,7 @@
             clearTimeout(this.toastTimer);
             this.toastTimer = setTimeout(() => { this.toastVisible = false; }, 3500);
           },
+
           toastIcon() {
             if (this.toastSuccess) return 'fas fa-check-circle';
             if (this.toastError) return 'fas fa-exclamation-circle';
