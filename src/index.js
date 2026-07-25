@@ -2,32 +2,24 @@
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    const pathname = url.pathname;
     
-    // Jika request ke root atau file statis, serve dari assets
-    if (url.pathname === '/' || url.pathname === '/index.html') {
+    // Jika request ke root atau index.html, serve dari assets
+    if (pathname === '/' || pathname === '/index.html') {
       return env.ASSETS.fetch(request);
     }
     
-    // Coba serve file statis dari assets
+    // Serve file statis dari assets
     try {
-      return env.ASSETS.fetch(request);
+      const response = await env.ASSETS.fetch(request);
+      // Jika response 404, redirect ke 404.html
+      if (response.status === 404) {
+        return env.ASSETS.fetch(new Request(url.origin + '/404.html', request));
+      }
+      return response;
     } catch (e) {
-      // Jika tidak ditemukan, return index.html (SPA support)
-      return env.ASSETS.fetch(new Request(url.origin + '/index.html', request));
+      // Jika error, serve 404.html
+      return env.ASSETS.fetch(new Request(url.origin + '/404.html', request));
     }
   }
-};
-
-// ===== ROUTE: 404 =====
-if (pathname === '/404.html') {
-  return env.ASSETS.fetch(request);
-}
-
-// ===== ROUTE: Fallback 404 =====
-// Di akhir fetch, setelah semua route:
-try {
-  return env.ASSETS.fetch(request);
-} catch (e) {
-  // Redirect ke 404.html
-  return env.ASSETS.fetch(new Request(url.origin + '/404.html', request));
 };
