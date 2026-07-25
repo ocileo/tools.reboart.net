@@ -235,7 +235,7 @@
             <p>{{ tool.desc }}</p>
             <div class="meta">
               <span class="tag">{{ tool.category }}</span>
-              <a :href="tool.link" class="btn-use" :class="tool.link === '#' ? 'coming' : ''" @click.prevent="tool.link === '#' ? showComingSoon(tool) : null">
+              <a :href="tool.link" class="btn-use" :class="tool.link === '#' ? 'coming' : ''" @click="tool.link === '#' ? $event.preventDefault() || showComingSoon(tool) : null">
                 {{ tool.link === '#' ? 'Coming Soon' : 'Gunakan' }}
               </a>
             </div>
