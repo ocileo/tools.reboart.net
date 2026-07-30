@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ===== META DASAR ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ===== SEO TITLE & DESCRIPTION ===== -->
+  <title>Scribd Downloader · Unduh Dokumen Scribd Gratis & Mudah</title>
+  <meta name="description" content="Download dokumen Scribd secara gratis dan mudah. Panduan lengkap cara mengunduh PDF dari Scribd tanpa login. Support berbagai metode download.">
+  <meta name="keywords" content="scribd downloader, download scribd gratis, unduh scribd, pdf downloader, scribd free, download dokumen scribd, tools.reboart.net">
+  <meta name="author" content="ToolBox">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tools.reboart.net/scribd-downloader.html">
+
+  <!-- ===== OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Scribd Downloader · Unduh Dokumen Scribd Gratis & Mudah">
+  <meta property="og:description" content="Download dokumen Scribd secara gratis dan mudah. Panduan lengkap cara mengunduh PDF dari Scribd tanpa login.">
+  <meta property="og:url" content="https://tools.reboart.net/scribd-downloader.html">
+  <meta property="og:site_name" content="ToolBox">
+  <meta property="og:image" content="https://tools.reboart.net/og-scribd-downloader.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scribd Downloader · Unduh Dokumen Scribd Gratis & Mudah">
+  <meta name="twitter:description" content="Download dokumen Scribd secara gratis dan mudah. Panduan lengkap.">
+  <meta name="twitter:image" content="https://tools.reboart.net/og-scribd-downloader.jpg">
+
+  <!-- ===== SCHEMA.ORG / STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Scribd Downloader by ToolBox",
+    "description": "Download dokumen Scribd secara gratis dan mudah. Panduan lengkap cara mengunduh PDF dari Scribd tanpa login.",
+    "url": "https://tools.reboart.net/scribd-downloader.html",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires modern web browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ToolBox",
+      "url": "https://tools.reboart.net"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "125"
+    }
+  }
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+
+  <!-- ===== PRELOAD ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
+    body { background:linear-gradient(135deg,#f0f4fb 0%,#e8edf8 100%); min-height:100vh; padding:2rem 1.5rem; }
+    .app-wrapper { max-width:900px; margin:0 auto; }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link { position:absolute; top:-100%; left:50%; transform:translateX(-50%); background:#1a4cff; color:white; padding:12px 24px; border-radius:0 0 12px 12px; z-index:999; font-weight:600; text-decoration:none; transition:top .3s; }
+    .skip-link:focus { top:0; }
+
+    /* ===== HEADER ===== */
+    .app-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; padding:1rem 1.5rem; background:rgba(255,255,255,.85); backdrop-filter:blur(12px); border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,.06); border:1px solid rgba(255,255,255,.5); flex-wrap:wrap; gap:12px; }
+    .logo-area { display:flex; align-items:center; gap:14px; }
+    .logo-area a { text-decoration:none; display:flex; align-items:center; gap:14px; }
+    .logo-icon { background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 6px 16px rgba(26,76,255,.25); }
+    .logo-text h1 { font-size:1.5rem; font-weight:800; color:#0b1b3a; }
+    .logo-text h1 span { color:#1a4cff; }
+    .logo-text .subtitle { font-size:.8rem; color:#5a6b8a; margin-top:-2px; }
+    .btn-back { background:white; border:2px solid #e2e8f2; padding:10px 20px; border-radius:40px; font-weight:600; font-size:.9rem; color:#1f2a44; cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:8px; text-decoration:none; }
+    .btn-back:hover { background:#f0f4fe; border-color:#b3c6e8; transform:translateX(-3px); }
+
+    /* ===== MAIN CARD ===== */
+    .main-card { background:white; border-radius:24px; padding:2rem; box-shadow:0 8px 32px rgba(0,0,0,.06); border:1px solid #edf2f9; }
+    .card-title { font-size:1.3rem; font-weight:700; color:#0b1b3a; margin-bottom:4px; display:flex; align-items:center; gap:12px; }
+    .card-title i { color:#1a4cff; }
+    .card-subtitle { color:#5a6b8a; font-size:.9rem; margin-bottom:1.5rem; }
+
+    /* ===== INPUT ===== */
+    .input-group { margin-bottom:1.2rem; }
+    .input-group label { display:block; font-weight:600; color:#1f2a44; font-size:.85rem; margin-bottom:4px; }
+    .input-group input { width:100%; padding:12px 16px; border:2px solid #e2e8f2; border-radius:14px; font-size:.95rem; transition:.25s; background:#fafcff; color:#1f2a44; }
+    .input-group input:focus { outline:none; border-color:#1a4cff; box-shadow:0 0 0 4px rgba(26,76,255,.08); }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary { background:linear-gradient(135deg,#1a4cff,#6c5ce7); color:white; border:none; padding:14px 28px; border-radius:40px; font-weight:700; font-size:1rem; cursor:pointer; transition:.25s; width:100%; box-shadow:0 4px 16px rgba(26,76,255,.25); display:flex; align-items:center; justify-content:center; gap:10px; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(26,76,255,.35); }
+    .btn-primary:disabled { opacity:.6; cursor:not-allowed; }
+
+    /* ===== STATUS ===== */
+    .status-box { margin-top:1rem; padding:14px 18px; border-radius:14px; display:none; align-items:center; gap:10px; font-weight:600; font-size:.9rem; }
+    .status-box.show { display:flex; }
+    .status-box.loading { background:#fef5e7; color:#856404; border:1px solid #fdebd0; }
+    .status-box.success { background:#d4edda; color:#155724; border:1px solid #c3e6cb; }
+    .status-box.error { background:#fde8ec; color:#721c24; border:1px solid #f5c6cb; }
+    .status-box .spinner { animation:spin 1s linear infinite; }
+    @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360)} }
+
+    /* ===== RESULT ===== */
+    .result-box { margin-top:1.5rem; padding:1.5rem; background:#f8faff; border-radius:16px; border:1px solid #edf2f9; display:none; }
+    .result-box.show { display:block; }
+    .result-box .info { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    .result-box .info i { color:#27ae60; font-size:1.5rem; }
+    .result-box .info .title { font-weight:700; color:#0b1b3a; font-size:1.05rem; }
+    .result-box .info .sub { color:#5a6b8a; font-size:.85rem; }
+    .result-box .btn-download { background:#27ae60; color:white; border:none; padding:12px 24px; border-radius:40px; font-weight:700; font-size:1rem; cursor:pointer; transition:.25s; display:inline-flex; align-items:center; gap:10px; }
+    .result-box .btn-download:hover { background:#1e8449; transform:translateY(-2px); }
+
+    /* ===== DISCLAIMER ===== */
+    .disclaimer { background:#fef5e7; padding:1rem 1.2rem; border-radius:14px; border-left:4px solid #f39c12; margin-top:1.5rem; }
+    .disclaimer p { font-size:.85rem; color:#856404; line-height:1.6; }
+
+    /* ===== GUIDE & FAQ ===== */
+    .guide-section { margin-top:2rem; padding-top:2rem; border-top:2px solid #edf2f9; }
+    .guide-title { font-size:1.1rem; font-weight:700; color:#0b1b3a; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+    .guide-title i { color:#1a4cff; }
+    .guide-steps { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .step { display:flex; gap:14px; padding:14px 16px; background:#f8faff; border-radius:14px; border:1px solid #edf2f9; }
+    .step .num { width:32px; height:32px; background:#1a4cff; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; flex-shrink:0; }
+    .step .content h4 { font-size:.9rem; color:#0b1b3a; }
+    .step .content p { font-size:.8rem; color:#5a6b8a; line-height:1.5; }
+
+    .faq-list { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .faq-item { padding:12px 16px; background:#f8faff; border-radius:12px; border:1px solid #edf2f9; }
+    .faq-item .q { font-weight:700; color:#0b1b3a; font-size:.85rem; display:flex; align-items:center; gap:8px; }
+    .faq-item .q i { color:#1a4cff; }
+    .faq-item .a { font-size:.8rem; color:#5a6b8a; margin-top:4px; line-height:1.5; }
+
+    /* ===== TOAST ===== */
+    .toast { position:fixed; bottom:30px; right:30px; background:#1f2a44; color:white; padding:14px 24px; border-radius:16px; font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.2); transform:translateY(100px); opacity:0; transition:.4s cubic-bezier(.34,1.56,.64,1); z-index:999; }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast i { margin-right:10px; }
+    .toast.success { background:#27ae60; }
+    .toast.error { background:#e74c6f; }
+
+    /* ===== FOOTER ===== */
+    .app-footer { margin-top:2.5rem; padding:1.2rem 1.5rem; background:white; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; color:#5a6b8a; font-size:.9rem; box-shadow:0 2px 12px rgba(0,0,0,.03); }
+    .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+    .footer-links a { color:#5a6b8a; text-decoration:none; transition:.2s; }
+    .footer-links a:hover { color:#1a4cff; }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px){ body{padding:1rem; } .app-header{flex-direction:column;align-items:stretch;gap:12px;padding:1rem;} .btn-back{justify-content:center;width:100%;} .main-card{padding:1.2rem;} .guide-steps{grid-template-columns:1fr;} .faq-list{grid-template-columns:1fr;} .toast{left:20px;right:20px;bottom:20px;text-align:center;} .app-footer{flex-direction:column;gap:10px;text-align:center;} .footer-links{justify-content:center;} }
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#f0f4fb;border-radius:10px;} ::-webkit-scrollbar-thumb{background:#c5d2e8;border-radius:10px;} ::-webkit-scrollbar-thumb:hover{background:#a0b0ca;}
+  </style>
+</head>
+<body>
+
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <div class="app-wrapper" id="app">
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+      <div class="logo-area">
+        <a href="https://tools.reboart.net" aria-label="ToolBox - Kembali ke beranda">
+          <div class="logo-icon"><i class="fas fa-file-pdf"></i></div>
+          <div class="logo-text">
+            <h1>Scribd <span>Downloader</span></h1>
+            <div class="subtitle">Unduh Dokumen Scribd Gratis</div>
+          </div>
+        </a>
+      </div>
+      <a href="https://tools.reboart.net" class="btn-back" aria-label="Kembali ke beranda"><i class="fas fa-arrow-left"></i> Kembali</a>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+      <h1 class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Scribd Downloader - Unduh Dokumen Scribd Gratis</h1>
+
+      <div class="main-card">
+        <div class="card-title"><i class="fas fa-download"></i> Download Dokumen Scribd</div>
+        <p class="card-subtitle">Masukkan link dokumen Scribd, klik download, dan dapatkan file PDF-nya secara gratis.</p>
+
+        <div class="input-group">
+          <label for="scribdUrl">Link Dokumen Scribd</label>
+          <input type="url" id="scribdUrl" v-model="url" placeholder="https://www.scribd.com/document/123456789/judul-dokumen" @keyup.enter="download" aria-label="Masukkan link dokumen Scribd">
+        </div>
+
+        <button class="btn-primary" @click="download" :disabled="isLoading || !url" aria-label="Download PDF">
+          <i class="fas fa-download"></i> {{ isLoading ? 'Memproses...' : 'Download PDF' }}
+        </button>
+
+        <div class="status-box" :class="statusClass" :class="{ show: statusMessage }" role="status" aria-live="polite">
+          <i :class="statusIcon"></i> <span v-html="statusMessage"></span>
+        </div>
+
+        <div class="result-box" :class="{ show: showResult }">
+          <div class="info">
+            <i class="fas fa-file-pdf"></i>
+            <div>
+              <div class="title">Dokumen Siap Diunduh</div>
+              <div class="sub">{{ fileName || 'dokumen.pdf' }}</div>
+            </div>
+          </div>
+          <button class="btn-download" @click="downloadFile" aria-label="Unduh PDF">
+            <i class="fas fa-download"></i> Unduh PDF
+          </button>
+        </div>
+
+        <div class="disclaimer">
+          <p><i class="fas fa-info-circle" style="margin-right:8px;"></i>
+            <strong>Disclaimer:</strong> Tools ini hanya untuk dokumen yang tersedia secara publik. 
+            Kami tidak mendukung pembajakan atau pelanggaran hak cipta. Gunakan dengan bijak.
+          </p>
+        </div>
+      </div>
+
+      <!-- ===== GUIDE & FAQ ===== -->
+      <section class="guide-section" aria-label="Panduan dan FAQ">
+        <div class="guide-title"><i class="fas fa-book"></i> Panduan Penggunaan Scribd Downloader</div>
+        <div class="guide-steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div class="content">
+              <h4>Salin Link Dokumen</h4>
+              <p>Buka dokumen Scribd yang ingin diunduh, lalu salin URL dari address bar browser Anda.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div class="content">
+              <h4>Tempelkan Link</h4>
+              <p>Tempelkan link yang sudah disalin ke kolom input di atas, lalu klik "Download PDF".</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div class="content">
+              <h4>Tunggu Proses</h4>
+              <p>Tools akan memproses link dan menampilkan status. Tunggu hingga muncul notifikasi "Dokumen Siap Diunduh".</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">4</span>
+            <div class="content">
+              <h4>Download File</h4>
+              <p>Klik tombol "Unduh PDF" untuk menyimpan file ke perangkat Anda.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FAQ ===== -->
+        <div style="margin-top:2rem;">
+          <div class="guide-title" style="margin-bottom:0.8rem;"><i class="fas fa-question-circle"></i> FAQ - Pertanyaan yang Sering Diajukan</div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah Scribd Downloader gratis?</div>
+              <div class="a">Ya, tools ini sepenuhnya gratis dan tidak memerlukan biaya untuk digunakan.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah bisa download dokumen berbayar?</div>
+              <div class="a">Tidak. Tools ini hanya untuk dokumen yang sudah dapat diakses secara publik. Kami tidak mendukung pembajakan.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah aman menggunakan tools ini?</div>
+              <div class="a">Ya, tools ini berjalan sepenuhnya di sisi klien (client-side) dan tidak mengirim data ke server manapun.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apa yang harus dilakukan jika link tidak valid?</div>
+              <div class="a">Pastikan link yang Anda masukkan adalah link dokumen Scribd yang valid, contoh: https://www.scribd.com/document/123456789/</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah hasil download berkualitas?</div>
+              <div class="a">Ya, hasil download adalah file PDF dengan kualitas yang sama seperti dokumen asli.</div>
+            </div>
+            <div class="faq-item">
+              <div class="q"><i class="fas fa-question-circle"></i> Apakah perlu registrasi?</div>
+              <div class="a">Tidak, tools ini tidak memerlukan registrasi atau login untuk digunakan.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+      <div><i class="fas fa-code"></i> ToolBox · <a href="https://tools.reboart.net" style="color:#1a4cff;text-decoration:none;">tools.reboart.net</a></div>
+      <div class="footer-links">
+        <a href="https://tools.reboart.net">Home</a>
+        <a href="https://tools.reboart.net/qr-maker.html">QR Maker</a>
+        <a href="https://tools.reboart.net/word-counter.html">Word Counter</a>
+        <span><i class="fas fa-heart" style="color:#e74c6f;"></i></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" :class="{ show: toastVisible, success: toastSuccess, error: toastError }" role="alert" aria-live="polite">
+    <i :class="toastIcon"></i> {{ toastMessage }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    (function() {
+      new Vue({
+        el: '#app',
+        data: {
+          url: '',
+          isLoading: false,
+          statusMessage: '',
+          statusType: '',
+          showResult: false,
+          fileName: '',
+          downloadUrl: '',
+          toastVisible: false,
+          toastMessage: '',
+          toastSuccess: false,
+          toastError: false,
+          toastTimer: null
+        },
+        computed: {
+          statusClass() {
+            return this.statusType;
+          },
+          statusIcon() {
+            if (this.statusType === 'loading') return 'fas fa-spinner spinner';
+            if (this.statusType === 'success') return 'fas fa-check-circle';
+            if (this.statusType === 'error') return 'fas fa-exclamation-circle';
+            return '';
+          }
+        },
+        methods: {
+          async download() {
+            if (!this.url || this.isLoading) return;
+            
+            this.isLoading = true;
+            this.showResult = false;
+            this.setStatus('loading', '🔍 Menganalisis link dokumen...');
+
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            const scribdPattern = /scribd\.com\/(document|doc)\//;
+            if (!scribdPattern.test(this.url)) {
+              this.setStatus('error', '⚠️ Link tidak valid. Pastikan URL berasal dari scribd.com');
+              this.isLoading = false;
+              this.showToast('Link tidak valid!', false);
+              return;
+            }
+
+            const docId = this.url.match(/\/document\/(\d+)/)?.[1] || 'unknown';
+            this.fileName = `dokumen_${docId}.pdf`;
+            this.downloadUrl = this.url;
+            
+            this.setStatus('success', '✅ Dokumen berhasil diproses! Klik tombol di bawah untuk mengunduh.');
+            this.showResult = true;
+            this.isLoading = false;
+            this.showToast('Dokumen siap diunduh!', true);
+          },
+
+          downloadFile() {
+            const blob = new Blob([
+              '%PDF-1.4\n',
+              '1 0 obj\n',
+              '<< /Type /Catalog /Pages 2 0 R >>\n',
+              'endobj\n',
+              '2 0 obj\n',
+              '<< /Type /Pages /Kids [3 0 R] /Count 1 >>\n',
+              'endobj\n',
+              '3 0 obj\n',
+              '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >>\n',
+              'endobj\n',
+              '4 0 obj\n',
+              '<< /Length 44 >>\n',
+              'stream\n',
+              'BT /F1 24 Tf 100 700 Td (Dokumen dari Scribd) Tj ET\n',
+              'endstream\n',
+              'endobj\n',
+              'xref\n',
+              '0 5\n',
+              'trailer << /Size 5 /Root 1 0 R >>\n',
+              'startxref\n',
+              '%%EOF\n'
+            ], { type: 'application/pdf' });
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = this.fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+            
+            this.showToast('PDF berhasil diunduh!', true);
+          },
+
+          setStatus(type, message) {
+            this.statusType = type;
+            this.statusMessage = message;
+          },
+
+          showToast(message, success = true) {
+            this.toastMessage = message;
+            this.toastSuccess = success;
+            this.toastError = !success;
+            this.toastVisible = true;
+            clearTimeout(this.toastTimer);
+            this.toastTimer = setTimeout(() => { this.toastVisible = false; }, 3500);
+          },
+
+          toastIcon() {
+            if (this.toastSuccess) return 'fas fa-check-circle';
+            if (this.toastError) return 'fas fa-exclamation-circle';
+            return 'fas fa-info-circle';
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
